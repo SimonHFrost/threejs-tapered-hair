@@ -14,9 +14,6 @@ var path = new THREE.Path();
 // Get midpoint between new point and previous one
 // Add a bit of randomness to midpoint
 
-// path.bezierCurveTo( 5, 5, 5, 5, 10, 10 );
-// path.bezierCurveTo( 10, 10, 12, 10, 20, 20 );
-
 // path.lineTo( Math.random(), Math.random() );
 
 for (let i = 0; i < 100; i++) {
