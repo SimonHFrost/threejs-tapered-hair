@@ -4,6 +4,7 @@
   "version": "1.0.0",
   "main": "webpack.config.js",
   "dependencies": {
+    "fast-simplex-noise": "^3.2.0",
     "three": "0.90.0",
     "three-orbit-controls": "^82.1.0"
   },

@@ -4,9 +4,9 @@ const ORBIT_CONTROLS_ENABLED = true
 
 function createRenderer () {
   const renderer = new THREE.WebGLRenderer({
-    antialias: true
+    antialias: true,
+    transparent: true
   })
-  renderer.setClearColor(new THREE.Color('lightblue'), 1)
   renderer.setSize(window.innerWidth, window.innerHeight)
 
   const containerComponent = document.getElementById('webgl')
@@ -21,8 +21,7 @@ function createRenderer () {
 
 function createCamera (renderer) {
   const camera = new THREE.PerspectiveCamera(45, window.innerWidth / window.innerHeight, 0.01, 1000)
-  camera.position.z = 5
-  camera.position.y = 3
+  camera.position.z = 150
 
   camera.lookAt(new THREE.Vector3(0, 0, 0))
 
