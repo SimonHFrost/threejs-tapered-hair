@@ -10,9 +10,8 @@ const scene = output.scene
 
 var path = new THREE.Path();
 
-path.lineTo( 0, 8 );
-path.quadraticCurveTo( 0, 10, 2, 10 );
-path.lineTo( 10, 10 );
+path.bezierCurveTo( 0, 10, 10, 0, 10, 10 );
+path.bezierCurveTo( 10, 10, 12, 10, 20, 20 );
 
 var points = path.getPoints();
 
