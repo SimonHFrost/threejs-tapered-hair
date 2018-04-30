@@ -10,20 +10,20 @@ const scene = output.scene
 
 var path = new THREE.Path();
 
-// Randomly generate new point
-// Get midpoint between new point and previous one
-// Add a bit of randomness to midpoint
-
 // path.lineTo( Math.random(), Math.random() );
 
-for (let i = 0; i < 100; i++) {
+for (let i = 0; i < 10; i++) {
   let locationX = Math.random() * 100
   let locationY = Math.random() * 100
 
-  let anchorX = Math.random() * 100
-  let anchorY = Math.random() * 100
+  let firstAnchorX = Math.random() * 100
+  let firstAnchorY = Math.random() * 100
 
-  path.bezierCurveTo( anchorX, anchorY, anchorX, anchorY, locationX, locationY );
+  // second anchor point should be equidistant and tangential to previous anchor
+  let secondAnchorX = Math.random() * 100
+  let secondAnchorY = Math.random() * 100
+
+  path.bezierCurveTo( firstAnchorX, firstAnchorY, secondAnchorX, secondAnchorY, locationX, locationY )
 }
 
 var points = path.getPoints();
