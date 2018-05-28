@@ -12,18 +12,20 @@ var path = new THREE.Path();
 
 // path.lineTo( Math.random(), Math.random() );
 
+let previousAnchorX = Math.random() * 100
+let previousAnchorY = Math.random() * 100
+
 for (let i = 0; i < 10; i++) {
   let locationX = Math.random() * 100
   let locationY = Math.random() * 100
 
-  let firstAnchorX = Math.random() * 100
-  let firstAnchorY = Math.random() * 100
+  let anchorX = locationX + (previousAnchorX - locationX)
+  let anchorY = locationY + (previousAnchorY - locationY)
 
-  // second anchor point should be equidistant and tangential to previous anchor
-  let secondAnchorX = Math.random() * 100
-  let secondAnchorY = Math.random() * 100
+  path.bezierCurveTo( previousAnchorX, previousAnchorY, anchorX, anchorY, locationX, locationY )
 
-  path.bezierCurveTo( firstAnchorX, firstAnchorY, secondAnchorX, secondAnchorY, locationX, locationY )
+  previousAnchorX = anchorX
+  previousAnchorY = anchorY
 }
 
 var points = path.getPoints();
