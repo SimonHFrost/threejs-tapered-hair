@@ -36,14 +36,14 @@ const connectingY = 250 * Math.random()
 drawPoint(
   Math.random() * 200,
   Math.random() * 200,
-  connectingX - 50, // Make this randomised
+  connectingX - 50, // TODO Make this randomised
   connectingY - 50, //
   connectingX,
   connectingY
 )
 
 drawPoint(
-  connectingX + 50, // Make this calculated from previous anchor points and connecting points
+  connectingX + 50, // TODO Make this calculated from previous anchor points and connecting points
   connectingY + 50, //
   Math.random() * 200,
   Math.random() * 200,
