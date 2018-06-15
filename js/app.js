@@ -30,8 +30,11 @@ function drawResult() {
 
 var path = new THREE.Path()
 
-drawPoint( Math.random() * 200, Math.random() * 200, 150, 150, 200, 200 )
-drawPoint( 250, 250, Math.random() * 200, Math.random() * 200, 400, 400 )
+const connectingX = 250
+const connectingY = 250
+
+drawPoint( Math.random() * 200, Math.random() * 200, connectingX - 50, connectingY - 50, connectingX, connectingY )
+drawPoint( connectingX + 50, connectingY + 50, Math.random() * 200, Math.random() * 200, 400, 400 )
 
 // Curve is continuous because the sequential anchor points form a line between the connecting point!
 drawResult()
