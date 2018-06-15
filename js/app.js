@@ -8,9 +8,6 @@ const createAmbientLight = require('./object-creator.js').createAmbientLight
 const createDirectionalLight = require('./object-creator.js').createDirectionalLight
 const createCube = require('./object-creator.js').createCube
 
-var path = new THREE.Path()
-path.moveTo(0, 0)
-
 function drawPoint(x1, y1, x2, y2, x, y) {
   path.bezierCurveTo(x1, y1, x2, y2, x, y)
   scene.add(createCube(x1, y1, 'green'))
@@ -30,6 +27,9 @@ function drawResult() {
   scene.add(createAmbientLight())
   scene.add(createDirectionalLight())
 }
+
+var path = new THREE.Path()
+path.moveTo(0, 0)
 
 let x = 200
 let y = 200
