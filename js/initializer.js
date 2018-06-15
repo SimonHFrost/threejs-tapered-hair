@@ -21,14 +21,13 @@ function createRenderer () {
 
 function createCamera (renderer) {
   const camera = new THREE.PerspectiveCamera(45, window.innerWidth / window.innerHeight, 0.01, 1000)
+  camera.position.x = 25
+  camera.position.y = 25
   camera.position.z = 150
 
-  camera.lookAt(new THREE.Vector3(0, 0, 0))
-
-  if (ORBIT_CONTROLS_ENABLED) {
-    // eslint-disable-next-line no-unused-vars
-    const controls = new OrbitControls(camera)
-  }
+  const controls = new OrbitControls(camera)
+  controls.target = new THREE.Vector3(25, 25, 0)
+  controls.update()
 
   window.addEventListener('resize', () => {
     renderer.setSize(window.innerWidth, window.innerHeight)
