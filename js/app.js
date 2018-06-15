@@ -31,14 +31,15 @@ function drawResult() {
 var path = new THREE.Path()
 path.moveTo(0, 0)
 
-let x = 200
-let y = 200
 
 let x1 = Math.random() * 200
 let y1 = Math.random() * 200
 
 let x2 = Math.random() * 200
 let y2 = Math.random() * 200
+
+let x = 200
+let y = 200
 
 drawPoint( x1, y1, x2, y2, x, y )
 
