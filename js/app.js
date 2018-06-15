@@ -1,11 +1,12 @@
 const THREE = require('three')
 
 const initialize = require('./initializer.js').initialize
-const createAmbientLight = require('./object-creator.js').createAmbientLight
-const createDirectionalLight = require('./object-creator.js').createDirectionalLight
-
 const output = initialize()
 const scene = output.scene
+
+const createAmbientLight = require('./object-creator.js').createAmbientLight
+const createDirectionalLight = require('./object-creator.js').createDirectionalLight
+const createCube = require('./object-creator.js').createCube
 
 var path = new THREE.Path()
 path.moveTo(-50, -50)
@@ -21,6 +22,11 @@ for (let i = 0; i < 2; i++) {
   let anchorY = Math.random() * 50
 
   path.bezierCurveTo( previousAnchorX, previousAnchorY, anchorX, anchorY, locationX, locationY )
+
+  // DIAGNOSTICS
+  scene.add(createCube(previousAnchorX, previousAnchorY, 'red'))
+  scene.add(createCube(anchorX, anchorY, 'red'))
+  scene.add(createCube(locationX, locationY, 'blue'))
 
   previousAnchorX = anchorX
   previousAnchorY = anchorY
