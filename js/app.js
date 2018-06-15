@@ -29,18 +29,9 @@ function drawResult() {
 }
 
 var path = new THREE.Path()
-path.moveTo(0, 0)
 
+drawPoint( Math.random() * 200, Math.random() * 200, 150, 150, 200, 200 )
+drawPoint( 250, 250, Math.random() * 200, Math.random() * 200, 400, 400 )
 
-let x1 = Math.random() * 200
-let y1 = Math.random() * 200
-
-let x2 = Math.random() * 200
-let y2 = Math.random() * 200
-
-let x = 200
-let y = 200
-
-drawPoint( x1, y1, x2, y2, x, y )
-
+// Curve is continuous because the relating anchor points form a line between connecting point!
 drawResult()
