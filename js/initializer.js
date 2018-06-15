@@ -59,7 +59,7 @@ function initialize () {
   const scene = new THREE.Scene()
   const camera = createCamera(renderer)
 
-  var gridHelper = new THREE.GridHelper( 100, 10 );
+  var gridHelper = new THREE.GridHelper( 1000, 10 );
   scene.add( gridHelper );
 
   renderLoop.push(() => {

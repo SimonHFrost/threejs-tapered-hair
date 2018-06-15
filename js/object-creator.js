@@ -11,7 +11,7 @@ function createDirectionalLight () {
 }
 
 function createCube (posX, posY, color) {
-  const geometry = new THREE.BoxBufferGeometry( 1, 1, 1 )
+  const geometry = new THREE.BoxBufferGeometry( 10, 10, 10 )
   const material = new THREE.MeshLambertMaterial( { color: color, flatShading: true } )
   const mesh = new THREE.Mesh( geometry, material )
   mesh.position.x = posX
