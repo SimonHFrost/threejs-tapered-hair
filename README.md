@@ -5,3 +5,7 @@
 # Getting Started
 
 `webpack-dev-server` to run
+
+# Build
+
+`webpack` to build
