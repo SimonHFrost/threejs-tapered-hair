@@ -11,25 +11,22 @@ const createCube = require('./object-creator.js').createCube
 var path = new THREE.Path()
 path.moveTo(-50, -50)
 
-let previousAnchorX = Math.random() * 50
-let previousAnchorY = Math.random() * 50
-
 for (let i = 0; i < 2; i++) {
   let locationX = Math.random() * 50
   let locationY = Math.random() * 50
 
-  let anchorX = Math.random() * 50
-  let anchorY = Math.random() * 50
+  let firstAnchorX = Math.random() * 50
+  let firstAnchorY = Math.random() * 50
 
-  path.bezierCurveTo( previousAnchorX, previousAnchorY, anchorX, anchorY, locationX, locationY )
+  let secondAnchorX = Math.random() * 50
+  let secondAnchorY = Math.random() * 50
+
+  path.bezierCurveTo( firstAnchorX, firstAnchorY, secondAnchorX, secondAnchorY, locationX, locationY )
 
   // DIAGNOSTICS
-  scene.add(createCube(previousAnchorX, previousAnchorY, 'red'))
-  scene.add(createCube(anchorX, anchorY, 'red'))
+  scene.add(createCube(firstAnchorX, firstAnchorY, 'green'))
+  scene.add(createCube(secondAnchorX, secondAnchorY, 'red'))
   scene.add(createCube(locationX, locationY, 'blue'))
-
-  previousAnchorX = anchorX
-  previousAnchorY = anchorY
 }
 
 var points = path.getPoints();
