@@ -3,24 +3,22 @@ const THREE = require('three')
 const initialize = require('./initializer.js').initialize
 const createAmbientLight = require('./object-creator.js').createAmbientLight
 const createDirectionalLight = require('./object-creator.js').createDirectionalLight
-const FastSimplexNoise = require('fast-simplex-noise')
 
 const output = initialize()
 const scene = output.scene
 
-var path = new THREE.Path();
+var path = new THREE.Path()
+path.moveTo(-50, -50)
 
-// path.lineTo( Math.random(), Math.random() );
+let previousAnchorX = Math.random() * 50
+let previousAnchorY = Math.random() * 50
 
-let previousAnchorX = Math.random() * 100
-let previousAnchorY = Math.random() * 100
+for (let i = 0; i < 2; i++) {
+  let locationX = Math.random() * 50
+  let locationY = Math.random() * 50
 
-for (let i = 0; i < 10; i++) {
-  let locationX = Math.random() * 100
-  let locationY = Math.random() * 100
-
-  let anchorX = locationX + (previousAnchorX - locationX)
-  let anchorY = locationY + (previousAnchorY - locationY)
+  let anchorX = Math.random() * 50
+  let anchorY = Math.random() * 50
 
   path.bezierCurveTo( previousAnchorX, previousAnchorY, anchorX, anchorY, locationX, locationY )
 
