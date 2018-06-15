@@ -33,5 +33,5 @@ var path = new THREE.Path()
 drawPoint( Math.random() * 200, Math.random() * 200, 150, 150, 200, 200 )
 drawPoint( 250, 250, Math.random() * 200, Math.random() * 200, 400, 400 )
 
-// Curve is continuous because the relating anchor points form a line between connecting point!
+// Curve is continuous because the sequential anchor points form a line between the connecting point!
 drawResult()
