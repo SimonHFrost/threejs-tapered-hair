@@ -30,14 +30,20 @@ function drawResult() {
 
 var path = new THREE.Path()
 
+const anchor1X = Math.random() * 200
+const anchor1Y = Math.random() * 200
+
+const anchor2X = connectingX - 50
+const anchor2Y = connectingY - 50 // TODO Make this randomised
+
 const connectingX = 250 * Math.random()
 const connectingY = 250 * Math.random()
 
 drawPoint(
-  Math.random() * 200,
-  Math.random() * 200,
-  connectingX - 50, // TODO Make this randomised
-  connectingY - 50, //
+  anchor1X,
+  anchor1Y,
+  anchor2X,
+  anchor2Y,
   connectingX,
   connectingY
 )
