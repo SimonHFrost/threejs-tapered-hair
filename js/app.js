@@ -8,6 +8,13 @@ const createAmbientLight = require('./object-creator.js').createAmbientLight
 const createDirectionalLight = require('./object-creator.js').createDirectionalLight
 const createCube = require('./object-creator.js').createCube
 
+function getRandomNearby(x, y, length) {
+  return {
+    x: x - (length / 2) + Math.random() * length,
+    y: y - (length / 2) + Math.random() * length
+  }
+}
+
 function drawPoint(x1, y1, x2, y2, x, y) {
   path.bezierCurveTo(x1, y1, x2, y2, x, y)
   scene.add(createCube(x1, y1, 'green'))
@@ -33,11 +40,11 @@ var path = new THREE.Path()
 const anchor1X = Math.random() * 200
 const anchor1Y = Math.random() * 200
 
-const anchor2X = connectingX - 50
-const anchor2Y = connectingY - 50 // TODO Make this randomised
-
 const connectingX = 250 * Math.random()
 const connectingY = 250 * Math.random()
+
+const anchor2X = connectingX - 50
+const anchor2Y = connectingY - 50 // TODO Make this randomised
 
 drawPoint(
   anchor1X,
