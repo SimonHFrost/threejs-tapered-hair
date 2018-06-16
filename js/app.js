@@ -37,11 +37,11 @@ var path = new THREE.Path()
 const anchor1X = Math.random() * 200
 const anchor1Y = Math.random() * 200
 
-const connectingX = 250 * Math.random()
-const connectingY = 250 * Math.random()
+let connectingX = 250 * Math.random()
+let connectingY = 250 * Math.random()
 
-const anchor2X = getRandomNearby(connectingX, 100)
-const anchor2Y = getRandomNearby(connectingY, 100)
+let anchor2X = getRandomNearby(connectingX, 100)
+let anchor2Y = getRandomNearby(connectingY, 100)
 
 drawPoint(
   anchor1X,
@@ -52,19 +52,27 @@ drawPoint(
   connectingY
 )
 
-let nextAnchor1X = Math.random() * 200
-let nextAnchor1Y = Math.random() * 200
-let nextConnectingX = Math.random() * 250
-let nextConnectingY = Math.random() * 250
+for (let i = 0; i < 10; i++) {
+  let nextConnectingX = Math.random() * 250
+  let nextConnectingY = Math.random() * 250
 
-drawPoint(
-  connectingX + (connectingX - anchor2X),
-  connectingY + (connectingY - anchor2Y),
-  nextAnchor1X,
-  nextAnchor1Y,
-  nextConnectingX,
-  nextConnectingY
-)
+  let nextAnchor1X = getRandomNearby(nextConnectingX, 100)
+  let nextAnchor1Y = getRandomNearby(nextConnectingY, 100)
+
+  drawPoint(
+    connectingX + (connectingX - anchor2X),
+    connectingY + (connectingY - anchor2Y),
+    nextAnchor1X,
+    nextAnchor1Y,
+    nextConnectingX,
+    nextConnectingY
+  )
+
+  connectingX = nextConnectingX
+  connectingY = nextConnectingY
+  anchor2X = nextAnchor1X
+  anchor2Y = nextAnchor1Y
+}
 
 // Curve is continuous because the sequential anchor points form a line between the connecting point!
 drawResult()
