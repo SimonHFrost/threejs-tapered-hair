@@ -52,13 +52,19 @@ drawPoint(
   connectingY
 )
 
+let nextAnchor1X = Math.random() * 200
+let nextAnchor1Y = Math.random() * 200
+let nextConnectingX = Math.random() * 250
+let nextConnectingY = Math.random() * 250
+
 drawPoint(
   connectingX + (connectingX - anchor2X),
   connectingY + (connectingY - anchor2Y),
-  Math.random() * 200,
-  Math.random() * 200,
-  Math.random() * 250,
-  Math.random() * 250)
+  nextAnchor1X,
+  nextAnchor1Y,
+  nextConnectingX,
+  nextConnectingY
+)
 
 // Curve is continuous because the sequential anchor points form a line between the connecting point!
 drawResult()
