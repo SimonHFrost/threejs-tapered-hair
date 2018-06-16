@@ -57,8 +57,8 @@ drawPoint(
   connectingY + (connectingY - anchor2Y),
   Math.random() * 200,
   Math.random() * 200,
-  Math.random() * 400,
-  Math.random() * 400)
+  Math.random() * 250,
+  Math.random() * 250)
 
 // Curve is continuous because the sequential anchor points form a line between the connecting point!
 drawResult()
