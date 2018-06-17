@@ -12,11 +12,16 @@ function getRandomNearby(value, length) {
   return value - (length / 2) + Math.random() * length
 }
 
+let color = new THREE.Color( 0xffffff )
+color.setHex( Math.random() * 0xffffff )
+
 function drawPoint(x1, y1, x2, y2, x, y) {
   path.bezierCurveTo(x1, y1, x2, y2, x, y)
-  scene.add(createCube(x1, y1, 'green'))
-  scene.add(createCube(x2, y2, 'red'))
-  scene.add(createCube(x, y, 'blue'))
+  scene.add(createCube(x1, y1, color))
+
+  color.setHex( Math.random() * 0xffffff )
+  scene.add(createCube(x2, y2, color))
+  scene.add(createCube(x, y, 'pink'))
 }
 
 function drawResult() {
@@ -52,7 +57,7 @@ drawPoint(
   connectingY
 )
 
-for (let i = 0; i < 10; i++) {
+for (let i = 0; i < 5; i++) {
   let nextConnectingX = Math.random() * 250
   let nextConnectingY = Math.random() * 250
 
