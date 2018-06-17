@@ -19,8 +19,23 @@ function createCube (posX, posY, color) {
   return mesh
 }
 
+function createLine (x1, y1, x2, y2, color) {
+  var material = new THREE.LineBasicMaterial({
+	   color: color
+  });
+
+  var geometry = new THREE.Geometry();
+  geometry.vertices.push(
+    new THREE.Vector3( x1, y1, 0 ),
+    new THREE.Vector3( x2, y2, 0 )
+  );
+
+  return line = new THREE.Line( geometry, material );
+}
+
 module.exports = {
   createAmbientLight,
   createDirectionalLight,
-  createCube
+  createCube,
+  createLine
 }

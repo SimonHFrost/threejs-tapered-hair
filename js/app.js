@@ -7,6 +7,7 @@ const scene = output.scene
 const createAmbientLight = require('./object-creator.js').createAmbientLight
 const createDirectionalLight = require('./object-creator.js').createDirectionalLight
 const createCube = require('./object-creator.js').createCube
+const createLine = require('./object-creator.js').createLine
 
 function getRandomNearby(value, length) {
   return value - (length / 2) + Math.random() * length
@@ -15,13 +16,21 @@ function getRandomNearby(value, length) {
 let color = new THREE.Color( 0xffffff )
 color.setHex( Math.random() * 0xffffff )
 
+let oldX = null;
+let oldY = null;
+
+// FIXME tidy up super confusing code!
 function drawPoint(x1, y1, x2, y2, x, y) {
   path.bezierCurveTo(x1, y1, x2, y2, x, y)
   scene.add(createCube(x1, y1, color))
-
+  oldX && oldY && scene.add(createLine(oldX, oldY, x1, y1, color))
+  // Have to change color AFTER setting first anchor so it pairs with previous
   color.setHex( Math.random() * 0xffffff )
   scene.add(createCube(x2, y2, color))
-  scene.add(createCube(x, y, 'pink'))
+  scene.add(createCube(x, y, 'blue'))
+
+  oldX = x2
+  oldY = y2
 }
 
 function drawResult() {
