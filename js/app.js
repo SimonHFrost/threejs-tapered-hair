@@ -13,19 +13,20 @@ function getRandomNearby(value, length) {
   return value - (length / 2) + Math.random() * length
 }
 
-let oldX = null;
-let oldY = null;
+// NOTE We have to save a reference to previous anchors in order to connecting anchors between two curves!
+let oldX2 = null;
+let oldY2 = null;
 
-// FIXME tidy up super confusing code!
 function createCurve(x1, y1, x, y, x2, y2) {
+  // NOTE Different ordering of params here!
   path.bezierCurveTo(x1, y1, x2, y2, x, y)
   scene.add(createCube(x1, y1, 'red'))
   scene.add(createCube(x2, y2, 'red'))
   scene.add(createCube(x, y, 'blue'))
 
-  scene.add(createLine(oldX, oldY, x1, y1, 'red'))
-  oldX = x2
-  oldY = y2
+  scene.add(createLine(oldX2, oldY2, x1, y1, 'red'))
+  oldX2 = x2
+  oldY2 = y2
 }
 
 function drawResult() {
