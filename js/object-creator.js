@@ -33,9 +33,19 @@ function createLineSegment (x1, y1, x2, y2, color) {
   return line = new THREE.Line( geometry, material );
 }
 
+function createLine (path) {
+  var points = path.getPoints();
+
+  var geometry = new THREE.BufferGeometry().setFromPoints( points );
+  var material = new THREE.LineBasicMaterial( { color: 0xffffff } );
+
+  return new THREE.Line( geometry, material );
+}
+
 module.exports = {
   createAmbientLight,
   createDirectionalLight,
   createCube,
-  createLineSegment
+  createLineSegment,
+  createLine
 }

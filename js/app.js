@@ -1,14 +1,15 @@
 const THREE = require('three')
 
 const initialize = require('./initializer.js').initialize
-const output = initialize()
-const scene = output.scene
 
 const createAmbientLight = require('./object-creator.js').createAmbientLight
 const createDirectionalLight = require('./object-creator.js').createDirectionalLight
 const createCube = require('./object-creator.js').createCube
 const createLineSegment = require('./object-creator.js').createLineSegment
+const createLine = require('./object-creator.js').createLine
 
+const output = initialize()
+const scene = output.scene
 scene.add(createAmbientLight())
 scene.add(createDirectionalLight())
 
@@ -36,16 +37,6 @@ function createCurve(x1, y1, x, y, x2, y2) {
 
   oldX = x2
   oldY = y2
-}
-
-function drawResult() {
-  var points = path.getPoints();
-
-  var geometry = new THREE.BufferGeometry().setFromPoints( points );
-  var material = new THREE.LineBasicMaterial( { color: 0xffffff } );
-
-  var line = new THREE.Line( geometry, material );
-  scene.add( line );
 }
 
 var path = new THREE.Path()
@@ -84,4 +75,4 @@ for (let i = 0; i < 5; i++) {
   anchor2Y = nextAnchor1Y
 }
 
-drawResult()
+scene.add(createLine(path))
