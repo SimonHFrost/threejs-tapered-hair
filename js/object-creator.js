@@ -42,10 +42,33 @@ function createLine (path) {
   return new THREE.Line( geometry, material );
 }
 
+// NOTE We have to save a reference to previous point to draw the next anchor line properly
+let oldX = null;
+let oldY = null;
+
+function createCurve(scene, path, x1, y1, x, y, x2, y2) {
+  // NOTE Draw curve. Different ordering of params here!
+  path.bezierCurveTo(x1, y1, x2, y2, x, y)
+
+  // NOTE First anchor
+  scene.add(createCube(x1, y1, 'red'))
+  scene.add(createLineSegment(oldX, oldY, x1, y1, 'red'))
+
+  scene.add(createCube(x, y, 'blue'))
+
+  // NOTE Second anchor
+  scene.add(createCube(x2, y2, 'red'))
+  scene.add(createLineSegment(x, y, x2, y2, 'red'))
+
+  oldX = x2
+  oldY = y2
+}
+
 module.exports = {
   createAmbientLight,
   createDirectionalLight,
   createCube,
   createLineSegment,
-  createLine
+  createLine,
+  createCurve
 }
