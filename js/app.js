@@ -17,7 +17,7 @@ let oldX = null;
 let oldY = null;
 
 // FIXME tidy up super confusing code!
-function drawPoint(x1, y1, x2, y2, x, y) {
+function drawCurve(x1, y1, x2, y2, x, y) {
   path.bezierCurveTo(x1, y1, x2, y2, x, y)
   scene.add(createCube(x1, y1, 'red'))
   scene.add(createCube(x2, y2, 'red'))
@@ -43,34 +43,34 @@ function drawResult() {
 
 var path = new THREE.Path()
 
-const anchor1X = Math.random() * 200
-const anchor1Y = Math.random() * 200
+let connectingX = null
+let connectingY = null
 
-let connectingX = 250 * Math.random()
-let connectingY = 250 * Math.random()
+let anchor2X = null
+let anchor2Y = null
 
-let anchor2X = getRandomNearby(connectingX, 100)
-let anchor2Y = getRandomNearby(connectingY, 100)
-
-drawPoint(
-  anchor1X,
-  anchor1Y,
-  anchor2X,
-  anchor2Y,
-  connectingX,
-  connectingY
-)
+let previousAnchorX = null
+let previousAnchorY = null
 
 for (let i = 0; i < 5; i++) {
+  if (anchor2X && anchor2Y) {
+    previousAnchorX = connectingX + (connectingX - anchor2X)
+    previousAnchorY = connectingY + (connectingY - anchor2Y)
+  } else {
+    // It's the first run through, so set intial values
+    previousAnchorX = Math.random() * 200
+    previousAnchorY = Math.random() * 200
+  }
+
   let nextConnectingX = Math.random() * 250
   let nextConnectingY = Math.random() * 250
 
   let nextAnchor1X = getRandomNearby(nextConnectingX, 100)
   let nextAnchor1Y = getRandomNearby(nextConnectingY, 100)
 
-  drawPoint(
-    connectingX + (connectingX - anchor2X),
-    connectingY + (connectingY - anchor2Y),
+  drawCurve(
+    previousAnchorX,
+    previousAnchorY,
     nextAnchor1X,
     nextAnchor1Y,
     nextConnectingX,
