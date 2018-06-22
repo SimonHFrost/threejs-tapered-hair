@@ -17,7 +17,7 @@ let oldX = null;
 let oldY = null;
 
 // FIXME tidy up super confusing code!
-function drawCurve(x1, y1, x2, y2, x, y) {
+function createCurve(x1, y1, x2, y2, x, y) {
   path.bezierCurveTo(x1, y1, x2, y2, x, y)
   scene.add(createCube(x1, y1, 'red'))
   scene.add(createCube(x2, y2, 'red'))
@@ -68,7 +68,7 @@ for (let i = 0; i < 5; i++) {
   let nextAnchor1X = getRandomNearby(nextConnectingX, 100)
   let nextAnchor1Y = getRandomNearby(nextConnectingY, 100)
 
-  drawCurve(
+  createCurve(
     previousAnchorX,
     previousAnchorY,
     nextAnchor1X,
@@ -83,5 +83,4 @@ for (let i = 0; i < 5; i++) {
   anchor2Y = nextAnchor1Y
 }
 
-// Curve is continuous because the sequential anchor points form a line between the connecting point!
 drawResult()
