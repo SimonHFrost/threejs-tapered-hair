@@ -19,7 +19,7 @@ function createCube (posX, posY, color) {
   return mesh
 }
 
-function createLine (x1, y1, x2, y2, color) {
+function createLineSegment (x1, y1, x2, y2, color) {
   var material = new THREE.LineBasicMaterial({
 	   color: color
   });
@@ -37,5 +37,5 @@ module.exports = {
   createAmbientLight,
   createDirectionalLight,
   createCube,
-  createLine
+  createLineSegment
 }

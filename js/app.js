@@ -7,7 +7,10 @@ const scene = output.scene
 const createAmbientLight = require('./object-creator.js').createAmbientLight
 const createDirectionalLight = require('./object-creator.js').createDirectionalLight
 const createCube = require('./object-creator.js').createCube
-const createLine = require('./object-creator.js').createLine
+const createLineSegment = require('./object-creator.js').createLineSegment
+
+scene.add(createAmbientLight())
+scene.add(createDirectionalLight())
 
 function getRandomNearby(value, length) {
   return value - (length / 2) + Math.random() * length
@@ -23,13 +26,13 @@ function createCurve(x1, y1, x, y, x2, y2) {
 
   // NOTE First anchor drawing
   scene.add(createCube(x1, y1, 'red'))
-  scene.add(createLine(oldX, oldY, x1, y1, 'red'))
+  scene.add(createLineSegment(oldX, oldY, x1, y1, 'red'))
 
   scene.add(createCube(x, y, 'blue'))
 
   // NOTE Second anchor drawing
   scene.add(createCube(x2, y2, 'red'))
-  scene.add(createLine(x, y, x2, y2, 'red'))
+  scene.add(createLineSegment(x, y, x2, y2, 'red'))
 
   oldX = x2
   oldY = y2
@@ -43,9 +46,6 @@ function drawResult() {
 
   var line = new THREE.Line( geometry, material );
   scene.add( line );
-
-  scene.add(createAmbientLight())
-  scene.add(createDirectionalLight())
 }
 
 var path = new THREE.Path()
