@@ -17,7 +17,7 @@ let oldX = null;
 let oldY = null;
 
 // FIXME tidy up super confusing code!
-function createCurve(x1, y1, x2, y2, x, y) {
+function createCurve(x1, y1, x, y, x2, y2) {
   path.bezierCurveTo(x1, y1, x2, y2, x, y)
   scene.add(createCube(x1, y1, 'red'))
   scene.add(createCube(x2, y2, 'red'))
@@ -65,10 +65,10 @@ for (let i = 0; i < 5; i++) {
   createCurve(
     previousAnchorX,
     previousAnchorY,
-    nextAnchor1X,
-    nextAnchor1Y,
     nextConnectingX,
-    nextConnectingY
+    nextConnectingY,
+    nextAnchor1X,
+    nextAnchor1Y
   )
 
   connectingX = nextConnectingX
