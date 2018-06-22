@@ -22,16 +22,16 @@ let oldX = null;
 let oldY = null;
 
 function createCurve(x1, y1, x, y, x2, y2) {
-  // NOTE Draw actual curve. Different ordering of params here!
+  // NOTE Draw curve. Different ordering of params here!
   path.bezierCurveTo(x1, y1, x2, y2, x, y)
 
-  // NOTE First anchor drawing
+  // NOTE First anchor
   scene.add(createCube(x1, y1, 'red'))
   scene.add(createLineSegment(oldX, oldY, x1, y1, 'red'))
 
   scene.add(createCube(x, y, 'blue'))
 
-  // NOTE Second anchor drawing
+  // NOTE Second anchor
   scene.add(createCube(x2, y2, 'red'))
   scene.add(createLineSegment(x, y, x2, y2, 'red'))
 
