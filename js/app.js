@@ -17,7 +17,7 @@ function getRandomNearby(value, length) {
   return value - (length / 2) + Math.random() * length
 }
 
-// NOTE We have to save a reference to previous point do draw the next anchor line properly
+// NOTE We have to save a reference to previous point to draw the next anchor line properly
 let oldX = null;
 let oldY = null;
 
