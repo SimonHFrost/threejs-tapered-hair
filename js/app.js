@@ -43,14 +43,14 @@ function drawResult() {
 
 var path = new THREE.Path()
 
-let connectingX = null
-let connectingY = null
+let previousAnchorX = null
+let previousAnchorY = null
 
 let anchor2X = null
 let anchor2Y = null
 
-let previousAnchorX = null
-let previousAnchorY = null
+let connectingX = null
+let connectingY = null
 
 for (let i = 0; i < 5; i++) {
   if (anchor2X && anchor2Y) {
