@@ -43,27 +43,21 @@ function drawResult() {
 
 var path = new THREE.Path()
 
-let previousAnchorX = null
-let previousAnchorY = null
+let previousAnchorX = Math.random() * 200
+let previousAnchorY = Math.random() * 200
 
-let anchor2X = null
-let anchor2Y = null
+let connectingX = 0
+let connectingY = 0
 
-let connectingX = null
-let connectingY = null
+let anchor2X = getRandomNearby(connectingX, 100)
+let anchor2Y = getRandomNearby(connectingY, 100)
 
 for (let i = 0; i < 5; i++) {
-  if (anchor2X && anchor2Y) {
-    previousAnchorX = connectingX + (connectingX - anchor2X)
-    previousAnchorY = connectingY + (connectingY - anchor2Y)
-  } else {
-    // It's the first run through, so set intial values
-    previousAnchorX = Math.random() * 200
-    previousAnchorY = Math.random() * 200
-  }
+  previousAnchorX = connectingX + (connectingX - anchor2X)
+  previousAnchorY = connectingY + (connectingY - anchor2Y)
 
-  let nextConnectingX = Math.random() * 250
-  let nextConnectingY = Math.random() * 250
+  let nextConnectingX = Math.random() * 200
+  let nextConnectingY = Math.random() * 200
 
   let nextAnchor1X = getRandomNearby(nextConnectingX, 100)
   let nextAnchor1Y = getRandomNearby(nextConnectingY, 100)
