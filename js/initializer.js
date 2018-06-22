@@ -1,6 +1,5 @@
 const THREE = require('three')
 const OrbitControls = require('three-orbit-controls')(THREE)
-const ORBIT_CONTROLS_ENABLED = true
 
 function createRenderer () {
   const renderer = new THREE.WebGLRenderer({
