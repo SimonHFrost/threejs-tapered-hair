@@ -11,11 +11,13 @@ const dat = require('dat.gui')
 
 var gui = new dat.GUI()
 var controls = {
-  range: 500,
+  totalRange: 500,
+  anchorDistance: 200,
   generate: () => { generate() }
 }
 
-gui.add(controls, 'range', 0, 1000)
+gui.add(controls, 'totalRange', 0, 1000)
+gui.add(controls, 'anchorDistance', 0, 1000)
 gui.add(controls, 'generate')
 
 function getRandomNearby(value, length) {
@@ -30,24 +32,24 @@ scene.add(createDirectionalLight())
 function createPath() {
   var path = new THREE.Path()
 
-  let previousAnchorX = Math.random() * controls.range
-  let previousAnchorY = Math.random() * controls.range
+  let previousAnchorX = Math.random() * controls.totalRange
+  let previousAnchorY = Math.random() * controls.totalRange
 
   let connectingX = 0
   let connectingY = 0
 
-  let anchor2X = getRandomNearby(connectingX, 200)
-  let anchor2Y = getRandomNearby(connectingY, 200)
+  let anchor2X = getRandomNearby(connectingX, controls.anchorDistance)
+  let anchor2Y = getRandomNearby(connectingY, controls.anchorDistance)
 
   for (let i = 0; i < 5; i++) {
     previousAnchorX = connectingX + (connectingX - anchor2X)
     previousAnchorY = connectingY + (connectingY - anchor2Y)
 
-    let nextConnectingX = Math.random() * controls.range
-    let nextConnectingY = Math.random() * controls.range
+    let nextConnectingX = Math.random() * controls.totalRange
+    let nextConnectingY = Math.random() * controls.totalRange
 
-    let nextAnchor1X = getRandomNearby(nextConnectingX, 200)
-    let nextAnchor1Y = getRandomNearby(nextConnectingY, 200)
+    let nextAnchor1X = getRandomNearby(nextConnectingX, controls.anchorDistance)
+    let nextAnchor1Y = getRandomNearby(nextConnectingY, controls.anchorDistance)
 
     createCurve(
       scene,
