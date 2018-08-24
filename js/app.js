@@ -12,7 +12,7 @@ const dat = require('dat.gui')
 var gui = new dat.GUI()
 var controls = {
   range: 500,
-  generate: () => { console.log('generate') }
+  generate: () => { generate() }
 }
 
 gui.add(controls, 'range', 0, 1000)
@@ -27,42 +27,56 @@ const scene = output.scene
 scene.add(createAmbientLight())
 scene.add(createDirectionalLight())
 
-var path = new THREE.Path()
+function createPath() {
+  var path = new THREE.Path()
 
-let previousAnchorX = Math.random() * controls.range
-let previousAnchorY = Math.random() * controls.range
+  let previousAnchorX = Math.random() * controls.range
+  let previousAnchorY = Math.random() * controls.range
 
-let connectingX = 0
-let connectingY = 0
+  let connectingX = 0
+  let connectingY = 0
 
-let anchor2X = getRandomNearby(connectingX, 200)
-let anchor2Y = getRandomNearby(connectingY, 200)
+  let anchor2X = getRandomNearby(connectingX, 200)
+  let anchor2Y = getRandomNearby(connectingY, 200)
 
-for (let i = 0; i < 5; i++) {
-  previousAnchorX = connectingX + (connectingX - anchor2X)
-  previousAnchorY = connectingY + (connectingY - anchor2Y)
+  for (let i = 0; i < 5; i++) {
+    previousAnchorX = connectingX + (connectingX - anchor2X)
+    previousAnchorY = connectingY + (connectingY - anchor2Y)
 
-  let nextConnectingX = Math.random() * controls.range
-  let nextConnectingY = Math.random() * controls.range
+    let nextConnectingX = Math.random() * controls.range
+    let nextConnectingY = Math.random() * controls.range
 
-  let nextAnchor1X = getRandomNearby(nextConnectingX, 200)
-  let nextAnchor1Y = getRandomNearby(nextConnectingY, 200)
+    let nextAnchor1X = getRandomNearby(nextConnectingX, 200)
+    let nextAnchor1Y = getRandomNearby(nextConnectingY, 200)
 
-  createCurve(
-    scene,
-    path,
-    previousAnchorX,
-    previousAnchorY,
-    nextConnectingX,
-    nextConnectingY,
-    nextAnchor1X,
-    nextAnchor1Y
-  )
+    createCurve(
+      scene,
+      path,
+      previousAnchorX,
+      previousAnchorY,
+      nextConnectingX,
+      nextConnectingY,
+      nextAnchor1X,
+      nextAnchor1Y
+    )
 
-  connectingX = nextConnectingX
-  connectingY = nextConnectingY
-  anchor2X = nextAnchor1X
-  anchor2Y = nextAnchor1Y
+    connectingX = nextConnectingX
+    connectingY = nextConnectingY
+    anchor2X = nextAnchor1X
+    anchor2Y = nextAnchor1Y
+  }
+
+  return path
 }
 
-scene.add(createLine(path))
+let path = null
+let line = null
+
+function generate() {
+  scene.remove(line)
+  path = createPath()
+  line = createLine(path)
+  scene.add(line)
+}
+
+generate()
