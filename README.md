@@ -4,6 +4,7 @@
 
 # Getting Started
 
+`npm install`
 `webpack-dev-server` to run
 
 # Build
