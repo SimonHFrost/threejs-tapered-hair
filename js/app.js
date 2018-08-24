@@ -12,12 +12,10 @@ const dat = require('dat.gui')
 var gui = new dat.GUI()
 var controls = {
   range: 500,
-  anchorRange: 200,
   generate: () => { console.log('generate') }
 }
 
 gui.add(controls, 'range', 0, 1000)
-gui.add(controls, 'anchorRange', 0, 1000)
 gui.add(controls, 'generate')
 
 function getRandomNearby(value, length) {
@@ -37,8 +35,8 @@ let previousAnchorY = Math.random() * controls.range
 let connectingX = 0
 let connectingY = 0
 
-let anchor2X = getRandomNearby(connectingX, controls.anchorRange)
-let anchor2Y = getRandomNearby(connectingY, controls.anchorRange)
+let anchor2X = getRandomNearby(connectingX, 200)
+let anchor2Y = getRandomNearby(connectingY, 200)
 
 for (let i = 0; i < 5; i++) {
   previousAnchorX = connectingX + (connectingX - anchor2X)
@@ -47,8 +45,8 @@ for (let i = 0; i < 5; i++) {
   let nextConnectingX = Math.random() * controls.range
   let nextConnectingY = Math.random() * controls.range
 
-  let nextAnchor1X = getRandomNearby(nextConnectingX, controls.anchorRange)
-  let nextAnchor1Y = getRandomNearby(nextConnectingY, controls.anchorRange)
+  let nextAnchor1X = getRandomNearby(nextConnectingX, 200)
+  let nextAnchor1Y = getRandomNearby(nextConnectingY, 200)
 
   createCurve(
     scene,
