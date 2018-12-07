@@ -21,12 +21,12 @@ function createRenderer () {
 function createCamera (renderer) {
   // const camera = new THREE.PerspectiveCamera(45, window.innerWidth / window.innerHeight, 0.01, 1000)
   const camera = new THREE.OrthographicCamera( window.innerWidth / - 2, window.innerWidth / 2, window.innerHeight / 2, window.innerHeight / - 2, 1, 1000 );
-  camera.position.x = 25
-  camera.position.y = 25
+  camera.position.x = 100
+  camera.position.y = 200
   camera.position.z = 150
 
   const controls = new OrbitControls(camera)
-  controls.target = new THREE.Vector3(25, 25, 0)
+  controls.target = new THREE.Vector3(100, 200, 0)
   controls.update()
 
   window.addEventListener('resize', () => {
