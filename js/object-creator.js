@@ -46,19 +46,23 @@ function createLine (path) {
 let oldX = null;
 let oldY = null;
 
+let curveObject = new THREE.Object3D();
+
 function createCurve(scene, path, x1, y1, x, y, x2, y2) {
   // NOTE Draw curve. Different ordering of params here!
   path.bezierCurveTo(x1, y1, x2, y2, x, y)
 
   // NOTE First anchor
-  scene.add(createCube(x1, y1, 'red'))
-  scene.add(createLineSegment(oldX, oldY, x1, y1, 'red'))
+  curveObject.add(createCube(x1, y1, 'red'))
+  curveObject.add(createLineSegment(oldX, oldY, x1, y1, 'red'))
 
-  scene.add(createCube(x, y, 'blue'))
+  curveObject.add(createCube(x, y, 'blue'))
 
   // NOTE Second anchor
-  scene.add(createCube(x2, y2, 'red'))
-  scene.add(createLineSegment(x, y, x2, y2, 'red'))
+  curveObject.add(createCube(x2, y2, 'red'))
+  curveObject.add(createLineSegment(x, y, x2, y2, 'red'))
+
+  scene.add(curveObject);
 
   oldX = x2
   oldY = y2
