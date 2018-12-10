@@ -21,8 +21,7 @@ function getRandomNearby (value, length) {
   return value - (length / 2) + Math.random() * length
 }
 
-const output = initialize()
-const scene = output.scene
+const scene = initialize()
 scene.add(createAmbientLight())
 scene.add(createDirectionalLight())
 

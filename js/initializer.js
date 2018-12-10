@@ -77,10 +77,7 @@ function initialize () {
     renderer.render(scene, camera)
   })
 
-  return {
-    scene,
-    camera
-  }
+  return scene
 }
 
 export { initialize }
