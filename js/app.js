@@ -7,7 +7,7 @@ import { initialize } from './initializer'
 var gui = new dat.GUI()
 var controls = {
   totalRange: 500,
-  anchorDistance: 200,
+  anchorDistance: 500,
   showDebug: true,
   generate: () => { generate() }
 }
