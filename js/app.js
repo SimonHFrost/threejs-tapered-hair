@@ -1,13 +1,9 @@
-const THREE = require('three')
+import * as THREE from 'three'
+import dat from 'dat.gui'
+
+import { createAmbientLight, createDirectionalLight, createCurve, createLine } from './object-creator';
 
 const initialize = require('./initializer.js').initialize
-
-const createAmbientLight = require('./object-creator.js').createAmbientLight
-const createDirectionalLight = require('./object-creator.js').createDirectionalLight
-const createCurve = require('./object-creator.js').createCurve
-const createLine = require('./object-creator.js').createLine
-
-const dat = require('dat.gui')
 
 var gui = new dat.GUI()
 var controls = {

@@ -1,5 +1,7 @@
-const THREE = require('three')
-const OrbitControls = require('three-orbit-controls')(THREE)
+import * as THREE from 'three'
+import ThreejsOrbitControls from 'three-orbit-controls'
+
+const OrbitControls = ThreejsOrbitControls(THREE)
 
 function createRenderer () {
   const renderer = new THREE.WebGLRenderer({
@@ -71,6 +73,4 @@ function initialize () {
   }
 }
 
-module.exports = {
-  initialize
-}
+export { initialize }

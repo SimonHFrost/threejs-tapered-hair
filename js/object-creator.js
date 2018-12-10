@@ -1,4 +1,4 @@
-const THREE = require('three')
+import * as THREE from 'three'
 
 function createAmbientLight () {
   return new THREE.AmbientLight(0xEEEEEE, 0.75)
@@ -68,7 +68,7 @@ function createCurve (scene, path, x1, y1, x, y, x2, y2) {
   oldY = y2
 }
 
-module.exports = {
+export {
   createAmbientLight,
   createDirectionalLight,
   createCube,
