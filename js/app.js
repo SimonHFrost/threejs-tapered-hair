@@ -8,11 +8,13 @@ var gui = new dat.GUI()
 var controls = {
   totalRange: 500,
   anchorDistance: 200,
+  showDebug: true,
   generate: () => { generate() }
 }
 
 gui.add(controls, 'totalRange', 0, 1000)
 gui.add(controls, 'anchorDistance', 0, 1000)
+gui.add(controls, 'showDebug')
 gui.add(controls, 'generate')
 
 function getRandomNearby (value, length) {
@@ -99,9 +101,12 @@ function generate () {
 
   const path = createPath()
   line = createLine(path)
-  debugObject = createDebugObject(path)
 
-  scene.add(debugObject)
+  if (controls.showDebug) {
+    debugObject = createDebugObject(path)
+    scene.add(debugObject)
+  }
+
   scene.add(line)
 }
 
