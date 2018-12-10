@@ -1,7 +1,7 @@
 import * as THREE from 'three'
 import dat from 'dat.gui'
 
-import { createAmbientLight, createDirectionalLight, createCurve, createLine, createCube, createLineSegment } from './object-creator';
+import { createAmbientLight, createDirectionalLight, createCurve, createLine, createCube, createStraightLine } from './object-creator';
 import { initialize } from './initializer'
 
 var gui = new dat.GUI()
@@ -79,11 +79,11 @@ function createDebugObject (path) {
     debugObject.add(createCube(curve.v0.x, curve.v0.y, 'red'))
 
     debugObject.add(createCube(curve.v1.x, curve.v1.y, 'red'))
-    debugObject.add(createLineSegment(curve.v1.x, curve.v1.y, prevV2.x, prevV2.y, 'red'))
+    debugObject.add(createStraightLine(curve.v1.x, curve.v1.y, prevV2.x, prevV2.y, 'red'))
     debugObject.add(createCube(curve.v2.x, curve.v2.y, 'red'))
 
     if (index === path.curves.length - 1) {
-      debugObject.add(createLineSegment(curve.v2.x, curve.v2.y, curve.v3.x, curve.v3.y, 'red'))
+      debugObject.add(createStraightLine(curve.v2.x, curve.v2.y, curve.v3.x, curve.v3.y, 'red'))
     }
 
     prevV2 = curve.v2
