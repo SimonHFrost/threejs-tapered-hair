@@ -48,24 +48,24 @@ let oldY = null
 
 let curveObject = new THREE.Object3D()
 
-function createCurve (scene, path, x1, y1, x, y, x2, y2) {
+function createCurve (scene, path, previousAnchorX, previousAnchorY, nextConnectingX, nextConnectingY, nextAnchor1X, nextAnchor1Y) {
   // NOTE Draw curve. Different ordering of params here!
-  path.bezierCurveTo(x1, y1, x2, y2, x, y)
+  path.bezierCurveTo(previousAnchorX, previousAnchorY, nextAnchor1X, nextAnchor1Y, nextConnectingX, nextConnectingY)
 
   // NOTE First anchor
-  curveObject.add(createCube(x1, y1, 'red'))
-  curveObject.add(createLineSegment(oldX, oldY, x1, y1, 'red'))
+  curveObject.add(createCube(previousAnchorX, previousAnchorY, 'red'))
+  curveObject.add(createLineSegment(oldX, oldY, previousAnchorX, previousAnchorY, 'red'))
 
-  curveObject.add(createCube(x, y, 'blue'))
+  curveObject.add(createCube(nextConnectingX, nextConnectingY, 'blue'))
 
   // NOTE Second anchor
-  curveObject.add(createCube(x2, y2, 'red'))
-  curveObject.add(createLineSegment(x, y, x2, y2, 'red'))
+  curveObject.add(createCube(nextAnchor1X, nextAnchor1Y, 'red'))
+  curveObject.add(createLineSegment(nextConnectingX, nextConnectingY, nextAnchor1X, nextAnchor1Y, 'red'))
 
   scene.add(curveObject)
 
-  oldX = x2
-  oldY = y2
+  oldX = nextAnchor1X
+  oldY = nextAnchor1Y
 
   return path
 }
