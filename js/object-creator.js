@@ -66,6 +66,8 @@ function createCurve (scene, path, x1, y1, x, y, x2, y2) {
 
   oldX = x2
   oldY = y2
+
+  return path
 }
 
 export {
