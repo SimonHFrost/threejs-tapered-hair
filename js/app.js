@@ -21,7 +21,6 @@ gui.add(controls, 'showDebug').onChange(() => {
     scene.remove(debugObject)
   }
 })
-
 gui.add(controls, 'generate')
 
 function getRandomNearby (value, length) {
