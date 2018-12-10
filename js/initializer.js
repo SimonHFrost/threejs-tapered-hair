@@ -60,9 +60,15 @@ function initialize () {
   const scene = new THREE.Scene()
   const camera = createCamera(renderer)
 
-  var gridHelper = new THREE.GridHelper(500, 10)
-  gridHelper.position.x = 250
-  scene.add(gridHelper)
+  var horizontalGrid = new THREE.GridHelper(500, 10)
+  horizontalGrid.position.x = 250
+  scene.add(horizontalGrid)
+
+  var verticalGrid = new THREE.GridHelper(500, 10)
+  verticalGrid.position.x = 250
+  verticalGrid.position.y = 250
+  verticalGrid.rotation.x = Math.PI / 2
+  scene.add(verticalGrid)
 
   renderLoop.push(() => {
     renderer.render(scene, camera)
