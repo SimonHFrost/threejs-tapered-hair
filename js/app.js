@@ -31,18 +31,17 @@ let line = null
 let debugObject = null
 
 function generate () {
-  scene.remove(line)
-  scene.remove(debugObject)
-
   const path = createPath(controls)
-  line = convertPathToLine(path)
 
+  scene.remove(line)
+  line = convertPathToLine(path)
+  scene.add(line)
+
+  scene.remove(debugObject)
   debugObject = createDebugObject(path)
   if (controls.showDebug) {
     scene.add(debugObject)
   }
-
-  scene.add(line)
 }
 
 generate()
