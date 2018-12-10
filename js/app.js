@@ -1,7 +1,7 @@
 import * as THREE from 'three'
 import dat from 'dat.gui'
 
-import { createAmbientLight, createDirectionalLight, createCurve, createLine, createCube, createStraightLine } from './object-creator';
+import { createAmbientLight, createDirectionalLight, createCurve, createLine, createCube, createStraightLine } from './object-creator'
 import { initialize } from './initializer'
 
 var gui = new dat.GUI()
