@@ -29,18 +29,16 @@ scene.add(createDirectionalLight())
 function createPath () {
   var path = new THREE.Path()
 
-  let previousAnchorX = Math.random() * controls.totalRange
-  let previousAnchorY = Math.random() * controls.totalRange
-
-  let connectingX = 0
-  let connectingY = 0
+  let connectingX = Math.random() * controls.totalRange
+  let connectingY = Math.random() * controls.totalRange
+  path.moveTo(connectingX, connectingY)
 
   let anchor2X = getRandomNearby(connectingX, controls.anchorDistance)
   let anchor2Y = getRandomNearby(connectingY, controls.anchorDistance)
 
   for (let i = 0; i < 5; i++) {
-    previousAnchorX = connectingX + (connectingX - anchor2X)
-    previousAnchorY = connectingY + (connectingY - anchor2Y)
+    const previousAnchorX = connectingX + (connectingX - anchor2X)
+    const previousAnchorY = connectingY + (connectingY - anchor2Y)
 
     let nextConnectingX = Math.random() * controls.totalRange
     let nextConnectingY = Math.random() * controls.totalRange
@@ -70,10 +68,7 @@ function createPath () {
 function createDebugObject (path) {
   const debugObject = new THREE.Object3D()
 
-  let prevV2 = {
-    x: 0,
-    y: 0
-  }
+  let prevV2 = path.curves[0].v0
 
   path.curves.forEach((curve, index) => {
     debugObject.add(createCube(curve.v0.x, curve.v0.y, 'red'))
