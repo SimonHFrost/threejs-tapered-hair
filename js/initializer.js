@@ -24,11 +24,11 @@ function createCamera (renderer) {
   // const camera = new THREE.PerspectiveCamera(45, window.innerWidth / window.innerHeight, 0.01, 2000)
   const camera = new THREE.OrthographicCamera(window.innerWidth / -2, window.innerWidth / 2, window.innerHeight / 2, window.innerHeight / -2, 0.01, 2000)
   camera.position.x = 250
-  camera.position.y = 200
+  camera.position.y = 250
   camera.position.z = 1000
 
   const controls = new OrbitControls(camera)
-  controls.target = new THREE.Vector3(250, 200, 0)
+  controls.target = new THREE.Vector3(250, 250, 0)
   controls.update()
 
   window.addEventListener('resize', () => {
