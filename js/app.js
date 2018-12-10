@@ -30,8 +30,19 @@ scene.add(createDirectionalLight())
 let line = null
 let debugObject = null
 
+function createPoints (numPoints) {
+  const points = []
+  for (let i = 0; i < numPoints; i++) {
+    points.push({
+      x: Math.random() * controls.totalRange,
+      y: Math.random() * controls.totalRange
+    })
+  }
+  return points
+}
+
 function generate () {
-  const path = createPath(controls)
+  const path = createPath(createPoints(5), controls.anchorDistance)
 
   scene.remove(line)
   line = convertPathToLine(path)
