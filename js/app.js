@@ -43,8 +43,8 @@ function createPath () {
     let nextConnectingX = Math.random() * controls.totalRange
     let nextConnectingY = Math.random() * controls.totalRange
 
-    let nextAnchor1X = getRandomNearby(nextConnectingX, controls.anchorDistance)
-    let nextAnchor1Y = getRandomNearby(nextConnectingY, controls.anchorDistance)
+    let nextAnchorX = getRandomNearby(nextConnectingX, controls.anchorDistance)
+    let nextAnchorY = getRandomNearby(nextConnectingY, controls.anchorDistance)
 
     path = createCurve(
       scene,
@@ -53,14 +53,14 @@ function createPath () {
       previousAnchorY,
       nextConnectingX,
       nextConnectingY,
-      nextAnchor1X,
-      nextAnchor1Y
+      nextAnchorX,
+      nextAnchorY
     )
 
     connectingX = nextConnectingX
     connectingY = nextConnectingY
-    anchor2X = nextAnchor1X
-    anchor2Y = nextAnchor1Y
+    anchor2X = nextAnchorX
+    anchor2Y = nextAnchorY
   }
 
   return path
