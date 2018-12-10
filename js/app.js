@@ -73,12 +73,16 @@ function createDebugObject (path) {
     y: 0
   }
 
-  path.curves.forEach(curve => {
+  path.curves.forEach((curve, index) => {
     debugObject.add(createCube(curve.v0.x, curve.v0.y, 'red'))
 
     debugObject.add(createCube(curve.v1.x, curve.v1.y, 'red'))
     debugObject.add(createLineSegment(curve.v1.x, curve.v1.y, prevV2.x, prevV2.y, 'red'))
     debugObject.add(createCube(curve.v2.x, curve.v2.y, 'red'))
+
+    if (index === path.curves.length - 1) {
+      debugObject.add(createLineSegment(curve.v2.x, curve.v2.y, curve.v3.x, curve.v3.y, 'red'))
+    }
 
     prevV2 = curve.v2
   })
