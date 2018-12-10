@@ -33,7 +33,7 @@ function createStraightLine (x1, y1, x2, y2, color) {
   return new THREE.Line(geometry, material)
 }
 
-function createLine (path) {
+function convertPathToLine (path) {
   var points = path.getPoints(1000)
 
   var geometry = new THREE.BufferGeometry().setFromPoints(points)
@@ -42,10 +42,33 @@ function createLine (path) {
   return new THREE.Line(geometry, material)
 }
 
+function createDebugObject (path) {
+  const debugObject = new THREE.Object3D()
+
+  let prevV2 = path.curves[0].v0
+
+  path.curves.forEach((curve, index) => {
+    debugObject.add(createCube(curve.v0.x, curve.v0.y, 'red'))
+
+    debugObject.add(createCube(curve.v1.x, curve.v1.y, 'red'))
+    debugObject.add(createStraightLine(curve.v1.x, curve.v1.y, prevV2.x, prevV2.y, 'red'))
+    debugObject.add(createCube(curve.v2.x, curve.v2.y, 'red'))
+
+    if (index === path.curves.length - 1) {
+      debugObject.add(createStraightLine(curve.v2.x, curve.v2.y, curve.v3.x, curve.v3.y, 'red'))
+    }
+
+    prevV2 = curve.v2
+  })
+
+  return debugObject
+}
+
 export {
   createAmbientLight,
   createDirectionalLight,
   createCube,
   createStraightLine,
-  createLine
+  convertPathToLine,
+  createDebugObject
 }

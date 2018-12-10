@@ -1,7 +1,7 @@
 import * as THREE from 'three'
 import dat from 'dat.gui'
 
-import { createAmbientLight, createDirectionalLight, createLine, createCube, createStraightLine } from './object-creator'
+import { createAmbientLight, createDirectionalLight, convertPathToLine, createDebugObject } from './object-creator'
 import { initialize } from './initializer'
 
 var gui = new dat.GUI()
@@ -69,28 +69,6 @@ function createPath () {
   return path
 }
 
-function createDebugObject (path) {
-  const debugObject = new THREE.Object3D()
-
-  let prevV2 = path.curves[0].v0
-
-  path.curves.forEach((curve, index) => {
-    debugObject.add(createCube(curve.v0.x, curve.v0.y, 'red'))
-
-    debugObject.add(createCube(curve.v1.x, curve.v1.y, 'red'))
-    debugObject.add(createStraightLine(curve.v1.x, curve.v1.y, prevV2.x, prevV2.y, 'red'))
-    debugObject.add(createCube(curve.v2.x, curve.v2.y, 'red'))
-
-    if (index === path.curves.length - 1) {
-      debugObject.add(createStraightLine(curve.v2.x, curve.v2.y, curve.v3.x, curve.v3.y, 'red'))
-    }
-
-    prevV2 = curve.v2
-  })
-
-  return debugObject
-}
-
 let line = null
 let debugObject = null
 
@@ -99,7 +77,7 @@ function generate () {
   scene.remove(debugObject)
 
   const path = createPath()
-  line = createLine(path)
+  line = convertPathToLine(path)
 
   debugObject = createDebugObject(path)
   if (controls.showDebug) {
