@@ -14,7 +14,14 @@ var controls = {
 
 gui.add(controls, 'totalRange', 0, 1000)
 gui.add(controls, 'anchorDistance', 0, 1000)
-gui.add(controls, 'showDebug')
+gui.add(controls, 'showDebug').onChange(() => {
+  if (controls.showDebug) {
+    scene.add(debugObject)
+  } else {
+    scene.remove(debugObject)
+  }
+})
+
 gui.add(controls, 'generate')
 
 function getRandomNearby (value, length) {
@@ -95,8 +102,8 @@ function generate () {
   const path = createPath()
   line = createLine(path)
 
+  debugObject = createDebugObject(path)
   if (controls.showDebug) {
-    debugObject = createDebugObject(path)
     scene.add(debugObject)
   }
 
