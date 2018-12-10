@@ -23,12 +23,12 @@ function createRenderer () {
 function createCamera (renderer) {
   // const camera = new THREE.PerspectiveCamera(45, window.innerWidth / window.innerHeight, 0.01, 1000)
   const camera = new THREE.OrthographicCamera(window.innerWidth / -2, window.innerWidth / 2, window.innerHeight / 2, window.innerHeight / -2, 1, 1000)
-  camera.position.x = 100
+  camera.position.x = 250
   camera.position.y = 200
-  camera.position.z = 150
+  camera.position.z = 50
 
   const controls = new OrbitControls(camera)
-  controls.target = new THREE.Vector3(100, 200, 0)
+  controls.target = new THREE.Vector3(250, 200, 0)
   controls.update()
 
   window.addEventListener('resize', () => {
@@ -60,7 +60,8 @@ function initialize () {
   const scene = new THREE.Scene()
   const camera = createCamera(renderer)
 
-  var gridHelper = new THREE.GridHelper(1000, 10)
+  var gridHelper = new THREE.GridHelper(500, 10)
+  gridHelper.position.x = 250
   scene.add(gridHelper)
 
   renderLoop.push(() => {
