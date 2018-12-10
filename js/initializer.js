@@ -20,7 +20,7 @@ function createRenderer () {
 
 function createCamera (renderer) {
   // const camera = new THREE.PerspectiveCamera(45, window.innerWidth / window.innerHeight, 0.01, 1000)
-  const camera = new THREE.OrthographicCamera( window.innerWidth / - 2, window.innerWidth / 2, window.innerHeight / 2, window.innerHeight / - 2, 1, 1000 );
+  const camera = new THREE.OrthographicCamera(window.innerWidth / -2, window.innerWidth / 2, window.innerHeight / 2, window.innerHeight / -2, 1, 1000)
   camera.position.x = 100
   camera.position.y = 200
   camera.position.z = 150
@@ -58,8 +58,8 @@ function initialize () {
   const scene = new THREE.Scene()
   const camera = createCamera(renderer)
 
-  var gridHelper = new THREE.GridHelper( 1000, 10 );
-  scene.add( gridHelper );
+  var gridHelper = new THREE.GridHelper(1000, 10)
+  scene.add(gridHelper)
 
   renderLoop.push(() => {
     renderer.render(scene, camera)

@@ -11,9 +11,9 @@ function createDirectionalLight () {
 }
 
 function createCube (posX, posY, color) {
-  const geometry = new THREE.BoxBufferGeometry( 5, 5, 5 )
-  const material = new THREE.MeshLambertMaterial( { color: color, flatShading: true } )
-  const mesh = new THREE.Mesh( geometry, material )
+  const geometry = new THREE.BoxBufferGeometry(5, 5, 5)
+  const material = new THREE.MeshLambertMaterial({ color: color, flatShading: true })
+  const mesh = new THREE.Mesh(geometry, material)
   mesh.position.x = posX
   mesh.position.y = posY
   return mesh
@@ -21,34 +21,34 @@ function createCube (posX, posY, color) {
 
 function createLineSegment (x1, y1, x2, y2, color) {
   var material = new THREE.LineBasicMaterial({
-	   color: color
-  });
+    color: color
+  })
 
-  var geometry = new THREE.Geometry();
+  var geometry = new THREE.Geometry()
   geometry.vertices.push(
-    new THREE.Vector3( x1, y1, 0 ),
-    new THREE.Vector3( x2, y2, 0 )
-  );
+    new THREE.Vector3(x1, y1, 0),
+    new THREE.Vector3(x2, y2, 0)
+  )
 
-  return line = new THREE.Line( geometry, material );
+  return new THREE.Line(geometry, material)
 }
 
 function createLine (path) {
-  var points = path.getPoints();
+  var points = path.getPoints()
 
-  var geometry = new THREE.BufferGeometry().setFromPoints( points );
-  var material = new THREE.LineBasicMaterial( { color: 0xffffff } );
+  var geometry = new THREE.BufferGeometry().setFromPoints(points)
+  var material = new THREE.LineBasicMaterial({ color: 0xffffff })
 
-  return new THREE.Line( geometry, material );
+  return new THREE.Line(geometry, material)
 }
 
 // NOTE We have to save a reference to previous point to draw the next anchor line properly
-let oldX = null;
-let oldY = null;
+let oldX = null
+let oldY = null
 
-let curveObject = new THREE.Object3D();
+let curveObject = new THREE.Object3D()
 
-function createCurve(scene, path, x1, y1, x, y, x2, y2) {
+function createCurve (scene, path, x1, y1, x, y, x2, y2) {
   // NOTE Draw curve. Different ordering of params here!
   path.bezierCurveTo(x1, y1, x2, y2, x, y)
 
@@ -62,7 +62,7 @@ function createCurve(scene, path, x1, y1, x, y, x2, y2) {
   curveObject.add(createCube(x2, y2, 'red'))
   curveObject.add(createLineSegment(x, y, x2, y2, 'red'))
 
-  scene.add(curveObject);
+  scene.add(curveObject)
 
   oldX = x2
   oldY = y2

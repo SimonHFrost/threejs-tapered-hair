@@ -20,7 +20,7 @@ gui.add(controls, 'totalRange', 0, 1000)
 gui.add(controls, 'anchorDistance', 0, 1000)
 gui.add(controls, 'generate')
 
-function getRandomNearby(value, length) {
+function getRandomNearby (value, length) {
   return value - (length / 2) + Math.random() * length
 }
 
@@ -29,7 +29,7 @@ const scene = output.scene
 scene.add(createAmbientLight())
 scene.add(createDirectionalLight())
 
-function createPath() {
+function createPath () {
   var path = new THREE.Path()
 
   let previousAnchorX = Math.random() * controls.totalRange
@@ -74,7 +74,7 @@ function createPath() {
 let path = null
 let line = null
 
-function generate() {
+function generate () {
   scene.remove(line)
   path = createPath()
   line = createLine(path)
