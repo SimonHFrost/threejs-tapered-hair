@@ -65,33 +65,39 @@ function createPath () {
   return path
 }
 
-function showBezierDebug (path) {
+function createDebugObject (path) {
+  const debugObject = new THREE.Object3D()
+
   let prevV2 = {
     x: 0,
     y: 0
   }
 
   path.curves.forEach(curve => {
-    scene.add(createCube(curve.v0.x, curve.v0.y, 'red'))
+    debugObject.add(createCube(curve.v0.x, curve.v0.y, 'red'))
 
-    scene.add(createCube(curve.v1.x, curve.v1.y, 'blue'))
-    scene.add(createLineSegment(curve.v1.x, curve.v1.y, prevV2.x, prevV2.y, 'blue'))
-    scene.add(createCube(curve.v2.x, curve.v2.y, 'blue'))
+    debugObject.add(createCube(curve.v1.x, curve.v1.y, 'red'))
+    debugObject.add(createLineSegment(curve.v1.x, curve.v1.y, prevV2.x, prevV2.y, 'red'))
+    debugObject.add(createCube(curve.v2.x, curve.v2.y, 'red'))
 
     prevV2 = curve.v2
   })
+
+  return debugObject
 }
 
-let path = null
 let line = null
+let debugObject = null
 
 function generate () {
   scene.remove(line)
-  path = createPath()
+  scene.remove(debugObject)
 
-  showBezierDebug(path)
-
+  const path = createPath()
   line = createLine(path)
+  debugObject = createDebugObject(path)
+
+  scene.add(debugObject)
   scene.add(line)
 }
 
