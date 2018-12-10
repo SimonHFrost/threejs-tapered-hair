@@ -2,8 +2,7 @@ import * as THREE from 'three'
 import dat from 'dat.gui'
 
 import { createAmbientLight, createDirectionalLight, createCurve, createLine } from './object-creator';
-
-const initialize = require('./initializer.js').initialize
+import { initialize } from './initializer'
 
 var gui = new dat.GUI()
 var controls = {
