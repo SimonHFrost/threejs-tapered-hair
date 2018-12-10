@@ -34,7 +34,7 @@ function createStraightLine (x1, y1, x2, y2, color) {
 }
 
 function createLine (path) {
-  var points = path.getPoints()
+  var points = path.getPoints(1000)
 
   var geometry = new THREE.BufferGeometry().setFromPoints(points)
   var material = new THREE.LineBasicMaterial({ color: 0xffffff })
