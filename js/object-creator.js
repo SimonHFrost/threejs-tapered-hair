@@ -42,30 +42,9 @@ function createLine (path) {
   return new THREE.Line(geometry, material)
 }
 
-// NOTE We have to save a reference to previous point to draw the next anchor line properly
-let oldX = null
-let oldY = null
-
-let curveObject = new THREE.Object3D()
-
-function createCurve (scene, path, previousAnchorX, previousAnchorY, nextConnectingX, nextConnectingY, nextAnchorX, nextAnchorY) {
+function createCurve (path, previousAnchorX, previousAnchorY, nextConnectingX, nextConnectingY, nextAnchorX, nextAnchorY) {
   // NOTE Draw curve. Different ordering of params here!
   path.bezierCurveTo(previousAnchorX, previousAnchorY, nextAnchorX, nextAnchorY, nextConnectingX, nextConnectingY)
-
-  // NOTE First anchor
-  curveObject.add(createCube(previousAnchorX, previousAnchorY, 'red'))
-  curveObject.add(createLineSegment(oldX, oldY, previousAnchorX, previousAnchorY, 'red'))
-
-  curveObject.add(createCube(nextConnectingX, nextConnectingY, 'blue'))
-
-  // NOTE Second anchor
-  curveObject.add(createCube(nextAnchorX, nextAnchorY, 'red'))
-  curveObject.add(createLineSegment(nextConnectingX, nextConnectingY, nextAnchorX, nextAnchorY, 'red'))
-
-  scene.add(curveObject)
-
-  oldX = nextAnchorX
-  oldY = nextAnchorY
 
   return path
 }
