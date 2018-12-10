@@ -42,18 +42,10 @@ function createLine (path) {
   return new THREE.Line(geometry, material)
 }
 
-function createCurve (path, previousAnchorX, previousAnchorY, nextConnectingX, nextConnectingY, nextAnchorX, nextAnchorY) {
-  // NOTE Draw curve. Different ordering of params here!
-  path.bezierCurveTo(previousAnchorX, previousAnchorY, nextAnchorX, nextAnchorY, nextConnectingX, nextConnectingY)
-
-  return path
-}
-
 export {
   createAmbientLight,
   createDirectionalLight,
   createCube,
   createStraightLine,
-  createLine,
-  createCurve
+  createLine
 }

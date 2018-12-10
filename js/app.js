@@ -1,7 +1,7 @@
 import * as THREE from 'three'
 import dat from 'dat.gui'
 
-import { createAmbientLight, createDirectionalLight, createCurve, createLine, createCube, createStraightLine } from './object-creator'
+import { createAmbientLight, createDirectionalLight, createLine, createCube, createStraightLine } from './object-creator'
 import { initialize } from './initializer'
 
 var gui = new dat.GUI()
@@ -45,14 +45,13 @@ function createPath () {
     let nextAnchorX = getRandomNearby(nextConnectingX, controls.anchorDistance)
     let nextAnchorY = getRandomNearby(nextConnectingY, controls.anchorDistance)
 
-    path = createCurve(
-      path,
+    path.bezierCurveTo(
       previousAnchorX,
       previousAnchorY,
-      nextConnectingX,
-      nextConnectingY,
       nextAnchorX,
-      nextAnchorY
+      nextAnchorY,
+      nextConnectingX,
+      nextConnectingY
     )
 
     connectingX = nextConnectingX
