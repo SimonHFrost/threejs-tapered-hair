@@ -27,7 +27,7 @@ const scene = initialize()
 scene.add(createAmbientLight())
 scene.add(createDirectionalLight())
 
-let line = null
+let addedObjects = []
 let debugObject = null
 
 function createPoints (numPoints) {
@@ -41,18 +41,33 @@ function createPoints (numPoints) {
   return points
 }
 
-function generate () {
-  const path = createPath(createPoints(5), controls.anchorDistance)
-
-  scene.remove(line)
-  line = convertPathToLine(path)
+function addPathToScene (path) {
+  const line = convertPathToLine(path)
   scene.add(line)
+  addedObjects.push(line)
 
   scene.remove(debugObject)
   debugObject = createDebugObject(path)
   if (controls.showDebug) {
     scene.add(debugObject)
   }
+}
+
+function generate () {
+  addedObjects.forEach(addedObject => {
+    scene.remove(addedObject)
+  })
+  addedObjects = []
+
+  const path = createPath(createPoints(5), controls.anchorDistance)
+  addPathToScene(path)
+
+  const clonedPath = path.clone()
+  clonedPath.curves[0].v0.y = clonedPath.curves[0].v0.y + 20
+  clonedPath.curves[0].v1.y = clonedPath.curves[0].v1.y + 20
+  clonedPath.curves[0].v2.y = clonedPath.curves[0].v2.y + 20
+  clonedPath.curves[0].v3.y = clonedPath.curves[0].v3.y + 20
+  addPathToScene(clonedPath)
 }
 
 generate()
