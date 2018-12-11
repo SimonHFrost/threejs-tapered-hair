@@ -63,10 +63,12 @@ function generate () {
   addPathToScene(path)
 
   const clonedPath = path.clone()
-  clonedPath.curves[0].v0.y = clonedPath.curves[0].v0.y + 20
-  clonedPath.curves[0].v1.y = clonedPath.curves[0].v1.y + 20
-  clonedPath.curves[0].v2.y = clonedPath.curves[0].v2.y + 20
-  clonedPath.curves[0].v3.y = clonedPath.curves[0].v3.y + 20
+  clonedPath.curves.forEach((curve) => {
+    curve.v0.y = curve.v0.y + 20
+    curve.v1.y = curve.v1.y + 20
+    curve.v2.y = curve.v2.y + 20
+    curve.v3.y = curve.v3.y + 20
+  })
   addPathToScene(clonedPath)
 }
 
