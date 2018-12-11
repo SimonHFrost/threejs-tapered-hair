@@ -1,3 +1,5 @@
+import { getRandomNearby } from './path-creator'
+
 function movePath (path, units) {
   const clonedPath = path.clone()
   clonedPath.curves.forEach((curve) => {
@@ -9,4 +11,30 @@ function movePath (path, units) {
   return clonedPath
 }
 
-export { movePath }
+function addRandomness (path, randomAmount) {
+  const clonedPath = path.clone()
+
+  let prev = null
+  clonedPath.curves.forEach((curve) => {
+    if (prev) {
+      // Previous curve must connect to current one
+      curve.v0.x = prev.v3.x
+      curve.v0.y = prev.v3.y
+    } else {
+      curve.v0.x = getRandomNearby(curve.v0.x, randomAmount)
+      curve.v0.y = getRandomNearby(curve.v0.y, randomAmount)
+    }
+
+    curve.v1.x = getRandomNearby(curve.v1.x, randomAmount)
+    curve.v1.y = getRandomNearby(curve.v1.y, randomAmount)
+    curve.v2.x = getRandomNearby(curve.v2.x, randomAmount)
+    curve.v2.y = getRandomNearby(curve.v2.y, randomAmount)
+    curve.v3.x = getRandomNearby(curve.v3.x, randomAmount)
+    curve.v3.y = getRandomNearby(curve.v3.y, randomAmount)
+
+    prev = curve
+  })
+  return clonedPath
+}
+
+export { movePath, addRandomness }

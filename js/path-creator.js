@@ -44,5 +44,5 @@ function createPath (points, anchorDistance) {
 }
 
 export {
-  createPath
+  createPath, getRandomNearby
 }
