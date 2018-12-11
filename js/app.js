@@ -60,10 +60,10 @@ function generate () {
   })
   addedObjects = []
 
-  const path = createPath(createPoints(5), controls.anchorDistance)
+  const path = createPath(createPoints(4), controls.anchorDistance)
 
   addPathToScene(path)
-  addPathToScene(addRandomness(path, 50))
+  addPathToScene(addRandomness(path, 100))
 }
 
 generate()

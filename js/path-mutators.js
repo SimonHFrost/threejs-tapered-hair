@@ -25,10 +25,7 @@ function addRandomness (path, randomAmount) {
       curve.v0.y = getRandomNearby(curve.v0.y, randomAmount)
     }
 
-    curve.v1.x = getRandomNearby(curve.v1.x, randomAmount)
-    curve.v1.y = getRandomNearby(curve.v1.y, randomAmount)
-    curve.v2.x = getRandomNearby(curve.v2.x, randomAmount)
-    curve.v2.y = getRandomNearby(curve.v2.y, randomAmount)
+    // TODO Need to also connect anchors
     curve.v3.x = getRandomNearby(curve.v3.x, randomAmount)
     curve.v3.y = getRandomNearby(curve.v3.y, randomAmount)
 
