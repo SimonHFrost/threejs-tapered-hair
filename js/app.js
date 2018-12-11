@@ -3,6 +3,7 @@ import dat from 'dat.gui'
 import { initialize } from './initializer'
 import { createAmbientLight, createDirectionalLight, convertPathToLine, createDebugObject } from './object-creator'
 import { createPath } from './path-creator'
+import { movePath } from './path-mutators'
 
 var gui = new dat.GUI()
 var controls = {
@@ -60,16 +61,13 @@ function generate () {
   addedObjects = []
 
   const path = createPath(createPoints(5), controls.anchorDistance)
-  addPathToScene(path)
 
-  const clonedPath = path.clone()
-  clonedPath.curves.forEach((curve) => {
-    curve.v0.y = curve.v0.y + 20
-    curve.v1.y = curve.v1.y + 20
-    curve.v2.y = curve.v2.y + 20
-    curve.v3.y = curve.v3.y + 20
-  })
-  addPathToScene(clonedPath)
+  addPathToScene(path)
+  addPathToScene(movePath(path, 5))
+  addPathToScene(movePath(path, 10))
+  addPathToScene(movePath(path, 20))
+  addPathToScene(movePath(path, 50))
+  addPathToScene(movePath(path, 100))
 }
 
 generate()
