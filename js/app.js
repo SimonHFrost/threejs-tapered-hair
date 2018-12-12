@@ -1,7 +1,7 @@
 import dat from 'dat.gui'
 
 import { initialize } from './initializer'
-import { createAmbientLight, createDirectionalLight, convertPathToLine, createDebugObject } from './object-creator'
+import { createAmbientLight, createDirectionalLight, convertPathToLine, createDebugObject, createGrid } from './object-creator'
 import { createPath } from './path-creator'
 import { mutateTranslate, mutateRandomness } from './path-mutators'
 
@@ -20,11 +20,15 @@ gui.add(controls, 'numPoints', 0, 20)
 gui.add(controls, 'showDebug').onChange(() => {
   if (controls.showDebug) {
     scene.add(debugObject)
+    scene.add(gridObject)
   } else {
     scene.remove(debugObject)
+    scene.remove(gridObject)
   }
 })
 gui.add(controls, 'generate')
+
+const gridObject = createGrid()
 
 const scene = initialize()
 scene.add(createAmbientLight())
