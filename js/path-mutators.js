@@ -61,4 +61,19 @@ function mutateRandomizeConnectors (path, randomAmount) {
   return clonedPath
 }
 
-export { mutateTranslate, mutateRandomness, mutateRandomizeAnchors, mutateRandomizeConnectors }
+function mutateConnectEnds (path) {
+  const clonedPath = path.clone()
+
+  const firstCurve = clonedPath.curves[0]
+  const lastCurve = clonedPath.curves[clonedPath.curves.length - 1]
+
+  lastCurve.v3.x = clonedPath.curves[0].v0.x
+  lastCurve.v3.y = clonedPath.curves[0].v0.y
+
+  lastCurve.v2.x = getComplimentaryPosition(firstCurve.v1.x, lastCurve.v3.x)
+  lastCurve.v2.y = getComplimentaryPosition(firstCurve.v1.y, lastCurve.v3.y)
+
+  return clonedPath
+}
+
+export { mutateTranslate, mutateRandomness, mutateRandomizeAnchors, mutateRandomizeConnectors, mutateConnectEnds }

@@ -2,7 +2,7 @@ import * as THREE from 'three'
 import ThreejsOrbitControls from 'three-orbit-controls'
 
 const OrbitControls = ThreejsOrbitControls(THREE)
-const SHOULD_ROTATE = true
+const SHOULD_ROTATE = false
 
 function createRenderer () {
   const renderer = new THREE.WebGLRenderer({

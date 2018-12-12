@@ -4,7 +4,7 @@ import dat from 'dat.gui'
 import { initialize } from './initializer'
 import { createAmbientLight, createDirectionalLight, convertPathToLine, createDebugObject, createGrid } from './object-creator'
 import { createPath } from './path-creator'
-import { mutateTranslate, mutateRandomizeAnchors, mutateRandomness, mutateRandomizeConnectors } from './path-mutators'
+import { mutateTranslate, mutateRandomizeAnchors, mutateRandomness, mutateRandomizeConnectors, mutateConnectEnds } from './path-mutators'
 import { getLerpedPath } from './util'
 
 var gui = new dat.GUI()
@@ -101,7 +101,7 @@ function lerpExample () {
       addPathToScene(getLerpedPath(fromPaths[6], toPaths[6], step), '#FF9BC1')
       addPathToScene(getLerpedPath(fromPaths[7], toPaths[7], step), '#FF9D99')
 
-      step = step + 0.005
+      step = step + 0.0025
     } else {
       fromPaths = []
       fromPath = toPath
@@ -157,7 +157,12 @@ function generate () {
   addedDebugObjects = []
 
   // colorExample()
-  lerpExample()
+  // lerpExample()
+
+  const path = mutateConnectEnds(createPath(controls))
+
+  addPathToScene(path, '#FF9D99')
+  addDebugToScene(path)
 }
 
 generate()
