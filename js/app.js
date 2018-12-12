@@ -63,7 +63,9 @@ function addDebugToScene (path) {
 function lerpExample () {
   let step = 0
   let fromPath = createPath(controls)
+  let fromPath1 = mutateRandomizeAnchors(fromPath, 128)
   let toPath = createPath(controls)
+  let toPath1 = mutateRandomizeAnchors(toPath, 128)
 
   renderLoop.push(() => {
     if (step < 1) {
@@ -72,12 +74,17 @@ function lerpExample () {
       })
       addedObjects = []
 
-      const newPath = getLerpedPath(fromPath, toPath, step)
-      addPathToScene(newPath, '#FF9D99')
+      const lerpedPath1 = getLerpedPath(fromPath, toPath, step)
+      const lerpedPath2 = getLerpedPath(fromPath1, toPath1, step)
+      addPathToScene(lerpedPath1, '#FF9D99')
+      addPathToScene(lerpedPath2, '#FF9D99')
+
       step = step + 0.01
     } else {
       fromPath = toPath
+      fromPath1 = toPath1
       toPath = createPath(controls)
+      toPath1 = mutateRandomizeAnchors(toPath, 128)
       step = 0
     }
   })
