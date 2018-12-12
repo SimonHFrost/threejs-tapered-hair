@@ -63,7 +63,7 @@ function addDebugToScene (path) {
 function lerpExample () {
   let step = 0
 
-  let fromPath = createPath(controls)
+  let fromPath = mutateConnectEnds(createPath(controls))
   let fromPaths = []
   fromPaths.push(fromPath)
   fromPaths.push(mutateRandomizeAnchors(fromPath, 2))
@@ -74,7 +74,7 @@ function lerpExample () {
   fromPaths.push(mutateRandomizeAnchors(fromPath, 64))
   fromPaths.push(mutateRandomizeAnchors(fromPath, 128))
 
-  let toPath = createPath(controls)
+  let toPath = mutateConnectEnds(createPath(controls))
   let toPaths = []
   toPaths.push(toPath)
   toPaths.push(mutateRandomizeAnchors(toPath, 2))
@@ -115,7 +115,7 @@ function lerpExample () {
       fromPaths.push(toPaths[7])
 
       toPaths = []
-      toPath = createPath(controls)
+      toPath = mutateConnectEnds(createPath(controls))
       toPaths.push(toPath)
       toPaths.push(mutateRandomizeAnchors(toPath, 2))
       toPaths.push(mutateRandomizeAnchors(toPath, 4))
@@ -157,12 +157,7 @@ function generate () {
   addedDebugObjects = []
 
   // colorExample()
-  // lerpExample()
-
-  const path = mutateConnectEnds(createPath(controls))
-
-  addPathToScene(path, '#FF9D99')
-  addDebugToScene(path)
+  lerpExample()
 }
 
 generate()
