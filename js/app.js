@@ -35,7 +35,9 @@ gui.add(controls, 'generate')
 
 const gridObject = createGrid()
 
-const scene = initialize()
+const output = initialize()
+const scene = output.scene
+const renderLoop = output.renderLoop
 scene.add(createAmbientLight())
 scene.add(createDirectionalLight())
 
@@ -57,6 +59,8 @@ function addDebugToScene (path) {
   }
 }
 
+let myPath = null
+
 function generate () {
   addedObjects.forEach(addedObject => {
     scene.remove(addedObject)
@@ -68,19 +72,29 @@ function generate () {
   })
   addedDebugObjects = []
 
-  const path = createPath(controls)
+  myPath = createPath(controls)
 
-  addPathToScene(mutateRandomizeAnchors(path, 1), '#A8F6FF')
-  addPathToScene(mutateRandomizeAnchors(path, 2), '#A5D0FF')
-  addPathToScene(mutateRandomizeAnchors(path, 4), '#A3A8FF')
-  addPathToScene(mutateRandomizeAnchors(path, 8), '#C3A1FF')
-  addPathToScene(mutateRandomizeAnchors(path, 16), '#EA9FFF')
-  addPathToScene(mutateRandomizeAnchors(path, 32), '#FF9DEB')
-  addPathToScene(mutateRandomizeAnchors(path, 64), '#FF9BC1')
-  addPathToScene(mutateRandomizeAnchors(path, 128), '#FF9D99')
+  let amount = 0
+  renderLoop.push(() => {
+    addedObjects.forEach(addedObject => {
+      scene.remove(addedObject)
+    })
+    addedObjects = []
 
-  // addPathToScene(path, '#0000FF')
-  addDebugToScene(path)
+    addPathToScene(mutateTranslate(myPath, amount), '#FF9D99')
+    amount = amount + 0.1
+  })
+
+  // addPathToScene(path, '#FF9D99')
+  // addDebugToScene(path)
+  // addPathToScene(mutateRandomizeAnchors(path, 1), '#A8F6FF')
+  // addPathToScene(mutateRandomizeAnchors(path, 2), '#A5D0FF')
+  // addPathToScene(mutateRandomizeAnchors(path, 4), '#A3A8FF')
+  // addPathToScene(mutateRandomizeAnchors(path, 8), '#C3A1FF')
+  // addPathToScene(mutateRandomizeAnchors(path, 16), '#EA9FFF')
+  // addPathToScene(mutateRandomizeAnchors(path, 32), '#FF9DEB')
+  // addPathToScene(mutateRandomizeAnchors(path, 64), '#FF9BC1')
+  // addPathToScene(mutateRandomizeAnchors(path, 128), '#FF9D99')
 }
 
 generate()
