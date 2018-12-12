@@ -45,6 +45,9 @@ function mutateRandomizeConnectors (path, randomAmount) {
     if (prev) {
       curve.v0.x = prev.v3.x
       curve.v0.y = prev.v3.y
+      // Need to adjust complimentary anchor so it's a straight line
+      curve.v1.x = getComplimentaryPosition(prev.v2.x, prev.v3.x)
+      curve.v1.y = getComplimentaryPosition(prev.v2.y, prev.v3.y)
     } else {
       curve.v0.x = getRandomNearby(curve.v0.x, randomAmount)
       curve.v0.y = getRandomNearby(curve.v0.y, randomAmount)
