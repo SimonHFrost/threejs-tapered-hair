@@ -2,4 +2,8 @@ function getRandomNearby (value, length) {
   return value - (length / 2) + Math.random() * length
 }
 
-export { getRandomNearby }
+function getComplimentaryPosition (anchorPosition, connectingPosition) {
+  return connectingPosition + (connectingPosition - anchorPosition)
+}
+
+export { getRandomNearby, getComplimentaryPosition }

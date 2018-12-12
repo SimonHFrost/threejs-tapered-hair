@@ -1,5 +1,5 @@
 import * as THREE from 'three'
-import { getRandomNearby } from './util'
+import { getRandomNearby, getComplimentaryPosition } from './util'
 
 function createPath (points, anchorDistance) {
   const path = new THREE.Path()
@@ -13,8 +13,8 @@ function createPath (points, anchorDistance) {
   let previousSecondAnchorY = getRandomNearby(connectingY, anchorDistance)
 
   for (let i = 0; i < points.length - 1; i++) {
-    const firstAnchorX = connectingX + (connectingX - previousSecondAnchorX)
-    const firstAnchorY = connectingY + (connectingY - previousSecondAnchorY)
+    const firstAnchorX = getComplimentaryPosition(previousSecondAnchorX, connectingX)
+    const firstAnchorY = getComplimentaryPosition(previousSecondAnchorY, connectingY)
 
     let nextConnectingX = points[i + 1].x
     let nextConnectingY = points[i + 1].y
