@@ -19,10 +19,14 @@ gui.add(controls, 'anchorDistance', 0, 1000)
 gui.add(controls, 'numPoints', 0, 20)
 gui.add(controls, 'showDebug').onChange(() => {
   if (controls.showDebug) {
-    scene.add(debugObject)
+    addedDebugObjects.forEach(debugObject => {
+      scene.add(debugObject)
+    })
     scene.add(gridObject)
   } else {
-    scene.remove(debugObject)
+    addedDebugObjects.forEach(debugObject => {
+      scene.remove(debugObject)
+    })
     scene.remove(gridObject)
   }
 })
@@ -35,7 +39,7 @@ scene.add(createAmbientLight())
 scene.add(createDirectionalLight())
 
 let addedObjects = []
-let debugObject = null
+let addedDebugObjects = []
 
 function addPathToScene (path) {
   const line = convertPathToLine(path)
@@ -44,8 +48,8 @@ function addPathToScene (path) {
 }
 
 function addDebugToScene (path) {
-  scene.remove(debugObject)
-  debugObject = createDebugObject(path)
+  const debugObject = createDebugObject(path)
+  addedDebugObjects.push(debugObject)
   if (controls.showDebug) {
     scene.add(debugObject)
   }
@@ -56,6 +60,11 @@ function generate () {
     scene.remove(addedObject)
   })
   addedObjects = []
+
+  addedDebugObjects.forEach(debugObject => {
+    scene.remove(debugObject)
+  })
+  addedDebugObjects = []
 
   const path = createPath(controls)
   addPathToScene(path)
@@ -74,6 +83,7 @@ function generate () {
 
   const translatedPath = mutateTranslate(path, 500)
   addPathToScene(translatedPath)
+  addDebugToScene(translatedPath)
 
   addPathToScene(mutateRandomizeAnchors(translatedPath, 2))
   addPathToScene(mutateRandomizeAnchors(translatedPath, 4))
@@ -88,6 +98,7 @@ function generate () {
 
   const anotherPath = mutateTranslate(path, 1000)
   addPathToScene(anotherPath)
+  addDebugToScene(anotherPath)
 
   addPathToScene(mutateRandomness(anotherPath, 2))
   addPathToScene(mutateRandomness(anotherPath, 4))
