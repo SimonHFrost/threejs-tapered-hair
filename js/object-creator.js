@@ -69,6 +69,7 @@ function createGrid () {
 
   var horizontalGrid = new THREE.GridHelper(500, 10)
   horizontalGrid.position.x = 250
+  horizontalGrid.position.y = 250
   gridObject.add(horizontalGrid)
 
   var verticalGrid = new THREE.GridHelper(500, 10)
