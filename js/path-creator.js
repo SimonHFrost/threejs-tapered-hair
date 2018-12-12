@@ -9,32 +9,32 @@ function createPath (points, anchorDistance) {
 
   path.moveTo(connectingX, connectingY)
 
-  let anchor2X = getRandomNearby(connectingX, anchorDistance)
-  let anchor2Y = getRandomNearby(connectingY, anchorDistance)
+  let previousSecondAnchorX = getRandomNearby(connectingX, anchorDistance)
+  let previousSecondAnchorY = getRandomNearby(connectingY, anchorDistance)
 
   for (let i = 0; i < points.length - 1; i++) {
-    const previousAnchorX = connectingX + (connectingX - anchor2X)
-    const previousAnchorY = connectingY + (connectingY - anchor2Y)
+    const firstAnchorX = connectingX + (connectingX - previousSecondAnchorX)
+    const firstAnchorY = connectingY + (connectingY - previousSecondAnchorY)
 
     let nextConnectingX = points[i + 1].x
     let nextConnectingY = points[i + 1].y
 
-    let nextAnchorX = getRandomNearby(nextConnectingX, anchorDistance)
-    let nextAnchorY = getRandomNearby(nextConnectingY, anchorDistance)
+    let secondAnchorX = getRandomNearby(nextConnectingX, anchorDistance)
+    let secondAnchorY = getRandomNearby(nextConnectingY, anchorDistance)
 
     path.bezierCurveTo(
-      previousAnchorX,
-      previousAnchorY,
-      nextAnchorX,
-      nextAnchorY,
+      firstAnchorX,
+      firstAnchorY,
+      secondAnchorX,
+      secondAnchorY,
       nextConnectingX,
       nextConnectingY
     )
 
     connectingX = nextConnectingX
     connectingY = nextConnectingY
-    anchor2X = nextAnchorX
-    anchor2Y = nextAnchorY
+    previousSecondAnchorX = secondAnchorX
+    previousSecondAnchorY = secondAnchorY
   }
 
   return path
