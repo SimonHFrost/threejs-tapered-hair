@@ -3,7 +3,7 @@ import dat from 'dat.gui'
 import { initialize } from './initializer'
 import { createAmbientLight, createDirectionalLight, convertPathToLine, createDebugObject, createGrid } from './object-creator'
 import { createPath } from './path-creator'
-import { mutateTranslate, mutateRandomness } from './path-mutators'
+import { mutateTranslate, mutateRandomizeAnchors } from './path-mutators'
 
 var gui = new dat.GUI()
 var controls = {
@@ -72,15 +72,15 @@ function generate () {
   addPathToScene(path)
   addDebugToScene(path)
 
-  addPathToScene(mutateRandomness(path, 2))
-  addPathToScene(mutateRandomness(path, 4))
-  addPathToScene(mutateRandomness(path, 6))
-  addPathToScene(mutateRandomness(path, 8))
-  addPathToScene(mutateRandomness(path, 10))
-  addPathToScene(mutateRandomness(path, 12))
-  addPathToScene(mutateRandomness(path, 14))
-  addPathToScene(mutateRandomness(path, 16))
-  addPathToScene(mutateRandomness(path, 100))
+  addPathToScene(mutateRandomizeAnchors(path, 2))
+  addPathToScene(mutateRandomizeAnchors(path, 4))
+  addPathToScene(mutateRandomizeAnchors(path, 6))
+  addPathToScene(mutateRandomizeAnchors(path, 8))
+  addPathToScene(mutateRandomizeAnchors(path, 10))
+  addPathToScene(mutateRandomizeAnchors(path, 12))
+  addPathToScene(mutateRandomizeAnchors(path, 14))
+  addPathToScene(mutateRandomizeAnchors(path, 16))
+  addPathToScene(mutateRandomizeAnchors(path, 100))
 }
 
 generate()

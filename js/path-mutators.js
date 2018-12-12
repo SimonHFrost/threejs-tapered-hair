@@ -16,7 +16,7 @@ function mutateRandomness (path, randomAmount) {
   const clonedPath = path.clone()
 
   let prev = null
-  clonedPath.curves.forEach((curve) => {
+  clonedPath.curves.forEach(curve => {
     if (prev) {
       // Previous curve must connect to current one
       curve.v0.x = prev.v3.x
@@ -40,4 +40,25 @@ function mutateRandomness (path, randomAmount) {
   return clonedPath
 }
 
-export { mutateTranslate, mutateRandomness }
+function mutateRandomizeAnchors (path, randomAmount) {
+  const clonedPath = path.clone()
+
+  let prev = null
+  clonedPath.curves.forEach(curve => {
+    if (prev) {
+      curve.v1.x = getComplimentaryPosition(prev.v2.x, prev.v3.x)
+      curve.v1.y = getComplimentaryPosition(prev.v2.y, prev.v3.y)
+    } else {
+      curve.v1.x = getRandomNearby(curve.v1.x, randomAmount)
+      curve.v1.y = getRandomNearby(curve.v1.y, randomAmount)
+    }
+
+    curve.v2.x = getRandomNearby(curve.v2.x, randomAmount)
+    curve.v2.y = getRandomNearby(curve.v2.y, randomAmount)
+
+    prev = curve
+  })
+  return clonedPath
+}
+
+export { mutateTranslate, mutateRandomness, mutateRandomizeAnchors }
