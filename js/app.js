@@ -3,13 +3,13 @@ import dat from 'dat.gui'
 import { initialize } from './initializer'
 import { createAmbientLight, createDirectionalLight, convertPathToLine, createDebugObject } from './object-creator'
 import { createPath } from './path-creator'
-import { movePath, addRandomness } from './path-mutators'
+import { mutateTranslate, mutateRandomness } from './path-mutators'
 
 var gui = new dat.GUI()
 var controls = {
   totalRange: 500,
   anchorDistance: 500,
-  showDebug: true,
+  showDebug: false,
   generate: () => { generate() }
 }
 
@@ -63,7 +63,7 @@ function generate () {
   const path = createPath(createPoints(4), controls.anchorDistance)
 
   addPathToScene(path)
-  addPathToScene(addRandomness(path, 100))
+  addPathToScene(mutateRandomness(path, 100))
 }
 
 generate()

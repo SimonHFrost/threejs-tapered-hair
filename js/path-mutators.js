@@ -1,6 +1,6 @@
 import { getRandomNearby } from './path-creator'
 
-function movePath (path, units) {
+function mutateTranslate (path, units) {
   const clonedPath = path.clone()
   clonedPath.curves.forEach((curve) => {
     curve.v0.y = curve.v0.y + units
@@ -11,7 +11,7 @@ function movePath (path, units) {
   return clonedPath
 }
 
-function addRandomness (path, randomAmount) {
+function mutateRandomness (path, randomAmount) {
   const clonedPath = path.clone()
 
   let prev = null
@@ -34,4 +34,4 @@ function addRandomness (path, randomAmount) {
   return clonedPath
 }
 
-export { movePath, addRandomness }
+export { mutateTranslate, mutateRandomness }
