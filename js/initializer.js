@@ -7,8 +7,9 @@ const SHOULD_ROTATE = false
 function createRenderer () {
   const renderer = new THREE.WebGLRenderer({
     antialias: true,
-    transparent: true
+    alpha: true
   })
+  renderer.setClearColor(0xffffff, 0)
   renderer.setSize(window.innerWidth, window.innerHeight)
 
   const containerComponent = document.getElementById('webgl')
