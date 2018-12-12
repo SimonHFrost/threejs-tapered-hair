@@ -1,8 +1,9 @@
 import * as THREE from 'three'
-import { getRandomNearby, getComplimentaryPosition } from './util'
+import { getRandomNearby, getComplimentaryPosition, createPoints } from './util'
 
-function createPath (points, anchorDistance) {
+function createPath ({ numPoints, totalRange, anchorDistance }) {
   const path = new THREE.Path()
+  const points = createPoints(numPoints, totalRange)
 
   let connectingX = points[0].x
   let connectingY = points[0].y

@@ -6,4 +6,15 @@ function getComplimentaryPosition (anchorPosition, connectingPosition) {
   return connectingPosition + (connectingPosition - anchorPosition)
 }
 
-export { getRandomNearby, getComplimentaryPosition }
+function createPoints (numPoints, totalRange) {
+  const points = []
+  for (let i = 0; i < numPoints; i++) {
+    points.push({
+      x: Math.random() * totalRange,
+      y: Math.random() * totalRange
+    })
+  }
+  return points
+}
+
+export { getRandomNearby, getComplimentaryPosition, createPoints }
