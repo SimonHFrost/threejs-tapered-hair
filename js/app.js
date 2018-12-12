@@ -81,6 +81,8 @@ function generate () {
   addPathToScene(mutateRandomness(path, 22))
   addPathToScene(mutateRandomness(path, 24))
   addPathToScene(mutateRandomness(path, 26))
+  addPathToScene(mutateRandomness(path, 100))
+  addPathToScene(mutateRandomness(path, 110))
 }
 
 generate()
