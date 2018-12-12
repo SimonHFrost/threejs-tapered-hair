@@ -1,3 +1,4 @@
+import * as THREE from 'three'
 import dat from 'dat.gui'
 
 import { initialize } from './initializer'
@@ -41,8 +42,9 @@ scene.add(createDirectionalLight())
 let addedObjects = []
 let addedDebugObjects = []
 
-function addPathToScene (path) {
+function addPathToScene (path, color = '#FFFFFF') {
   const line = convertPathToLine(path)
+  line.material.color = new THREE.Color(color)
   scene.add(line)
   addedObjects.push(line)
 }
@@ -67,49 +69,18 @@ function generate () {
   addedDebugObjects = []
 
   const path = createPath(controls)
-  addPathToScene(path)
+
+  addPathToScene(mutateRandomizeAnchors(path, 1), '#A8F6FF')
+  addPathToScene(mutateRandomizeAnchors(path, 2), '#A5D0FF')
+  addPathToScene(mutateRandomizeAnchors(path, 4), '#A3A8FF')
+  addPathToScene(mutateRandomizeAnchors(path, 8), '#C3A1FF')
+  addPathToScene(mutateRandomizeAnchors(path, 16), '#EA9FFF')
+  addPathToScene(mutateRandomizeAnchors(path, 32), '#FF9DEB')
+  addPathToScene(mutateRandomizeAnchors(path, 64), '#FF9BC1')
+  addPathToScene(mutateRandomizeAnchors(path, 128), '#FF9D99')
+
+  // addPathToScene(path, '#0000FF')
   addDebugToScene(path)
-
-  addPathToScene(mutateRandomizeConnectors(path, 2))
-  addPathToScene(mutateRandomizeConnectors(path, 4))
-  addPathToScene(mutateRandomizeConnectors(path, 6))
-  addPathToScene(mutateRandomizeConnectors(path, 8))
-  addPathToScene(mutateRandomizeConnectors(path, 10))
-  addPathToScene(mutateRandomizeConnectors(path, 12))
-  addPathToScene(mutateRandomizeConnectors(path, 14))
-  addPathToScene(mutateRandomizeConnectors(path, 16))
-  addPathToScene(mutateRandomizeConnectors(path, 50))
-  addPathToScene(mutateRandomizeConnectors(path, 100))
-
-  const translatedPath = mutateTranslate(path, 500)
-  addPathToScene(translatedPath)
-  addDebugToScene(translatedPath)
-
-  addPathToScene(mutateRandomizeAnchors(translatedPath, 2))
-  addPathToScene(mutateRandomizeAnchors(translatedPath, 4))
-  addPathToScene(mutateRandomizeAnchors(translatedPath, 6))
-  addPathToScene(mutateRandomizeAnchors(translatedPath, 8))
-  addPathToScene(mutateRandomizeAnchors(translatedPath, 10))
-  addPathToScene(mutateRandomizeAnchors(translatedPath, 12))
-  addPathToScene(mutateRandomizeAnchors(translatedPath, 14))
-  addPathToScene(mutateRandomizeAnchors(translatedPath, 16))
-  addPathToScene(mutateRandomizeAnchors(translatedPath, 50))
-  addPathToScene(mutateRandomizeAnchors(translatedPath, 100))
-
-  const anotherPath = mutateTranslate(path, 1000)
-  addPathToScene(anotherPath)
-  addDebugToScene(anotherPath)
-
-  addPathToScene(mutateRandomness(anotherPath, 2))
-  addPathToScene(mutateRandomness(anotherPath, 4))
-  addPathToScene(mutateRandomness(anotherPath, 6))
-  addPathToScene(mutateRandomness(anotherPath, 8))
-  addPathToScene(mutateRandomness(anotherPath, 10))
-  addPathToScene(mutateRandomness(anotherPath, 12))
-  addPathToScene(mutateRandomness(anotherPath, 14))
-  addPathToScene(mutateRandomness(anotherPath, 16))
-  addPathToScene(mutateRandomness(anotherPath, 50))
-  addPathToScene(mutateRandomness(anotherPath, 100))
 }
 
 generate()
