@@ -31,6 +31,7 @@ function createCamera (renderer) {
   controls.target = new THREE.Vector3(250, 250, 0)
   controls.update()
   controls.autoRotate = true
+  controls.autoRotateSpeed = 4
 
   window.addEventListener('resize', () => {
     renderer.setSize(window.innerWidth, window.innerHeight)
