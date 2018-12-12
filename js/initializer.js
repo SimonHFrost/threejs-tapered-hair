@@ -2,6 +2,7 @@ import * as THREE from 'three'
 import ThreejsOrbitControls from 'three-orbit-controls'
 
 const OrbitControls = ThreejsOrbitControls(THREE)
+const SHOULD_ROTATE = false
 
 function createRenderer () {
   const renderer = new THREE.WebGLRenderer({
@@ -30,8 +31,10 @@ function createCamera (renderer) {
   const controls = new OrbitControls(camera)
   controls.target = new THREE.Vector3(250, 250, 0)
   controls.update()
-  controls.autoRotate = true
-  controls.autoRotateSpeed = 4
+  if (SHOULD_ROTATE) {
+    controls.autoRotate = true
+    controls.autoRotateSpeed = 4
+  }
 
   window.addEventListener('resize', () => {
     renderer.setSize(window.innerWidth, window.innerHeight)
