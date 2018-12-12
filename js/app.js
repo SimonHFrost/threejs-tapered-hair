@@ -60,21 +60,11 @@ function addDebugToScene (path) {
   }
 }
 
-let fromPath = createPath(controls)
-let toPath = createPath(controls)
-
-function generate () {
-  addedObjects.forEach(addedObject => {
-    scene.remove(addedObject)
-  })
-  addedObjects = []
-
-  addedDebugObjects.forEach(debugObject => {
-    scene.remove(debugObject)
-  })
-  addedDebugObjects = []
-
+function lerpExample () {
   let step = 0
+  let fromPath = createPath(controls)
+  let toPath = createPath(controls)
+
   renderLoop.push(() => {
     if (step < 1) {
       addedObjects.forEach(addedObject => {
@@ -91,17 +81,37 @@ function generate () {
       step = 0
     }
   })
+}
 
-  // addPathToScene(path, '#FF9D99')
-  // addDebugToScene(path)
-  // addPathToScene(mutateRandomizeAnchors(path, 1), '#A8F6FF')
-  // addPathToScene(mutateRandomizeAnchors(path, 2), '#A5D0FF')
-  // addPathToScene(mutateRandomizeAnchors(path, 4), '#A3A8FF')
-  // addPathToScene(mutateRandomizeAnchors(path, 8), '#C3A1FF')
-  // addPathToScene(mutateRandomizeAnchors(path, 16), '#EA9FFF')
-  // addPathToScene(mutateRandomizeAnchors(path, 32), '#FF9DEB')
-  // addPathToScene(mutateRandomizeAnchors(path, 64), '#FF9BC1')
-  // addPathToScene(mutateRandomizeAnchors(path, 128), '#FF9D99')
+function colorExample () {
+  const path = createPath(controls)
+
+  addPathToScene(path, '#FF9D99')
+  addDebugToScene(path)
+
+  addPathToScene(mutateRandomizeAnchors(path, 1), '#A8F6FF')
+  addPathToScene(mutateRandomizeAnchors(path, 2), '#A5D0FF')
+  addPathToScene(mutateRandomizeAnchors(path, 4), '#A3A8FF')
+  addPathToScene(mutateRandomizeAnchors(path, 8), '#C3A1FF')
+  addPathToScene(mutateRandomizeAnchors(path, 16), '#EA9FFF')
+  addPathToScene(mutateRandomizeAnchors(path, 32), '#FF9DEB')
+  addPathToScene(mutateRandomizeAnchors(path, 64), '#FF9BC1')
+  addPathToScene(mutateRandomizeAnchors(path, 128), '#FF9D99')
+}
+
+function generate () {
+  addedObjects.forEach(addedObject => {
+    scene.remove(addedObject)
+  })
+  addedObjects = []
+
+  addedDebugObjects.forEach(debugObject => {
+    scene.remove(debugObject)
+  })
+  addedDebugObjects = []
+
+  // colorExample()
+  lerpExample()
 }
 
 generate()
