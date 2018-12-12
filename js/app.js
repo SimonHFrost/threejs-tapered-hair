@@ -52,7 +52,9 @@ function addPathToScene (path) {
   const line = convertPathToLine(path)
   scene.add(line)
   addedObjects.push(line)
+}
 
+function addDebugToScene (path) {
   scene.remove(debugObject)
   debugObject = createDebugObject(path)
   if (controls.showDebug) {
@@ -68,6 +70,8 @@ function generate () {
 
   const path = createPath(createPoints(controls.numPoints), controls.anchorDistance)
   addPathToScene(path)
+  addDebugToScene(path)
+
   addPathToScene(mutateRandomness(path, 2))
   addPathToScene(mutateRandomness(path, 4))
   addPathToScene(mutateRandomness(path, 6))
@@ -76,13 +80,7 @@ function generate () {
   addPathToScene(mutateRandomness(path, 12))
   addPathToScene(mutateRandomness(path, 14))
   addPathToScene(mutateRandomness(path, 16))
-  addPathToScene(mutateRandomness(path, 18))
-  addPathToScene(mutateRandomness(path, 20))
-  addPathToScene(mutateRandomness(path, 22))
-  addPathToScene(mutateRandomness(path, 24))
-  addPathToScene(mutateRandomness(path, 26))
   addPathToScene(mutateRandomness(path, 100))
-  addPathToScene(mutateRandomness(path, 110))
 }
 
 generate()
