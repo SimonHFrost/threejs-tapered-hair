@@ -1,3 +1,5 @@
+import * as THREE from 'three'
+
 function getRandomNearby (value, length) {
   return value - (length / 2) + Math.random() * length
 }
@@ -17,4 +19,21 @@ function createPoints (numPoints, totalRange) {
   return points
 }
 
-export { getRandomNearby, getComplimentaryPosition, createPoints }
+function getLerpedPath (fromPath, toPath, step) {
+  const clonedPath = fromPath.clone()
+
+  clonedPath.curves.forEach((curve, index) => {
+    curve.v0.x = THREE.Math.lerp(fromPath.curves[index].v0.x, toPath.curves[index].v0.x, step)
+    curve.v0.y = THREE.Math.lerp(fromPath.curves[index].v0.y, toPath.curves[index].v0.y, step)
+    curve.v1.x = THREE.Math.lerp(fromPath.curves[index].v1.x, toPath.curves[index].v1.x, step)
+    curve.v1.y = THREE.Math.lerp(fromPath.curves[index].v1.y, toPath.curves[index].v1.y, step)
+    curve.v2.x = THREE.Math.lerp(fromPath.curves[index].v2.x, toPath.curves[index].v2.x, step)
+    curve.v2.y = THREE.Math.lerp(fromPath.curves[index].v2.y, toPath.curves[index].v2.y, step)
+    curve.v3.x = THREE.Math.lerp(fromPath.curves[index].v3.x, toPath.curves[index].v3.x, step)
+    curve.v3.y = THREE.Math.lerp(fromPath.curves[index].v3.y, toPath.curves[index].v3.y, step)
+  })
+
+  return clonedPath
+}
+
+export { getRandomNearby, getComplimentaryPosition, createPoints, getLerpedPath }

@@ -5,6 +5,7 @@ import { initialize } from './initializer'
 import { createAmbientLight, createDirectionalLight, convertPathToLine, createDebugObject, createGrid } from './object-creator'
 import { createPath } from './path-creator'
 import { mutateTranslate, mutateRandomizeAnchors, mutateRandomness, mutateRandomizeConnectors } from './path-mutators'
+import { getLerpedPath } from './util'
 
 var gui = new dat.GUI()
 var controls = {
@@ -59,7 +60,8 @@ function addDebugToScene (path) {
   }
 }
 
-let myPath = null
+let fromPath = createPath(controls)
+let toPath = createPath(controls)
 
 function generate () {
   addedObjects.forEach(addedObject => {
@@ -72,17 +74,22 @@ function generate () {
   })
   addedDebugObjects = []
 
-  myPath = createPath(controls)
-
-  let amount = 0
+  let step = 0
   renderLoop.push(() => {
-    addedObjects.forEach(addedObject => {
-      scene.remove(addedObject)
-    })
-    addedObjects = []
+    if (step < 1) {
+      addedObjects.forEach(addedObject => {
+        scene.remove(addedObject)
+      })
+      addedObjects = []
 
-    addPathToScene(mutateTranslate(myPath, amount), '#FF9D99')
-    amount = amount + 0.1
+      const newPath = getLerpedPath(fromPath, toPath, step)
+      addPathToScene(newPath, '#FF9D99')
+      step = step + 0.01
+    } else {
+      fromPath = toPath
+      toPath = createPath(controls)
+      step = 0
+    }
   })
 
   // addPathToScene(path, '#FF9D99')
