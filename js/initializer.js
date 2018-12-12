@@ -30,13 +30,14 @@ function createCamera (renderer) {
   const controls = new OrbitControls(camera)
   controls.target = new THREE.Vector3(250, 250, 0)
   controls.update()
+  controls.autoRotate = true
 
   window.addEventListener('resize', () => {
     renderer.setSize(window.innerWidth, window.innerHeight)
     camera.aspect = window.innerWidth / window.innerHeight
     camera.updateProjectionMatrix()
   }, false)
-  return camera
+  return { camera, controls }
 }
 
 function createRenderLoop () {
@@ -58,10 +59,14 @@ function initialize () {
   const renderer = createRenderer()
   const renderLoop = createRenderLoop()
   const scene = new THREE.Scene()
-  const camera = createCamera(renderer)
+  const output = createCamera(renderer)
+  const camera = output.camera
+  const controls = output.controls
 
   renderLoop.push(() => {
     renderer.render(scene, camera)
+  }, () => {
+    controls.update()
   })
 
   return scene
