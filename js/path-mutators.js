@@ -1,4 +1,4 @@
-import { getRandomNearby } from './util'
+import { getRandomNearby, getComplimentaryPosition } from './util'
 
 function mutateTranslate (path, units) {
   const clonedPath = path.clone()
@@ -11,6 +11,7 @@ function mutateTranslate (path, units) {
   return clonedPath
 }
 
+// Shift all anchors and connecting positions by a random amount
 function mutateRandomness (path, randomAmount) {
   const clonedPath = path.clone()
 
@@ -20,12 +21,17 @@ function mutateRandomness (path, randomAmount) {
       // Previous curve must connect to current one
       curve.v0.x = prev.v3.x
       curve.v0.y = prev.v3.y
+      curve.v1.x = getComplimentaryPosition(prev.v2.x, prev.v3.x)
+      curve.v1.y = getComplimentaryPosition(prev.v2.y, prev.v3.y)
     } else {
       curve.v0.x = getRandomNearby(curve.v0.x, randomAmount)
       curve.v0.y = getRandomNearby(curve.v0.y, randomAmount)
+      curve.v1.x = getRandomNearby(curve.v1.x, randomAmount)
+      curve.v1.y = getRandomNearby(curve.v1.y, randomAmount)
     }
 
-    // TODO Need to also connect anchors
+    curve.v2.x = getRandomNearby(curve.v2.x, randomAmount)
+    curve.v2.y = getRandomNearby(curve.v2.y, randomAmount)
     curve.v3.x = getRandomNearby(curve.v3.x, randomAmount)
     curve.v3.y = getRandomNearby(curve.v3.y, randomAmount)
 

@@ -63,7 +63,11 @@ function generate () {
   const path = createPath(createPoints(4), controls.anchorDistance)
 
   addPathToScene(path)
-  // addPathToScene(mutateRandomness(path, 100))
+  addPathToScene(mutateRandomness(path, 5))
+  addPathToScene(mutateRandomness(path, 10))
+  addPathToScene(mutateRandomness(path, 15))
+  addPathToScene(mutateRandomness(path, 20))
+  addPathToScene(mutateRandomness(path, 25))
 }
 
 generate()
