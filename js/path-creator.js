@@ -1,8 +1,5 @@
 import * as THREE from 'three'
-
-function getRandomNearby (value, length) {
-  return value - (length / 2) + Math.random() * length
-}
+import { getRandomNearby } from './util'
 
 function createPath (points, anchorDistance) {
   const path = new THREE.Path()

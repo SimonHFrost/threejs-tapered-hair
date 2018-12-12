@@ -1,4 +1,4 @@
-import { getRandomNearby } from './path-creator'
+import { getRandomNearby } from './util'
 
 function mutateTranslate (path, units) {
   const clonedPath = path.clone()
