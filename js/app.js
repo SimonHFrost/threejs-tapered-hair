@@ -9,12 +9,14 @@ var gui = new dat.GUI()
 var controls = {
   totalRange: 500,
   anchorDistance: 500,
+  numPoints: 5,
   showDebug: false,
   generate: () => { generate() }
 }
 
 gui.add(controls, 'totalRange', 0, 1000)
 gui.add(controls, 'anchorDistance', 0, 1000)
+gui.add(controls, 'numPoints', 0, 20)
 gui.add(controls, 'showDebug').onChange(() => {
   if (controls.showDebug) {
     scene.add(debugObject)
@@ -60,8 +62,7 @@ function generate () {
   })
   addedObjects = []
 
-  const path = createPath(createPoints(4), controls.anchorDistance)
-
+  const path = createPath(createPoints(controls.numPoints), controls.anchorDistance)
   addPathToScene(path)
   addPathToScene(mutateRandomness(path, 5))
   addPathToScene(mutateRandomness(path, 10))
