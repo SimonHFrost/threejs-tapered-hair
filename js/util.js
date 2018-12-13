@@ -15,7 +15,8 @@ function createPoints (numPoints, totalRange) {
   for (let i = 0; i < numPoints; i++) {
     points.push({
       x: Math.random() * totalRange,
-      y: Math.random() * totalRange
+      y: Math.random() * totalRange,
+      z: Math.random() * totalRange
     })
   }
   return points
