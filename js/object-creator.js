@@ -69,16 +69,23 @@ function createGrid () {
 
   var horizontalGrid = new THREE.GridHelper(500, 10)
   horizontalGrid.position.x = 250
-  horizontalGrid.position.y = 250
+  horizontalGrid.position.y = 0
   horizontalGrid.position.z = 250
   gridObject.add(horizontalGrid)
 
   var verticalGrid = new THREE.GridHelper(500, 10)
   verticalGrid.position.x = 250
   verticalGrid.position.y = 250
-  verticalGrid.position.z = 250
+  verticalGrid.position.z = 0
   verticalGrid.rotation.x = Math.PI / 2
   gridObject.add(verticalGrid)
+
+  var verticalGrid2 = new THREE.GridHelper(500, 10)
+  verticalGrid2.position.x = 0
+  verticalGrid2.position.y = 250
+  verticalGrid2.position.z = 250
+  verticalGrid2.rotation.z = Math.PI / 2
+  gridObject.add(verticalGrid2)
 
   return gridObject
 }

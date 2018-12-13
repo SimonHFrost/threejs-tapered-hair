@@ -7,7 +7,7 @@ stats.showPanel(2) // 0: fps, 1: ms, 2: mb
 document.body.appendChild(stats.dom)
 
 const OrbitControls = ThreejsOrbitControls(THREE)
-const SHOULD_ROTATE = true
+const SHOULD_ROTATE = false
 
 function createRenderer () {
   const renderer = new THREE.WebGLRenderer({
