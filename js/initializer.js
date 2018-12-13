@@ -1,6 +1,11 @@
 import * as THREE from 'three'
 import ThreejsOrbitControls from 'three-orbit-controls'
 
+import Stats from 'stats.js'
+const stats = new Stats()
+stats.showPanel(0) // 0: fps, 1: ms, 2: mb
+document.body.appendChild(stats.dom)
+
 const OrbitControls = ThreejsOrbitControls(THREE)
 const SHOULD_ROTATE = false
 
@@ -54,7 +59,9 @@ function createRenderLoop () {
     const deltaMsec = Math.min(200, now - before)
     before = now
     renderLoop.forEach(renderLoop => {
+      stats.begin()
       renderLoop(deltaMsec / 1000, now / 1000)
+      stats.end()
     })
   })
   return renderLoop
