@@ -72,24 +72,22 @@ function lerpExample () {
   let fromPath = mutateConnectEnds(createPath(controls))
   let fromPaths = []
   fromPaths.push(fromPath)
-  fromPaths.push(mutateRandomizeAnchors(fromPath, 2))
-  fromPaths.push(mutateRandomizeAnchors(fromPath, 4))
-  fromPaths.push(mutateRandomizeAnchors(fromPath, 8))
-  fromPaths.push(mutateRandomizeAnchors(fromPath, 16))
-  fromPaths.push(mutateRandomizeAnchors(fromPath, 32))
-  fromPaths.push(mutateRandomizeAnchors(fromPath, 64))
-  fromPaths.push(mutateRandomizeAnchors(fromPath, 128))
+  fromPaths.push(mutateConnectEnds(mutateRandomness(fromPath, 128)))
+  fromPaths.push(mutateConnectEnds(mutateRandomness(fromPath, 128)))
+  fromPaths.push(mutateConnectEnds(mutateRandomness(fromPath, 128)))
+  fromPaths.push(mutateConnectEnds(mutateRandomness(fromPath, 128)))
+  fromPaths.push(mutateConnectEnds(mutateRandomness(fromPath, 128)))
+  fromPaths.push(mutateConnectEnds(mutateRandomness(fromPath, 128)))
+  fromPaths.push(mutateConnectEnds(mutateRandomness(fromPath, 128)))
 
   let toPath = mutateConnectEnds(createPath(controls))
   let toPaths = []
   toPaths.push(toPath)
-  toPaths.push(mutateRandomizeAnchors(toPath, 2))
-  toPaths.push(mutateRandomizeAnchors(toPath, 4))
-  toPaths.push(mutateRandomizeAnchors(toPath, 8))
-  toPaths.push(mutateRandomizeAnchors(toPath, 16))
-  toPaths.push(mutateRandomizeAnchors(toPath, 32))
-  toPaths.push(mutateRandomizeAnchors(toPath, 64))
-  toPaths.push(mutateRandomizeAnchors(toPath, 128))
+  toPaths.push(mutateConnectEnds(mutateRandomness(toPath, 128)))
+  toPaths.push(mutateConnectEnds(mutateRandomness(toPath, 128)))
+  toPaths.push(mutateConnectEnds(mutateRandomness(toPath, 128)))
+  toPaths.push(mutateConnectEnds(mutateRandomness(toPath, 128)))
+  toPaths.push(mutateConnectEnds(mutateRandomness(toPath, 128)))
 
   renderLoop.push(() => {
     if (step < 1) {
@@ -105,8 +103,6 @@ function lerpExample () {
       addPathToScene(getLerpedPath(fromPaths[3], toPaths[3], step), '#C3A1FF')
       addPathToScene(getLerpedPath(fromPaths[4], toPaths[4], step), '#EA9FFF')
       addPathToScene(getLerpedPath(fromPaths[5], toPaths[5], step), '#FF9DEB')
-      addPathToScene(getLerpedPath(fromPaths[6], toPaths[6], step), '#FF9BC1')
-      addPathToScene(getLerpedPath(fromPaths[7], toPaths[7], step), '#FF9D99')
 
       step = step + 0.0025
     } else {
@@ -124,13 +120,11 @@ function lerpExample () {
       toPaths = []
       toPath = mutateConnectEnds(createPath(controls))
       toPaths.push(toPath)
-      toPaths.push(mutateRandomizeAnchors(toPath, 2))
-      toPaths.push(mutateRandomizeAnchors(toPath, 4))
-      toPaths.push(mutateRandomizeAnchors(toPath, 8))
-      toPaths.push(mutateRandomizeAnchors(toPath, 16))
-      toPaths.push(mutateRandomizeAnchors(toPath, 32))
-      toPaths.push(mutateRandomizeAnchors(toPath, 64))
-      toPaths.push(mutateRandomizeAnchors(toPath, 128))
+      toPaths.push(mutateConnectEnds(mutateRandomness(toPath, 128)))
+      toPaths.push(mutateConnectEnds(mutateRandomness(toPath, 128)))
+      toPaths.push(mutateConnectEnds(mutateRandomness(toPath, 128)))
+      toPaths.push(mutateConnectEnds(mutateRandomness(toPath, 128)))
+      toPaths.push(mutateConnectEnds(mutateRandomness(toPath, 128)))
       step = 0
     }
   })
