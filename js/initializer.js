@@ -70,7 +70,6 @@ function initialize () {
 
   renderLoop.push(() => {
     renderer.render(scene, camera)
-  }, () => {
     controls.update()
   })
 
