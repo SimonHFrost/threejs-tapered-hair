@@ -95,6 +95,7 @@ function lerpExample () {
     if (step < 1) {
       addedObjects.forEach(addedObject => {
         scene.remove(addedObject)
+        addedObject.geometry.dispose()
       })
       addedObjects = []
 
