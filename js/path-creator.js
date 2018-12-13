@@ -21,7 +21,7 @@ function createPath ({ numPoints, totalRange, anchorDistance }) {
 
     let nextConnectingX = points[i + 1].x
     let nextConnectingY = points[i + 1].y
-    let nextConnectingZ = points[i + 1].y
+    let nextConnectingZ = points[i + 1].z
 
     let secondAnchorX = getRandomNearby(nextConnectingX, anchorDistance)
     let secondAnchorY = getRandomNearby(nextConnectingY, anchorDistance)

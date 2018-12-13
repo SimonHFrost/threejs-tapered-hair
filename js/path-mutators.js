@@ -24,13 +24,16 @@ function mutateRandomizeAnchors (path, randomAmount) {
     if (prev) {
       curve.v1.x = getComplimentaryPosition(prev.v2.x, prev.v3.x)
       curve.v1.y = getComplimentaryPosition(prev.v2.y, prev.v3.y)
+      curve.v1.z = getComplimentaryPosition(prev.v2.z, prev.v3.z)
     } else {
       curve.v1.x = getRandomNearby(curve.v1.x, randomAmount)
       curve.v1.y = getRandomNearby(curve.v1.y, randomAmount)
+      curve.v1.z = getRandomNearby(curve.v1.z, randomAmount)
     }
 
     curve.v2.x = getRandomNearby(curve.v2.x, randomAmount)
     curve.v2.y = getRandomNearby(curve.v2.y, randomAmount)
+    curve.v2.z = getRandomNearby(curve.v2.z, randomAmount)
 
     prev = curve
   })
@@ -69,9 +72,11 @@ function mutateConnectEnds (path) {
 
   lastCurve.v3.x = clonedPath.curves[0].v0.x
   lastCurve.v3.y = clonedPath.curves[0].v0.y
+  lastCurve.v3.z = clonedPath.curves[0].v0.z
 
   lastCurve.v2.x = getComplimentaryPosition(firstCurve.v1.x, lastCurve.v3.x)
   lastCurve.v2.y = getComplimentaryPosition(firstCurve.v1.y, lastCurve.v3.y)
+  lastCurve.v2.z = getComplimentaryPosition(firstCurve.v1.z, lastCurve.v3.z)
 
   return clonedPath
 }

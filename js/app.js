@@ -60,6 +60,12 @@ function addDebugToScene (path) {
   }
 }
 
+function simpleExample () {
+  const path = createPath(controls)
+  addPathToScene(path, '#FF9D99')
+  addDebugToScene(path)
+}
+
 function lerpExample () {
   let step = 0
 
@@ -156,13 +162,9 @@ function generate () {
   })
   addedDebugObjects = []
 
-  const path = createPath(controls)
-
-  addPathToScene(path, '#FF9D99')
-  addDebugToScene(path)
-
   // colorExample()
-  // lerpExample()
+  lerpExample()
+  // simpleExample()
 }
 
 generate()
