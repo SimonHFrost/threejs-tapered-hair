@@ -2,13 +2,12 @@ import * as THREE from 'three'
 import { getRandomNearby, getComplimentaryPosition, createPoints } from './util'
 
 function createPath ({ numPoints, totalRange, anchorDistance }) {
-  const path = new THREE.Path()
+  const curvePath = new THREE.CurvePath()
+
   const points = createPoints(numPoints, totalRange)
 
   let connectingX = points[0].x
   let connectingY = points[0].y
-
-  path.moveTo(connectingX, connectingY)
 
   let previousSecondAnchorX = getRandomNearby(connectingX, anchorDistance)
   let previousSecondAnchorY = getRandomNearby(connectingY, anchorDistance)
@@ -23,14 +22,12 @@ function createPath ({ numPoints, totalRange, anchorDistance }) {
     let secondAnchorX = getRandomNearby(nextConnectingX, anchorDistance)
     let secondAnchorY = getRandomNearby(nextConnectingY, anchorDistance)
 
-    path.bezierCurveTo(
-      firstAnchorX,
-      firstAnchorY,
-      secondAnchorX,
-      secondAnchorY,
-      nextConnectingX,
-      nextConnectingY
-    )
+    curvePath.add(new THREE.CubicBezierCurve3(
+      new THREE.Vector3( connectingX, connectingY, Math.random() * 100),
+      new THREE.Vector3( firstAnchorX, firstAnchorY, Math.random() * 100),
+      new THREE.Vector3( secondAnchorX, secondAnchorY, Math.random() * 100),
+      new THREE.Vector3( nextConnectingX, nextConnectingY, Math.random() * 100)
+    ))
 
     connectingX = nextConnectingX
     connectingY = nextConnectingY
@@ -38,7 +35,7 @@ function createPath ({ numPoints, totalRange, anchorDistance }) {
     previousSecondAnchorY = secondAnchorY
   }
 
-  return path
+  return curvePath
 }
 
 export {

@@ -156,8 +156,13 @@ function generate () {
   })
   addedDebugObjects = []
 
+  const path = createPath(controls)
+
+  addPathToScene(path, '#FF9D99')
+  addDebugToScene(path)
+
   // colorExample()
-  lerpExample()
+  // lerpExample()
 }
 
 generate()
