@@ -3,7 +3,7 @@ import ThreejsOrbitControls from 'three-orbit-controls'
 
 import Stats from 'stats.js'
 const stats = new Stats()
-stats.showPanel(0) // 0: fps, 1: ms, 2: mb
+stats.showPanel(2) // 0: fps, 1: ms, 2: mb
 document.body.appendChild(stats.dom)
 
 const OrbitControls = ThreejsOrbitControls(THREE)
