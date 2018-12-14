@@ -1,6 +1,6 @@
 import * as THREE from 'three'
 import BezierEasing from 'bezier-easing'
-var easing = new BezierEasing(0.4, 0, 0.6, 1)
+var easing = new BezierEasing(0.5, 0, 0.5, 1)
 
 function getRandomNearby (value, length) {
   return value - (length / 2) + Math.random() * length

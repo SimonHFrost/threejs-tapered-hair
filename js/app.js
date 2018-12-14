@@ -69,25 +69,25 @@ function simpleExample () {
 function lerpExample () {
   let step = 0
 
+  const randomness = 64
+
   let fromPath = mutateConnectEnds(createPath(controls))
   let fromPaths = []
   fromPaths.push(fromPath)
-  fromPaths.push(mutateConnectEnds(mutateRandomness(fromPath, 128)))
-  fromPaths.push(mutateConnectEnds(mutateRandomness(fromPath, 128)))
-  fromPaths.push(mutateConnectEnds(mutateRandomness(fromPath, 128)))
-  fromPaths.push(mutateConnectEnds(mutateRandomness(fromPath, 128)))
-  fromPaths.push(mutateConnectEnds(mutateRandomness(fromPath, 128)))
-  fromPaths.push(mutateConnectEnds(mutateRandomness(fromPath, 128)))
-  fromPaths.push(mutateConnectEnds(mutateRandomness(fromPath, 128)))
+  fromPaths.push(mutateConnectEnds(mutateRandomness(fromPath, randomness)))
+  fromPaths.push(mutateConnectEnds(mutateRandomness(fromPath, randomness)))
+  fromPaths.push(mutateConnectEnds(mutateRandomness(fromPath, randomness)))
+  fromPaths.push(mutateConnectEnds(mutateRandomness(fromPath, randomness)))
+  fromPaths.push(mutateConnectEnds(mutateRandomness(fromPath, randomness)))
 
   let toPath = mutateConnectEnds(createPath(controls))
   let toPaths = []
   toPaths.push(toPath)
-  toPaths.push(mutateConnectEnds(mutateRandomness(toPath, 128)))
-  toPaths.push(mutateConnectEnds(mutateRandomness(toPath, 128)))
-  toPaths.push(mutateConnectEnds(mutateRandomness(toPath, 128)))
-  toPaths.push(mutateConnectEnds(mutateRandomness(toPath, 128)))
-  toPaths.push(mutateConnectEnds(mutateRandomness(toPath, 128)))
+  toPaths.push(mutateConnectEnds(mutateRandomness(toPath, randomness)))
+  toPaths.push(mutateConnectEnds(mutateRandomness(toPath, randomness)))
+  toPaths.push(mutateConnectEnds(mutateRandomness(toPath, randomness)))
+  toPaths.push(mutateConnectEnds(mutateRandomness(toPath, randomness)))
+  toPaths.push(mutateConnectEnds(mutateRandomness(toPath, randomness)))
 
   renderLoop.push(() => {
     if (step < 1) {
@@ -114,17 +114,15 @@ function lerpExample () {
       fromPaths.push(toPaths[3])
       fromPaths.push(toPaths[4])
       fromPaths.push(toPaths[5])
-      fromPaths.push(toPaths[6])
-      fromPaths.push(toPaths[7])
 
       toPaths = []
       toPath = mutateConnectEnds(createPath(controls))
       toPaths.push(toPath)
-      toPaths.push(mutateConnectEnds(mutateRandomness(toPath, 128)))
-      toPaths.push(mutateConnectEnds(mutateRandomness(toPath, 128)))
-      toPaths.push(mutateConnectEnds(mutateRandomness(toPath, 128)))
-      toPaths.push(mutateConnectEnds(mutateRandomness(toPath, 128)))
-      toPaths.push(mutateConnectEnds(mutateRandomness(toPath, 128)))
+      toPaths.push(mutateConnectEnds(mutateRandomness(toPath, randomness)))
+      toPaths.push(mutateConnectEnds(mutateRandomness(toPath, randomness)))
+      toPaths.push(mutateConnectEnds(mutateRandomness(toPath, randomness)))
+      toPaths.push(mutateConnectEnds(mutateRandomness(toPath, randomness)))
+      toPaths.push(mutateConnectEnds(mutateRandomness(toPath, randomness)))
       step = 0
     }
   })
