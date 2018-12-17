@@ -161,16 +161,26 @@ function generate () {
   // simpleExample()
 }
 
-var capturer = new window.CCapture( { format: 'webm' } )
-// var capturer = new CCapture( { format: 'png' } );
-capturer.start()
+const SAVE = true
 
-renderLoop.push(() => {
-  capturer.capture(renderer.domElement)
-})
+if (SAVE) {
+  var capturer = new window.CCapture({
+    format: 'webm',
+    framerate: 60,
+    verbose: true
+  })
+  capturer.start()
 
-setTimeout(() => {
-  capturer.save()
-}, 1000)
+  const capture = () => {
+    capturer.capture(renderer.domElement)
+  }
+  renderLoop.push(capture)
+
+  setTimeout(() => {
+    capturer.save()
+    // For some reason it won't save if you stop rendering
+    // renderLoop.splice(renderLoop.indexOf(capture))
+  }, 1000)
+}
 
 generate()
