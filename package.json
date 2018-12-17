@@ -5,10 +5,13 @@
   "main": "webpack.config.js",
   "dependencies": {
     "bezier-easing": "^2.1.0",
+    "ccapture.js": "^1.1.0",
     "dat.gui": "^0.7.2",
     "stats.js": "^0.17.0",
     "three": "0.95.0",
-    "three-orbit-controls": "^82.1.0"
+    "three-orbit-controls": "^82.1.0",
+    "webpack": "^4.17.1",
+    "webpack-dev-server": "^3.1.5"
   },
   "directories": {
     "lib": "lib"
@@ -33,9 +36,6 @@
     "eslint-plugin-import": "^2.14.0",
     "eslint-plugin-node": "^8.0.0",
     "eslint-plugin-promise": "^4.0.1",
-    "eslint-plugin-standard": "^4.0.0",
-    "webpack": "^4.17.1",
-    "webpack-cli": "^3.1.0",
-    "webpack-dev-server": "^3.1.5"
+    "eslint-plugin-standard": "^4.0.0"
   }
 }

@@ -83,7 +83,7 @@ function initialize () {
     controls.update()
   })
 
-  return { scene, renderLoop }
+  return { scene, renderLoop, renderer }
 }
 
 export { initialize }

@@ -39,6 +39,7 @@ const gridObject = createGrid()
 const output = initialize()
 const scene = output.scene
 const renderLoop = output.renderLoop
+const renderer = output.renderer
 scene.add(createAmbientLight())
 scene.add(createDirectionalLight())
 
@@ -159,5 +160,17 @@ function generate () {
   lerpExample()
   // simpleExample()
 }
+
+var capturer = new window.CCapture( { format: 'webm' } )
+// var capturer = new CCapture( { format: 'png' } );
+capturer.start()
+
+renderLoop.push(() => {
+  capturer.capture(renderer.domElement)
+})
+
+setTimeout(() => {
+  capturer.save()
+}, 1000)
 
 generate()
