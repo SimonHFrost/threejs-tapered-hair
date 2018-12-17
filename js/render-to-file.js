@@ -1,4 +1,4 @@
-const SAVE = true
+const SAVE = false
 
 const renderToFile = (renderer, renderLoop) => {
   if (SAVE) {
@@ -18,7 +18,7 @@ const renderToFile = (renderer, renderLoop) => {
       capturer.save()
       // For some reason it won't save if you stop rendering
       // renderLoop.splice(renderLoop.indexOf(capture))
-    }, 1000)
+    }, 10000)
   }
 }
 

@@ -1,4 +1,6 @@
 import * as THREE from 'three'
+import { MeshLine, MeshLineMaterial } from 'three.meshline'
+import { createPoints } from './util';
 
 function createAmbientLight () {
   return new THREE.AmbientLight(0xEEEEEE, 0.75)
@@ -36,10 +38,19 @@ function createStraightLine (x1, y1, x2, y2, color) {
 function convertPathToLine (path) {
   var points = path.getPoints(1000)
 
-  var geometry = new THREE.BufferGeometry().setFromPoints(points)
-  var material = new THREE.LineBasicMaterial({ color: 0xffffff })
+  var geometry = new THREE.Geometry()
+  points.forEach(point => {
+    const v = new THREE.Vector3(point.x, point.y, point.z)
+    geometry.vertices.push(v)
+  })
 
-  return new THREE.Line(geometry, material)
+  // var geometry = new THREE.BufferGeometry().setFromPoints(points)
+  var line = new MeshLine()
+  line.setGeometry(geometry)
+
+  var material = new MeshLineMaterial({ color: new THREE.Color(0x000000), lineWidth: 0.01 })
+
+  return new THREE.Mesh(line.geometry, material)
 }
 
 function createDebugObject (path) {

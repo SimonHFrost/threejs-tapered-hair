@@ -7,6 +7,7 @@ import { createPath } from './path-creator'
 import { mutateTranslate, mutateRandomizeAnchors, mutateRandomness, mutateRandomizeConnectors, mutateConnectEnds } from './path-mutators'
 import { getLerpedPath } from './util'
 import { renderToFile } from './render-to-file'
+import { MeshLineMaterial } from 'three.meshline'
 
 var gui = new dat.GUI()
 var controls = {
@@ -49,7 +50,7 @@ let addedDebugObjects = []
 
 function addPathToScene (path, color = '#FFFFFF') {
   const line = convertPathToLine(path)
-  line.material.color = new THREE.Color(color)
+  line.material = new MeshLineMaterial({ color: new THREE.Color(color), lineWidth: 0.01})
   scene.add(line)
   addedObjects.push(line)
 }
@@ -106,7 +107,7 @@ function lerpExample () {
       addPathToScene(getLerpedPath(fromPaths[4], toPaths[4], step), '#EA9FFF')
       addPathToScene(getLerpedPath(fromPaths[5], toPaths[5], step), '#FF9DEB')
 
-      step = step + 0.0025
+      step = step + 0.025
     } else {
       fromPaths = []
       fromPath = toPath

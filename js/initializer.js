@@ -14,7 +14,8 @@ function createRenderer () {
     antialias: true,
     alpha: true
   })
-  renderer.setClearColor(0xffffff, 0)
+  // renderer.setClearColor(0xffffff, 0)
+  renderer.setClearColor(0xfff7b0, 1)
   renderer.setSize(window.innerWidth, window.innerHeight)
 
   const containerComponent = document.getElementById('webgl')
