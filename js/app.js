@@ -6,6 +6,7 @@ import { createAmbientLight, createDirectionalLight, convertPathToLine, createDe
 import { createPath } from './path-creator'
 import { mutateTranslate, mutateRandomizeAnchors, mutateRandomness, mutateRandomizeConnectors, mutateConnectEnds } from './path-mutators'
 import { getLerpedPath } from './util'
+import { renderToFile } from './render-to-file'
 
 var gui = new dat.GUI()
 var controls = {
@@ -161,26 +162,5 @@ function generate () {
   // simpleExample()
 }
 
-const SAVE = true
-
-if (SAVE) {
-  var capturer = new window.CCapture({
-    format: 'webm',
-    framerate: 60,
-    verbose: true
-  })
-  capturer.start()
-
-  const capture = () => {
-    capturer.capture(renderer.domElement)
-  }
-  renderLoop.push(capture)
-
-  setTimeout(() => {
-    capturer.save()
-    // For some reason it won't save if you stop rendering
-    // renderLoop.splice(renderLoop.indexOf(capture))
-  }, 1000)
-}
-
 generate()
+renderToFile(renderer, renderLoop)
