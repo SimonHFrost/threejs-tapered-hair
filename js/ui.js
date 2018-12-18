@@ -6,14 +6,14 @@ const Ui = (generate, toggleDebug) => {
     totalRange: 500,
     anchorDistance: 500,
     numPoints: 5,
-    showDebug: false,
+    toggleDebug: false,
     generate: () => { generate() }
   }
 
   gui.add(controls, 'totalRange', 0, 1000)
   gui.add(controls, 'anchorDistance', 0, 1000)
   gui.add(controls, 'numPoints', 0, 20)
-  gui.add(controls, 'showDebug').onChange(toggleDebug)
+  gui.add(controls, 'toggleDebug').onChange(toggleDebug)
   gui.add(controls, 'generate')
 
   return { controls }

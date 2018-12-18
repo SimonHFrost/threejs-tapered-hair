@@ -39,14 +39,13 @@ function removePathsFromScene () {
 function addDebugToScene (path) {
   const debugObject = createDebugObject(path)
   addedDebugObjects.push(debugObject)
-  if (ui.controls.showDebug) {
+  if (ui.controls.toggleDebug) {
     scene.add(debugObject)
   }
 }
 
 const gridObject = createGrid()
 const toggleDebug = (toggle) => {
-  console.log(toggle)
   if (toggle) {
     addedDebugObjects.forEach(debugObject => {
       scene.add(debugObject)
