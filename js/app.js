@@ -6,7 +6,6 @@ import { initialize } from './initializer'
 import { createAmbientLight, createDirectionalLight, convertPathToLine, createDebugObject, createGrid } from './object-creator'
 import { createPath } from './path-creator'
 import { mutateTranslate, mutateRandomizeAnchors, mutateRandomness, mutateRandomizeConnectors, mutateConnectEnds } from './path-mutators'
-import { getLerpedPath } from './util'
 import { exportAnimation } from './export-animation'
 import Examples from './examples'
 
@@ -60,6 +59,14 @@ function addPathToScene (path, color = '#FFFFFF') {
   addedObjects.push(line)
 }
 
+function removePathsFromScene () {
+  addedObjects.forEach(addedObject => {
+    scene.remove(addedObject)
+    addedObject.geometry.dispose()
+  })
+  addedObjects = []
+}
+
 function addDebugToScene (path) {
   const debugObject = createDebugObject(path)
   addedDebugObjects.push(debugObject)
@@ -68,83 +75,18 @@ function addDebugToScene (path) {
   }
 }
 
-function lerpExample () {
-  let step = 0
-
-  const randomness = 64
-
-  let fromPath = mutateConnectEnds(createPath(controls))
-  let fromPaths = []
-  fromPaths.push(fromPath)
-  fromPaths.push(mutateConnectEnds(mutateRandomness(fromPath, randomness)))
-  fromPaths.push(mutateConnectEnds(mutateRandomness(fromPath, randomness)))
-  fromPaths.push(mutateConnectEnds(mutateRandomness(fromPath, randomness)))
-  fromPaths.push(mutateConnectEnds(mutateRandomness(fromPath, randomness)))
-  fromPaths.push(mutateConnectEnds(mutateRandomness(fromPath, randomness)))
-
-  let toPath = mutateConnectEnds(createPath(controls))
-  let toPaths = []
-  toPaths.push(toPath)
-  toPaths.push(mutateConnectEnds(mutateRandomness(toPath, randomness)))
-  toPaths.push(mutateConnectEnds(mutateRandomness(toPath, randomness)))
-  toPaths.push(mutateConnectEnds(mutateRandomness(toPath, randomness)))
-  toPaths.push(mutateConnectEnds(mutateRandomness(toPath, randomness)))
-  toPaths.push(mutateConnectEnds(mutateRandomness(toPath, randomness)))
-
-  renderLoop.push(() => {
-    if (step < 1) {
-      addedObjects.forEach(addedObject => {
-        scene.remove(addedObject)
-        addedObject.geometry.dispose()
-      })
-      addedObjects = []
-
-      addPathToScene(getLerpedPath(fromPaths[0], toPaths[0], step), '#A8F6FF')
-      addPathToScene(getLerpedPath(fromPaths[1], toPaths[1], step), '#A5D0FF')
-      addPathToScene(getLerpedPath(fromPaths[2], toPaths[2], step), '#A3A8FF')
-      addPathToScene(getLerpedPath(fromPaths[3], toPaths[3], step), '#C3A1FF')
-      addPathToScene(getLerpedPath(fromPaths[4], toPaths[4], step), '#EA9FFF')
-      addPathToScene(getLerpedPath(fromPaths[5], toPaths[5], step), '#FF9DEB')
-
-      step = step + 0.025
-    } else {
-      fromPaths = []
-      fromPath = toPath
-      fromPaths.push(fromPath)
-      fromPaths.push(toPaths[1])
-      fromPaths.push(toPaths[2])
-      fromPaths.push(toPaths[3])
-      fromPaths.push(toPaths[4])
-      fromPaths.push(toPaths[5])
-
-      toPaths = []
-      toPath = mutateConnectEnds(createPath(controls))
-      toPaths.push(toPath)
-      toPaths.push(mutateConnectEnds(mutateRandomness(toPath, randomness)))
-      toPaths.push(mutateConnectEnds(mutateRandomness(toPath, randomness)))
-      toPaths.push(mutateConnectEnds(mutateRandomness(toPath, randomness)))
-      toPaths.push(mutateConnectEnds(mutateRandomness(toPath, randomness)))
-      toPaths.push(mutateConnectEnds(mutateRandomness(toPath, randomness)))
-      step = 0
-    }
-  })
-}
-
-const myExamples = Examples(controls, createPath, addPathToScene, addDebugToScene)
+const myExamples = Examples(controls, createPath, addPathToScene, removePathsFromScene, addDebugToScene, renderLoop)
 
 function generate () {
-  addedObjects.forEach(addedObject => {
-    scene.remove(addedObject)
-  })
-  addedObjects = []
+  removePathsFromScene()
 
   addedDebugObjects.forEach(debugObject => {
     scene.remove(debugObject)
   })
   addedDebugObjects = []
 
-  myExamples.colorExample()
-  // lerpExample()
+  // myExamples.colorExample()
+  myExamples.lerpExample()
   // myExamples.simpleExample()
 }
 
