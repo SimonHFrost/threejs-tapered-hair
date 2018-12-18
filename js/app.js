@@ -9,7 +9,6 @@ import { mutateTranslate, mutateRandomizeAnchors, mutateRandomness, mutateRandom
 import { exportAnimation } from './export-animation'
 import Examples from './examples'
 
-
 var gui = new dat.GUI()
 var controls = {
   totalRange: 500,
@@ -22,6 +21,7 @@ var controls = {
 gui.add(controls, 'totalRange', 0, 1000)
 gui.add(controls, 'anchorDistance', 0, 1000)
 gui.add(controls, 'numPoints', 0, 20)
+const gridObject = createGrid()
 gui.add(controls, 'showDebug').onChange(() => {
   if (controls.showDebug) {
     addedDebugObjects.forEach(debugObject => {
@@ -36,8 +36,6 @@ gui.add(controls, 'showDebug').onChange(() => {
   }
 })
 gui.add(controls, 'generate')
-
-const gridObject = createGrid()
 
 const output = initialize()
 const scene = output.scene
@@ -91,5 +89,4 @@ function generate () {
 }
 
 generate()
-
 // exportAnimation(renderer, renderLoop, 1000)
