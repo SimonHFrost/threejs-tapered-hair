@@ -1,10 +1,10 @@
 import * as THREE from 'three'
-import dat from 'dat.gui'
 import { MeshLineMaterial } from 'three.meshline'
 
 import { initialize } from './initializer'
-import { createAmbientLight, createDirectionalLight, convertPathToLine, createDebugObject, createGrid } from './object-creator'
+import { convertPathToLine, createDebugObject, createGrid } from './object-creator'
 import { exportAnimation } from './export-animation'
+
 import Examples from './examples'
 import Ui from './ui'
 
@@ -13,8 +13,6 @@ const scene = output.scene
 const renderLoop = output.renderLoop
 const renderer = output.renderer
 const orbitControls = output.orbitControls
-scene.add(createAmbientLight())
-scene.add(createDirectionalLight())
 
 let addedObjects = []
 let addedDebugObjects = []

@@ -1,7 +1,9 @@
 import * as THREE from 'three'
 import ThreejsOrbitControls from 'three-orbit-controls'
-
 import Stats from 'stats.js'
+
+import { createAmbientLight, createDirectionalLight } from './object-creator'
+
 const stats = new Stats()
 stats.showPanel(2) // 0: fps, 1: ms, 2: mb
 document.body.appendChild(stats.dom)
@@ -75,6 +77,9 @@ function initialize () {
   const output = createCamera(renderer)
   const camera = output.camera
   const orbitControls = output.orbitControls
+
+  scene.add(createAmbientLight())
+  scene.add(createDirectionalLight())
 
   renderLoop.push(() => {
     renderer.render(scene, camera)
