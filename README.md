@@ -5,8 +5,8 @@
 # Getting Started
 
 `npm install`
-`webpack-dev-server` to run
+`npm run watch` to run
 
 # Build
 
-`webpack` to build
+`npm run build` to build
