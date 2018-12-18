@@ -18,7 +18,13 @@ const Ui = (generate, toggleDebug, exportAnimation, autoRotate) => {
   gui.add(controls, 'numPoints', 0, 20)
   gui.add(controls, 'toggleDebug').onChange(toggleDebug)
   gui.add(controls, 'autoRotate').onChange(autoRotate)
-  gui.add(controls, 'example', ['simpleExample', 'colorExample', 'lerpExample', 'threeConsistentLines'])
+  gui.add(controls, 'example', [
+    'simpleExample',
+    'colorExample',
+    'lerpExample',
+    'threeConsistentLines',
+    'linesTaperOff'
+  ])
   gui.add(controls, 'generate')
   gui.add(controls, 'exportAnimation')
 

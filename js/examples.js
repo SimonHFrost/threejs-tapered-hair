@@ -81,8 +81,8 @@ export default function Examples (controls, addPathToScene, removePathsFromScene
     threeConsistentLines: () => {
       const path1 = createPath(controls)
       addDebugToScene(path1)
-      const path2 = mutateMatchEnd(mutateMatchStart(mutateRandomness(path1, 128), path1), path1)
-      const path3 = mutateMatchEnd(mutateMatchStart(mutateRandomness(path1, 128), path1), path1)
+      const path2 = mutateMatchEnd(mutateMatchStart(mutateRandomness(path1, 64), path1), path1)
+      const path3 = mutateMatchEnd(mutateMatchStart(mutateRandomness(path1, 64), path1), path1)
 
       addPathToScene(path1, '#FF9D99')
       addPathToScene(path2, '#A8F6FF')
