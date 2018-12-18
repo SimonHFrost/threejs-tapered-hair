@@ -12,6 +12,7 @@ const output = initialize()
 const scene = output.scene
 const renderLoop = output.renderLoop
 const renderer = output.renderer
+const orbitControls = output.orbitControls
 scene.add(createAmbientLight())
 scene.add(createDirectionalLight())
 
@@ -64,7 +65,11 @@ function doExportAnimation () {
   exportAnimation(renderer, renderLoop, 1000)
 }
 
-const ui = Ui(generate, toggleDebug, doExportAnimation)
+function autoRotate (toggle) {
+  orbitControls.autoRotate = toggle
+}
+
+const ui = Ui(generate, toggleDebug, doExportAnimation, autoRotate)
 const myExamples = Examples(ui.controls, addPathToScene, removePathsFromScene, addDebugToScene, renderLoop)
 
 function generate () {
