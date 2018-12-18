@@ -1,5 +1,5 @@
 {
-  "name": "Three.js tapered hair",
+  "name": "threejs-tapered-hair",
   "description": "[![mit-licence](http://img.shields.io/:license-mit-blue.svg)](http://opensource.org/licenses/MIT) [![js-standard-style](https://img.shields.io/badge/code%20style-standard-brightgreen.svg?style=flat)](https://github.com/feross/standard)",
   "version": "1.0.0",
   "main": "webpack.config.js",
@@ -12,6 +12,7 @@
     "three-orbit-controls": "^82.1.0",
     "three.meshline": "^1.1.0",
     "webpack": "^4.17.1",
+    "webpack-cli": "^3.1.2",
     "webpack-dev-server": "^3.1.5"
   },
   "directories": {
@@ -19,7 +20,8 @@
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "lint": "./node_modules/.bin/eslint ./js"
+    "lint": "node_modules/.bin/eslint ./js",
+    "watch": "node_modules/.bin/webpack-dev-server"
   },
   "repository": {
     "type": "git",

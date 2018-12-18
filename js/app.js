@@ -6,7 +6,7 @@ import { createAmbientLight, createDirectionalLight, convertPathToLine, createDe
 import { createPath } from './path-creator'
 import { mutateTranslate, mutateRandomizeAnchors, mutateRandomness, mutateRandomizeConnectors, mutateConnectEnds } from './path-mutators'
 import { getLerpedPath } from './util'
-import { renderToFile } from './render-to-file'
+import { exportAnimation } from './export-animation'
 import { MeshLineMaterial } from 'three.meshline'
 
 var gui = new dat.GUI()
@@ -167,4 +167,5 @@ function generate () {
 }
 
 generate()
-renderToFile(renderer, renderLoop)
+
+exportAnimation(renderer, renderLoop, 1000)
