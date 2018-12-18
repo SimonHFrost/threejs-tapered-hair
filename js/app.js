@@ -79,8 +79,9 @@ function generate () {
   addedDebugObjects = []
 
   // myExamples.simpleExample()
-  myExamples.colorExample()
+  // myExamples.colorExample()
   // myExamples.lerpExample()
+  myExamples.threeConsistentLines()
 }
 
 generate()

@@ -84,4 +84,24 @@ function mutateConnectEnds (path) {
   return clonedPath
 }
 
-export { mutateTranslate, mutateRandomness, mutateRandomizeAnchors, mutateRandomizeConnectors, mutateConnectEnds }
+function mutateMatchStart (path, matchPath) {
+  const clonedPath = path.clone()
+  clonedPath.curves[0].v0 = matchPath.curves[0].v0
+  return clonedPath
+}
+
+function mutateMatchEnd (path, matchPath) {
+  const clonedPath = path.clone()
+  clonedPath.curves[clonedPath.curves.length - 1].v3 = matchPath.curves[matchPath.curves.length - 1].v3
+  return clonedPath
+}
+
+export {
+  mutateTranslate,
+  mutateRandomness,
+  mutateRandomizeAnchors,
+  mutateRandomizeConnectors,
+  mutateConnectEnds,
+  mutateMatchStart,
+  mutateMatchEnd
+}

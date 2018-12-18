@@ -1,4 +1,4 @@
-import { mutateTranslate, mutateRandomizeAnchors, mutateRandomness, mutateRandomizeConnectors, mutateConnectEnds } from './path-mutators'
+import { mutateTranslate, mutateRandomizeAnchors, mutateRandomness, mutateRandomizeConnectors, mutateConnectEnds, mutateMatchStart, mutateMatchEnd } from './path-mutators'
 import { getLerpedPath } from './util'
 import { createPath } from './path-creator'
 
@@ -76,6 +76,16 @@ export default function Examples (controls, addPathToScene, removePathsFromScene
           step = 0
         }
       })
+    },
+    threeConsistentLines: () => {
+      const path1 = createPath(controls)
+      addDebugToScene(path1)
+      const path2 = mutateMatchEnd(mutateMatchStart(mutateRandomness(path1, 128), path1), path1)
+      const path3 = mutateMatchEnd(mutateMatchStart(mutateRandomness(path1, 128), path1), path1)
+
+      addPathToScene(path1, '#FF9D99')
+      addPathToScene(path2, '#A8F6FF')
+      addPathToScene(path3, '#A5D0FF')
     }
   }
 }
