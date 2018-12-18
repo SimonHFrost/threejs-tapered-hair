@@ -1,6 +1,6 @@
 import * as THREE from 'three'
 import BezierEasing from 'bezier-easing'
-var easing = new BezierEasing(0.5, 0, 0.5, 1)
+var easeInOut = new BezierEasing(0.5, 0, 0.5, 1)
 
 function getRandomNearby (value, length) {
   return value - (length / 2) + Math.random() * length
@@ -22,26 +22,24 @@ function createPoints (numPoints, totalRange) {
   return points
 }
 
+function lerpVector3 (v1, v2, step) {
+  return new THREE.Vector3(
+    THREE.Math.lerp(v1.x, v2.x, step),
+    THREE.Math.lerp(v1.y, v2.y, step),
+    THREE.Math.lerp(v1.z, v2.z, step)
+  )
+}
+
 function getLerpedPath (fromPath, toPath, step) {
   const clonedPath = fromPath.clone()
 
-  // Attempt 'ease-in, ease-out' transitioning
-  // step = -Math.sin(step * Math.PI * 2) * 0.1 + step
-  step = easing(step)
+  step = easeInOut(step)
 
   clonedPath.curves.forEach((curve, index) => {
-    curve.v0.x = THREE.Math.lerp(fromPath.curves[index].v0.x, toPath.curves[index].v0.x, step)
-    curve.v0.y = THREE.Math.lerp(fromPath.curves[index].v0.y, toPath.curves[index].v0.y, step)
-    curve.v0.z = THREE.Math.lerp(fromPath.curves[index].v0.z, toPath.curves[index].v0.z, step)
-    curve.v1.x = THREE.Math.lerp(fromPath.curves[index].v1.x, toPath.curves[index].v1.x, step)
-    curve.v1.y = THREE.Math.lerp(fromPath.curves[index].v1.y, toPath.curves[index].v1.y, step)
-    curve.v1.z = THREE.Math.lerp(fromPath.curves[index].v1.z, toPath.curves[index].v1.z, step)
-    curve.v2.x = THREE.Math.lerp(fromPath.curves[index].v2.x, toPath.curves[index].v2.x, step)
-    curve.v2.y = THREE.Math.lerp(fromPath.curves[index].v2.y, toPath.curves[index].v2.y, step)
-    curve.v2.z = THREE.Math.lerp(fromPath.curves[index].v2.z, toPath.curves[index].v2.z, step)
-    curve.v3.x = THREE.Math.lerp(fromPath.curves[index].v3.x, toPath.curves[index].v3.x, step)
-    curve.v3.y = THREE.Math.lerp(fromPath.curves[index].v3.y, toPath.curves[index].v3.y, step)
-    curve.v3.z = THREE.Math.lerp(fromPath.curves[index].v3.z, toPath.curves[index].v3.z, step)
+    curve.v0 = lerpVector3(fromPath.curves[index].v0, toPath.curves[index].v0, step)
+    curve.v1 = lerpVector3(fromPath.curves[index].v1, toPath.curves[index].v1, step)
+    curve.v2 = lerpVector3(fromPath.curves[index].v2, toPath.curves[index].v2, step)
+    curve.v3 = lerpVector3(fromPath.curves[index].v3, toPath.curves[index].v3, step)
   })
 
   return clonedPath

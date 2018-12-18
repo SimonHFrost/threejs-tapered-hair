@@ -1,5 +1,6 @@
 import * as THREE from 'three'
 import dat from 'dat.gui'
+import { MeshLineMaterial } from 'three.meshline'
 
 import { initialize } from './initializer'
 import { createAmbientLight, createDirectionalLight, convertPathToLine, createDebugObject, createGrid } from './object-creator'
@@ -7,7 +8,6 @@ import { createPath } from './path-creator'
 import { mutateTranslate, mutateRandomizeAnchors, mutateRandomness, mutateRandomizeConnectors, mutateConnectEnds } from './path-mutators'
 import { getLerpedPath } from './util'
 import { exportAnimation } from './export-animation'
-import { MeshLineMaterial } from 'three.meshline'
 
 var gui = new dat.GUI()
 var controls = {
@@ -168,4 +168,4 @@ function generate () {
 
 generate()
 
-exportAnimation(renderer, renderLoop, 1000)
+// exportAnimation(renderer, renderLoop, 1000)
