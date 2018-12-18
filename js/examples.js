@@ -10,19 +10,15 @@ export default function Examples (controls, addPathToScene, removePathsFromScene
       addDebugToScene(path)
     },
     colorExample: () => {
-      const path = createPath(controls)
+      const path = mutateConnectEnds(createPath(controls))
 
       addPathToScene(path, '#FF9D99')
       addDebugToScene(path)
 
-      addPathToScene(mutateRandomizeAnchors(path, 1), '#A8F6FF')
-      addPathToScene(mutateRandomizeAnchors(path, 2), '#A5D0FF')
-      addPathToScene(mutateRandomizeAnchors(path, 4), '#A3A8FF')
-      addPathToScene(mutateRandomizeAnchors(path, 8), '#C3A1FF')
-      addPathToScene(mutateRandomizeAnchors(path, 16), '#EA9FFF')
-      addPathToScene(mutateRandomizeAnchors(path, 32), '#FF9DEB')
-      addPathToScene(mutateRandomizeAnchors(path, 64), '#FF9BC1')
-      addPathToScene(mutateRandomizeAnchors(path, 128), '#FF9D99')
+      addPathToScene(mutateRandomness(path, 128), '#A8F6FF')
+      addPathToScene(mutateRandomness(path, 128), '#A5D0FF')
+      addPathToScene(mutateRandomness(path, 128), '#A3A8FF')
+      addPathToScene(mutateRandomness(path, 128), '#C3A1FF')
     },
     lerpExample: () => {
       let step = 0

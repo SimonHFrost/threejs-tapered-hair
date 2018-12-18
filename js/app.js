@@ -79,8 +79,8 @@ function generate () {
   addedDebugObjects = []
 
   // myExamples.simpleExample()
-  // myExamples.colorExample()
-  myExamples.lerpExample()
+  myExamples.colorExample()
+  // myExamples.lerpExample()
 }
 
 generate()
