@@ -5,7 +5,7 @@ const Ui = (generate, toggleDebug, exportAnimation, autoRotate) => {
   const controls = {
     totalRange: 500,
     anchorDistance: 500,
-    numPoints: 5,
+    numPoints: 10,
     toggleDebug: false,
     autoRotate: false,
     generate: generate,

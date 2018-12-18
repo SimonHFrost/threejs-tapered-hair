@@ -1,3 +1,4 @@
+import * as THREE from 'three'
 import { getRandomNearby, getComplimentaryPosition } from './util'
 
 function mutateTranslate (path, units) {
@@ -99,8 +100,19 @@ function mutateMatchEnd (path, matchPath) {
 function mutateShortern (path, num) {
   const clonedPath = path.clone()
   const length = path.curves.length
-  clonedPath.curves = clonedPath.curves.splice(length - num, num)
-  console.log(clonedPath.curves)
+  clonedPath.curves.splice(length - num, num)
+  return clonedPath
+}
+
+function mutateMoveEnd (path) {
+  const clonedPath = path.clone()
+
+  clonedPath.curves[clonedPath.curves.length - 1].v3 = new THREE.Vector3(
+    Math.random() * 500,
+    Math.random() * 500,
+    Math.random() * 500
+  )
+
   return clonedPath
 }
 
@@ -112,5 +124,6 @@ export {
   mutateConnectEnds,
   mutateMatchStart,
   mutateMatchEnd,
-  mutateShortern
+  mutateShortern,
+  mutateMoveEnd
 }

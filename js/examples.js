@@ -1,4 +1,4 @@
-import { mutateTranslate, mutateRandomizeAnchors, mutateRandomness, mutateRandomizeConnectors, mutateConnectEnds, mutateMatchStart, mutateMatchEnd, mutateShortern } from './path-mutators'
+import { mutateTranslate, mutateRandomizeAnchors, mutateRandomness, mutateRandomizeConnectors, mutateConnectEnds, mutateMatchStart, mutateMatchEnd, mutateShortern, mutateMoveEnd } from './path-mutators'
 import { getLerpedPath } from './util'
 import { createPath } from './path-creator'
 
@@ -92,8 +92,12 @@ export default function Examples (controls, addPathToScene, removePathsFromScene
       const path = createPath(controls)
 
       addPathToScene(path, '#FF9D99')
-      addPathToScene(mutateShortern(mutateRandomness(path, 32), 1), '#A8F6FF')
-      addPathToScene(mutateShortern(mutateRandomness(path, 32), 2), '#A5D0FF')
+      addPathToScene(mutateMoveEnd(mutateShortern(mutateRandomness(path, 32), 1)), '#A8F6FF')
+      addPathToScene(mutateMoveEnd(mutateShortern(mutateRandomness(path, 32), 2)), '#A5D0FF')
+      addPathToScene(mutateMoveEnd(mutateShortern(mutateRandomness(path, 32), 3)), '#A3A8FF')
+      addPathToScene(mutateMoveEnd(mutateShortern(mutateRandomness(path, 32), 4)), '#C3A1FF')
+      addPathToScene(mutateMoveEnd(mutateShortern(mutateRandomness(path, 32), 5)), '#EA9FFF')
+      addPathToScene(mutateMoveEnd(mutateShortern(mutateRandomness(path, 32), 6)), '#FF9DEB')
     }
   }
 }
