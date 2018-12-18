@@ -1,5 +1,5 @@
 const exportAnimation = (renderer, renderLoop, duration) => {
-  var capturer = new window.CCapture({
+  const capturer = new window.CCapture({
     format: 'webm',
     framerate: 60,
     verbose: true

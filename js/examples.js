@@ -1,4 +1,4 @@
-import { mutateRandomizeAnchors, mutateConnectEnds, mutateRandomness } from './path-mutators'
+import { mutateTranslate, mutateRandomizeAnchors, mutateRandomness, mutateRandomizeConnectors, mutateConnectEnds } from './path-mutators'
 import { getLerpedPath } from './util'
 import { createPath } from './path-creator'
 

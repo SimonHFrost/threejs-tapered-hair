@@ -4,37 +4,9 @@ import { MeshLineMaterial } from 'three.meshline'
 
 import { initialize } from './initializer'
 import { createAmbientLight, createDirectionalLight, convertPathToLine, createDebugObject, createGrid } from './object-creator'
-import { mutateTranslate, mutateRandomizeAnchors, mutateRandomness, mutateRandomizeConnectors, mutateConnectEnds } from './path-mutators'
 import { exportAnimation } from './export-animation'
 import Examples from './examples'
-
-var gui = new dat.GUI()
-var controls = {
-  totalRange: 500,
-  anchorDistance: 500,
-  numPoints: 5,
-  showDebug: false,
-  generate: () => { generate() }
-}
-
-gui.add(controls, 'totalRange', 0, 1000)
-gui.add(controls, 'anchorDistance', 0, 1000)
-gui.add(controls, 'numPoints', 0, 20)
-const gridObject = createGrid()
-gui.add(controls, 'showDebug').onChange(() => {
-  if (controls.showDebug) {
-    addedDebugObjects.forEach(debugObject => {
-      scene.add(debugObject)
-    })
-    scene.add(gridObject)
-  } else {
-    addedDebugObjects.forEach(debugObject => {
-      scene.remove(debugObject)
-    })
-    scene.remove(gridObject)
-  }
-})
-gui.add(controls, 'generate')
+import Ui from './ui'
 
 const output = initialize()
 const scene = output.scene
@@ -67,12 +39,30 @@ function removePathsFromScene () {
 function addDebugToScene (path) {
   const debugObject = createDebugObject(path)
   addedDebugObjects.push(debugObject)
-  if (controls.showDebug) {
+  if (ui.controls.showDebug) {
     scene.add(debugObject)
   }
 }
 
-const myExamples = Examples(controls, addPathToScene, removePathsFromScene, addDebugToScene, renderLoop)
+const gridObject = createGrid()
+const toggleDebug = (toggle) => {
+  console.log(toggle)
+  if (toggle) {
+    addedDebugObjects.forEach(debugObject => {
+      scene.add(debugObject)
+    })
+    scene.add(gridObject)
+  } else {
+    // Should I dispose geometrys here to avoid memory leaks?
+    addedDebugObjects.forEach(debugObject => {
+      scene.remove(debugObject)
+    })
+    scene.remove(gridObject)
+  }
+}
+
+const ui = Ui(generate, toggleDebug)
+const myExamples = Examples(ui.controls, addPathToScene, removePathsFromScene, addDebugToScene, renderLoop)
 
 function generate () {
   removePathsFromScene()

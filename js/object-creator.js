@@ -20,11 +20,11 @@ function createCube (pos, color) {
 }
 
 function createStraightLine (v1, v2, color) {
-  var material = new THREE.LineBasicMaterial({
+  const material = new THREE.LineBasicMaterial({
     color: color
   })
 
-  var geometry = new THREE.Geometry()
+  const geometry = new THREE.Geometry()
   geometry.vertices.push(
     v1,
     v2
@@ -34,19 +34,19 @@ function createStraightLine (v1, v2, color) {
 }
 
 function convertPathToLine (path) {
-  var points = path.getPoints(1000)
+  const points = path.getPoints(1000)
 
-  var geometry = new THREE.Geometry()
+  const geometry = new THREE.Geometry()
   points.forEach(point => {
     const v = new THREE.Vector3(point.x, point.y, point.z)
     geometry.vertices.push(v)
   })
 
-  // var geometry = new THREE.BufferGeometry().setFromPoints(points)
-  var line = new MeshLine()
+  // const geometry = new THREE.BufferGeometry().setFromPoints(points)
+  const line = new MeshLine()
   line.setGeometry(geometry)
 
-  var material = new MeshLineMaterial({ color: new THREE.Color(0x000000), lineWidth: 0.01 })
+  const material = new MeshLineMaterial({ color: new THREE.Color(0x000000), lineWidth: 0.01 })
 
   return new THREE.Mesh(line.geometry, material)
 }
@@ -76,20 +76,20 @@ function createDebugObject (path) {
 function createGrid () {
   const gridObject = new THREE.Object3D()
 
-  var horizontalGrid = new THREE.GridHelper(500, 10)
+  const horizontalGrid = new THREE.GridHelper(500, 10)
   horizontalGrid.position.x = 250
   horizontalGrid.position.y = 0
   horizontalGrid.position.z = 250
   gridObject.add(horizontalGrid)
 
-  var verticalGrid = new THREE.GridHelper(500, 10)
+  const verticalGrid = new THREE.GridHelper(500, 10)
   verticalGrid.position.x = 250
   verticalGrid.position.y = 250
   verticalGrid.position.z = 0
   verticalGrid.rotation.x = Math.PI / 2
   gridObject.add(verticalGrid)
 
-  var verticalGrid2 = new THREE.GridHelper(500, 10)
+  const verticalGrid2 = new THREE.GridHelper(500, 10)
   verticalGrid2.position.x = 0
   verticalGrid2.position.y = 250
   verticalGrid2.position.z = 250
