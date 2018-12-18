@@ -8,6 +8,8 @@ import { createPath } from './path-creator'
 import { mutateTranslate, mutateRandomizeAnchors, mutateRandomness, mutateRandomizeConnectors, mutateConnectEnds } from './path-mutators'
 import { getLerpedPath } from './util'
 import { exportAnimation } from './export-animation'
+import Examples from './examples'
+
 
 var gui = new dat.GUI()
 var controls = {
@@ -64,12 +66,6 @@ function addDebugToScene (path) {
   if (controls.showDebug) {
     scene.add(debugObject)
   }
-}
-
-function simpleExample () {
-  const path = createPath(controls)
-  addPathToScene(path, '#FF9D99')
-  addDebugToScene(path)
 }
 
 function lerpExample () {
@@ -134,21 +130,7 @@ function lerpExample () {
   })
 }
 
-function colorExample () {
-  const path = createPath(controls)
-
-  addPathToScene(path, '#FF9D99')
-  addDebugToScene(path)
-
-  addPathToScene(mutateRandomizeAnchors(path, 1), '#A8F6FF')
-  addPathToScene(mutateRandomizeAnchors(path, 2), '#A5D0FF')
-  addPathToScene(mutateRandomizeAnchors(path, 4), '#A3A8FF')
-  addPathToScene(mutateRandomizeAnchors(path, 8), '#C3A1FF')
-  addPathToScene(mutateRandomizeAnchors(path, 16), '#EA9FFF')
-  addPathToScene(mutateRandomizeAnchors(path, 32), '#FF9DEB')
-  addPathToScene(mutateRandomizeAnchors(path, 64), '#FF9BC1')
-  addPathToScene(mutateRandomizeAnchors(path, 128), '#FF9D99')
-}
+const myExamples = Examples(controls, createPath, addPathToScene, addDebugToScene)
 
 function generate () {
   addedObjects.forEach(addedObject => {
@@ -161,9 +143,9 @@ function generate () {
   })
   addedDebugObjects = []
 
-  // colorExample()
-  lerpExample()
-  // simpleExample()
+  myExamples.colorExample()
+  // lerpExample()
+  // myExamples.simpleExample()
 }
 
 generate()
