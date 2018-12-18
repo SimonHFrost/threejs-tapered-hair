@@ -1,7 +1,8 @@
-import { mutateTranslate, mutateRandomizeAnchors, mutateRandomness, mutateRandomizeConnectors, mutateConnectEnds, mutateMatchStart, mutateMatchEnd } from './path-mutators'
+import { mutateTranslate, mutateRandomizeAnchors, mutateRandomness, mutateRandomizeConnectors, mutateConnectEnds, mutateMatchStart, mutateMatchEnd, mutateShortern } from './path-mutators'
 import { getLerpedPath } from './util'
 import { createPath } from './path-creator'
 
+// Warning, this file will likely stay messy. It's art baby!
 export default function Examples (controls, addPathToScene, removePathsFromScene, addDebugToScene, renderLoop) {
   return {
     simpleExample: () => {
@@ -86,6 +87,13 @@ export default function Examples (controls, addPathToScene, removePathsFromScene
       addPathToScene(path1, '#FF9D99')
       addPathToScene(path2, '#A8F6FF')
       addPathToScene(path3, '#A5D0FF')
+    },
+    linesTaperOff: () => {
+      const path = createPath(controls)
+
+      addPathToScene(path, '#FF9D99')
+      addPathToScene(mutateShortern(mutateRandomness(path, 32), 1), '#A8F6FF')
+      addPathToScene(mutateShortern(mutateRandomness(path, 32), 2), '#A5D0FF')
     }
   }
 }

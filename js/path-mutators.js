@@ -96,6 +96,14 @@ function mutateMatchEnd (path, matchPath) {
   return clonedPath
 }
 
+function mutateShortern (path, num) {
+  const clonedPath = path.clone()
+  const length = path.curves.length
+  clonedPath.curves = clonedPath.curves.splice(length - num, num)
+  console.log(clonedPath.curves)
+  return clonedPath
+}
+
 export {
   mutateTranslate,
   mutateRandomness,
@@ -103,5 +111,6 @@ export {
   mutateRandomizeConnectors,
   mutateConnectEnds,
   mutateMatchStart,
-  mutateMatchEnd
+  mutateMatchEnd,
+  mutateShortern
 }

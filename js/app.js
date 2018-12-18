@@ -81,7 +81,8 @@ function generate () {
   // myExamples.simpleExample()
   // myExamples.colorExample()
   // myExamples.lerpExample()
-  myExamples.threeConsistentLines()
+  // myExamples.threeConsistentLines()
+  myExamples.linesTaperOff()
 }
 
 generate()
