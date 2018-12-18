@@ -70,7 +70,7 @@ function autoRotate (toggle) {
 const ui = Ui(generate, toggleDebug, doExportAnimation, autoRotate)
 const myExamples = Examples(ui.controls, addPathToScene, removePathsFromScene, addDebugToScene, renderLoop)
 
-function generate () {
+function generate (example) {
   removePathsFromScene()
 
   addedDebugObjects.forEach(debugObject => {
@@ -78,11 +78,7 @@ function generate () {
   })
   addedDebugObjects = []
 
-  // myExamples.simpleExample()
-  // myExamples.colorExample()
-  // myExamples.lerpExample()
-  // myExamples.threeConsistentLines()
-  myExamples.linesTaperOff()
+  myExamples[ui.controls.example]()
 }
 
 generate()

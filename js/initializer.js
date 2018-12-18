@@ -40,7 +40,7 @@ function createCamera (renderer) {
   }
   camera.position.z = 1000
 
-  const orbitControls = new OrbitControls(camera)
+  const orbitControls = new OrbitControls(camera, renderer.domElement)
   orbitControls.target = new THREE.Vector3(250, 250, 250)
   orbitControls.update()
   orbitControls.autoRotateSpeed = 4
