@@ -1,7 +1,8 @@
 import { mutateRandomizeAnchors, mutateConnectEnds, mutateRandomness } from './path-mutators'
 import { getLerpedPath } from './util'
+import { createPath } from './path-creator'
 
-export default function Examples (controls, createPath, addPathToScene, removePathsFromScene, addDebugToScene, renderLoop) {
+export default function Examples (controls, addPathToScene, removePathsFromScene, addDebugToScene, renderLoop) {
   return {
     simpleExample: () => {
       const path = createPath(controls)

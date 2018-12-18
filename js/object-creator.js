@@ -1,6 +1,5 @@
 import * as THREE from 'three'
 import { MeshLine, MeshLineMaterial } from 'three.meshline'
-import { createPoints } from './util';
 
 function createAmbientLight () {
   return new THREE.AmbientLight(0xEEEEEE, 0.75)
@@ -12,24 +11,23 @@ function createDirectionalLight () {
   return directionalLight
 }
 
-function createCube (posX, posY, color) {
+function createCube (pos, color) {
   const geometry = new THREE.BoxBufferGeometry(5, 5, 5)
   const material = new THREE.MeshLambertMaterial({ color: color, flatShading: true })
   const mesh = new THREE.Mesh(geometry, material)
-  mesh.position.x = posX
-  mesh.position.y = posY
+  mesh.position.set(pos.x, pos.y, pos.z)
   return mesh
 }
 
-function createStraightLine (x1, y1, x2, y2, color) {
+function createStraightLine (v1, v2, color) {
   var material = new THREE.LineBasicMaterial({
     color: color
   })
 
   var geometry = new THREE.Geometry()
   geometry.vertices.push(
-    new THREE.Vector3(x1, y1, 0),
-    new THREE.Vector3(x2, y2, 0)
+    v1,
+    v2
   )
 
   return new THREE.Line(geometry, material)
@@ -59,14 +57,14 @@ function createDebugObject (path) {
   let prevV2 = path.curves[0].v0
 
   path.curves.forEach((curve, index) => {
-    debugObject.add(createCube(curve.v0.x, curve.v0.y, 'red'))
+    debugObject.add(createCube(curve.v0, 'red'))
 
-    debugObject.add(createCube(curve.v1.x, curve.v1.y, 'red'))
-    debugObject.add(createStraightLine(curve.v1.x, curve.v1.y, prevV2.x, prevV2.y, 'red'))
-    debugObject.add(createCube(curve.v2.x, curve.v2.y, 'red'))
+    debugObject.add(createCube(curve.v1, 'red'))
+    debugObject.add(createStraightLine(curve.v1, prevV2, 'red'))
+    debugObject.add(createCube(curve.v2, 'red'))
 
     if (index === path.curves.length - 1) {
-      debugObject.add(createStraightLine(curve.v2.x, curve.v2.y, curve.v3.x, curve.v3.y, 'red'))
+      debugObject.add(createStraightLine(curve.v2, curve.v3, 'red'))
     }
 
     prevV2 = curve.v2

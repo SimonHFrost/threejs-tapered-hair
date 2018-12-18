@@ -4,7 +4,6 @@ import { MeshLineMaterial } from 'three.meshline'
 
 import { initialize } from './initializer'
 import { createAmbientLight, createDirectionalLight, convertPathToLine, createDebugObject, createGrid } from './object-creator'
-import { createPath } from './path-creator'
 import { mutateTranslate, mutateRandomizeAnchors, mutateRandomness, mutateRandomizeConnectors, mutateConnectEnds } from './path-mutators'
 import { exportAnimation } from './export-animation'
 import Examples from './examples'
@@ -73,7 +72,7 @@ function addDebugToScene (path) {
   }
 }
 
-const myExamples = Examples(controls, createPath, addPathToScene, removePathsFromScene, addDebugToScene, renderLoop)
+const myExamples = Examples(controls, addPathToScene, removePathsFromScene, addDebugToScene, renderLoop)
 
 function generate () {
   removePathsFromScene()
@@ -83,9 +82,9 @@ function generate () {
   })
   addedDebugObjects = []
 
+  myExamples.simpleExample()
   // myExamples.colorExample()
-  myExamples.lerpExample()
-  // myExamples.simpleExample()
+  // myExamples.lerpExample()
 }
 
 generate()
