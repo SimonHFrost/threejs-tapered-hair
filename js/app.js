@@ -31,6 +31,7 @@ function removePathsFromScene () {
   addedObjects.forEach(addedObject => {
     scene.remove(addedObject)
     addedObject.geometry.dispose()
+    addedObject.material.dispose()
   })
   addedObjects = []
 

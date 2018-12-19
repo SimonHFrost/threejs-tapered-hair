@@ -23,26 +23,22 @@ export default function Examples (controls, renderLoop, addPathToScene, removePa
     },
     lerp: () => {
       let step = 0
-
       const randomness = 64
 
-      let fromPath = mutateConnectEnds(createPath(controls))
-      let fromPaths = []
-      fromPaths.push(fromPath)
-      fromPaths.push(mutateConnectEnds(mutateRandomness(fromPath, randomness)))
-      fromPaths.push(mutateConnectEnds(mutateRandomness(fromPath, randomness)))
-      fromPaths.push(mutateConnectEnds(mutateRandomness(fromPath, randomness)))
-      fromPaths.push(mutateConnectEnds(mutateRandomness(fromPath, randomness)))
-      fromPaths.push(mutateConnectEnds(mutateRandomness(fromPath, randomness)))
+      function preparePaths () {
+        const basePath = mutateConnectEnds(createPath(controls))
+        const paths = []
 
-      let toPath = mutateConnectEnds(createPath(controls))
-      let toPaths = []
-      toPaths.push(toPath)
-      toPaths.push(mutateConnectEnds(mutateRandomness(toPath, randomness)))
-      toPaths.push(mutateConnectEnds(mutateRandomness(toPath, randomness)))
-      toPaths.push(mutateConnectEnds(mutateRandomness(toPath, randomness)))
-      toPaths.push(mutateConnectEnds(mutateRandomness(toPath, randomness)))
-      toPaths.push(mutateConnectEnds(mutateRandomness(toPath, randomness)))
+        paths.push(mutateConnectEnds(mutateRandomness(basePath, randomness)))
+        paths.push(mutateConnectEnds(mutateRandomness(basePath, randomness)))
+        paths.push(mutateConnectEnds(mutateRandomness(basePath, randomness)))
+        paths.push(mutateConnectEnds(mutateRandomness(basePath, randomness)))
+
+        return paths
+      }
+
+      let fromPaths = preparePaths()
+      let toPaths = preparePaths()
 
       renderLoop.push(() => {
         if (step < 1) {
@@ -52,28 +48,11 @@ export default function Examples (controls, renderLoop, addPathToScene, removePa
           addPathToScene(getLerpedPath(fromPaths[1], toPaths[1], step), '#A5D0FF')
           addPathToScene(getLerpedPath(fromPaths[2], toPaths[2], step), '#A3A8FF')
           addPathToScene(getLerpedPath(fromPaths[3], toPaths[3], step), '#C3A1FF')
-          addPathToScene(getLerpedPath(fromPaths[4], toPaths[4], step), '#EA9FFF')
-          addPathToScene(getLerpedPath(fromPaths[5], toPaths[5], step), '#FF9DEB')
 
           step = step + 0.025
         } else {
-          fromPaths = []
-          fromPath = toPath
-          fromPaths.push(fromPath)
-          fromPaths.push(toPaths[1])
-          fromPaths.push(toPaths[2])
-          fromPaths.push(toPaths[3])
-          fromPaths.push(toPaths[4])
-          fromPaths.push(toPaths[5])
-
-          toPaths = []
-          toPath = mutateConnectEnds(createPath(controls))
-          toPaths.push(toPath)
-          toPaths.push(mutateConnectEnds(mutateRandomness(toPath, randomness)))
-          toPaths.push(mutateConnectEnds(mutateRandomness(toPath, randomness)))
-          toPaths.push(mutateConnectEnds(mutateRandomness(toPath, randomness)))
-          toPaths.push(mutateConnectEnds(mutateRandomness(toPath, randomness)))
-          toPaths.push(mutateConnectEnds(mutateRandomness(toPath, randomness)))
+          fromPaths = toPaths
+          toPaths = preparePaths()
           step = 0
         }
       })
