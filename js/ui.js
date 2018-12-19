@@ -9,7 +9,7 @@ const Ui = (generate, toggleDebug, exportAnimation, autoRotate) => {
     toggleDebug: false,
     autoRotate: false,
     generate: generate,
-    example: 'simpleExample',
+    example: 'simple',
     exportAnimation: exportAnimation
   }
 
@@ -19,9 +19,9 @@ const Ui = (generate, toggleDebug, exportAnimation, autoRotate) => {
   gui.add(controls, 'toggleDebug').onChange(toggleDebug)
   gui.add(controls, 'autoRotate').onChange(autoRotate)
   gui.add(controls, 'example', [
-    'simpleExample',
-    'colorExample',
-    'lerpExample',
+    'simple',
+    'color',
+    'lerp',
     'threeConsistentLines',
     'linesTaperOff'
   ])

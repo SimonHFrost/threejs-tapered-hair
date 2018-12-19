@@ -5,12 +5,12 @@ import { createPath } from './path-creator'
 // Warning, this file will likely stay messy. It's art baby!
 export default function Examples (controls, renderLoop, addPathToScene, removePathsFromScene, addDebugToScene) {
   return {
-    simpleExample: () => {
+    simple: () => {
       const path = createPath(controls)
       addPathToScene(path, '#FF9D99')
       addDebugToScene(path)
     },
-    colorExample: () => {
+    color: () => {
       const path = mutateConnectEnds(createPath(controls))
 
       addPathToScene(path, '#FF9D99')
@@ -21,7 +21,7 @@ export default function Examples (controls, renderLoop, addPathToScene, removePa
       addPathToScene(mutateRandomness(path, 128), '#A3A8FF')
       addPathToScene(mutateRandomness(path, 128), '#C3A1FF')
     },
-    lerpExample: () => {
+    lerp: () => {
       let step = 0
 
       const randomness = 64
