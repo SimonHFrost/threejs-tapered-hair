@@ -6,7 +6,7 @@ import { convertPathToLine, createDebugObject, createGrid } from './object-creat
 import { exportAnimation } from './export-animation'
 
 import Examples from './examples'
-import Ui from './ui'
+import Gui from './gui'
 
 const output = initialize()
 const scene = output.scene
@@ -49,7 +49,7 @@ function removePathsFromScene () {
 function addDebugToScene (path) {
   const debugObject = createDebugObject(path)
   addedDebugObjects.push(debugObject)
-  if (ui.controls.toggleDebug) {
+  if (gui.controls.toggleDebug) {
     scene.add(debugObject)
   }
 }
@@ -78,8 +78,8 @@ function autoRotate (toggle) {
   orbitControls.autoRotate = toggle
 }
 
-const ui = Ui(generate, toggleDebug, doExportAnimation, autoRotate)
-const myExamples = Examples(ui.controls, renderLoop, addPathToScene, removePathsFromScene, addDebugToScene)
+const gui = Gui(generate, toggleDebug, doExportAnimation, autoRotate)
+const myExamples = Examples(gui.controls, renderLoop, addPathToScene, removePathsFromScene, addDebugToScene)
 
 function generate (example) {
   removePathsFromScene()
@@ -89,7 +89,7 @@ function generate (example) {
   })
   addedDebugObjects = []
 
-  myExamples[ui.controls.example]()
+  myExamples[gui.controls.example]()
 }
 
 generate()

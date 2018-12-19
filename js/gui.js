@@ -1,6 +1,6 @@
 import dat from 'dat.gui'
 
-const Ui = (generate, toggleDebug, exportAnimation, autoRotate) => {
+const Gui = (generate, toggleDebug, exportAnimation, autoRotate) => {
   const gui = new dat.GUI()
   const controls = {
     totalRange: 500,
@@ -31,4 +31,4 @@ const Ui = (generate, toggleDebug, exportAnimation, autoRotate) => {
   return { controls }
 }
 
-export default Ui
+export default Gui
