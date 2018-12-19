@@ -33,6 +33,17 @@ function removePathsFromScene () {
     addedObject.geometry.dispose()
   })
   addedObjects = []
+
+  addedDebugObjects.forEach(debugObject => {
+    scene.remove(debugObject)
+    if (debugObject.children) {
+      debugObject.children.forEach(child => {
+        child.geometry.dispose()
+      })
+    } else {
+      console.warn(`debug object wasn't a three object so didn't do anything`)
+    }
+  })
 }
 
 function addDebugToScene (path) {
@@ -51,8 +62,8 @@ const toggleDebug = (toggle) => {
     })
     scene.add(gridObject)
   } else {
-    // Should I dispose geometrys here to avoid memory leaks?
     addedDebugObjects.forEach(debugObject => {
+      // Don't dispose of debugObject geometries because we might add them to the scene again
       scene.remove(debugObject)
     })
     scene.remove(gridObject)
