@@ -79,9 +79,6 @@ function autoRotate (toggle) {
   orbitControls.autoRotate = toggle
 }
 
-const gui = Gui(generate, toggleDebug, doExportAnimation, autoRotate)
-const myExamples = Examples(gui.controls, renderLoop, addPathToScene, removePathsFromScene, addDebugToScene)
-
 function generate (example) {
   removePathsFromScene()
 
@@ -92,5 +89,8 @@ function generate (example) {
 
   myExamples[gui.controls.example]()
 }
+
+const gui = Gui(generate, toggleDebug, doExportAnimation, autoRotate)
+const myExamples = Examples(gui.controls, renderLoop, addPathToScene, removePathsFromScene, addDebugToScene)
 
 generate()
