@@ -3,7 +3,7 @@ import { getLerpedPath } from './util'
 import { createPath } from './path-creator'
 
 // Warning, this file will likely stay messy. It's art baby!
-export default function Examples (controls, addPathToScene, removePathsFromScene, addDebugToScene, renderLoop) {
+export default function Examples (controls, renderLoop, addPathToScene, removePathsFromScene, addDebugToScene) {
   return {
     simpleExample: () => {
       const path = createPath(controls)

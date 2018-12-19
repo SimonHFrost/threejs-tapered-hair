@@ -79,7 +79,7 @@ function autoRotate (toggle) {
 }
 
 const ui = Ui(generate, toggleDebug, doExportAnimation, autoRotate)
-const myExamples = Examples(ui.controls, addPathToScene, removePathsFromScene, addDebugToScene, renderLoop)
+const myExamples = Examples(ui.controls, renderLoop, addPathToScene, removePathsFromScene, addDebugToScene)
 
 function generate (example) {
   removePathsFromScene()
