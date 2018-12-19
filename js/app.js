@@ -21,7 +21,7 @@ function addPathToScene (path, color = '#FFFFFF') {
   const line = convertPathToLine(path)
   line.material = new MeshLineMaterial({
     color: new THREE.Color(color),
-    lineWidth: 0.005
+    lineWidth: 0.01
   })
   scene.add(line)
   addedObjects.push(line)

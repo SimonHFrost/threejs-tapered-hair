@@ -42,9 +42,9 @@ function convertPathToLine (path) {
     geometry.vertices.push(v)
   })
 
-  // const geometry = new THREE.BufferGeometry().setFromPoints(points)
   const line = new MeshLine()
-  line.setGeometry(geometry)
+  // Second argument is width function
+  line.setGeometry(geometry, function (p) { return 0.4 * p + 0.6 })
 
   const material = new MeshLineMaterial({ color: new THREE.Color(0x000000), lineWidth: 0.01 })
 
