@@ -6,6 +6,14 @@ function getRandomNearby (value, length) {
   return value - (length / 2) + Math.random() * length
 }
 
+function getRandomNearby3 (vector, length) {
+  return new THREE.Vector3(
+    vector.x - (length / 2) + Math.random() * length,
+    vector.y - (length / 2) + Math.random() * length,
+    vector.z - (length / 2) + Math.random() * length
+  )
+}
+
 function getComplimentaryPosition (anchorPosition, connectingPosition) {
   return connectingPosition + (connectingPosition - anchorPosition)
 }
@@ -53,4 +61,4 @@ function getLerpedPath (fromPath, toPath, step) {
   return clonedPath
 }
 
-export { getRandomNearby, getComplimentaryPosition, getComplimentaryPosition3, createPoints, getLerpedPath }
+export { getRandomNearby, getRandomNearby3, getComplimentaryPosition, getComplimentaryPosition3, createPoints, getLerpedPath }
