@@ -1,4 +1,4 @@
-import { mutateTranslate, mutateRandomizeAnchors, mutateRandomness, mutateRandomizeConnectors, mutateConnectEnds, mutateMatchStart, mutateMatchEnd, mutateShortern, mutateMoveEnd } from './path-mutators'
+import { mutateTranslate, mutateRandomizeAnchors, mutateRandomness, mutateRandomizeConnectors, mutateConnectEnds, mutateMatchStart, mutateMatchEnd, mutateShortern, mutateMoveEnd, mutateTaperOff } from './path-mutators'
 import { getLerpedPath } from './util'
 import { createPath } from './path-creator'
 
@@ -70,13 +70,14 @@ export default function Examples (controls, renderLoop, addPathToScene, removePa
     linesTaperOff: () => {
       const path = createPath(controls)
 
-      addPathToScene(path, '#FF9D99')
-      addPathToScene(mutateMoveEnd(mutateShortern(mutateRandomness(path, 32), 1)), '#A8F6FF')
-      addPathToScene(mutateMoveEnd(mutateShortern(mutateRandomness(path, 32), 2)), '#A5D0FF')
-      addPathToScene(mutateMoveEnd(mutateShortern(mutateRandomness(path, 32), 3)), '#A3A8FF')
-      addPathToScene(mutateMoveEnd(mutateShortern(mutateRandomness(path, 32), 4)), '#C3A1FF')
-      addPathToScene(mutateMoveEnd(mutateShortern(mutateRandomness(path, 32), 5)), '#EA9FFF')
-      addPathToScene(mutateMoveEnd(mutateShortern(mutateRandomness(path, 32), 6)), '#FF9DEB')
+      const first = mutateRandomness(path, 32)
+      const second = mutateTaperOff(mutateRandomness(path, 32))
+
+      addPathToScene(first, '#FF0000')
+      addDebugToScene(first)
+
+      addPathToScene(second, '#0000FF')
+      addDebugToScene(second)
     }
   }
 }

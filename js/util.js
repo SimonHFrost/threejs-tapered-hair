@@ -10,6 +10,14 @@ function getComplimentaryPosition (anchorPosition, connectingPosition) {
   return connectingPosition + (connectingPosition - anchorPosition)
 }
 
+function getComplimentaryPosition3 (anchorPosition, connectingPosition) {
+  return new THREE.Vector3(
+    connectingPosition.x + (connectingPosition.x - anchorPosition.x),
+    connectingPosition.y + (connectingPosition.y - anchorPosition.y),
+    connectingPosition.z + (connectingPosition.z - anchorPosition.z)
+  )
+}
+
 function createPoints (numPoints, totalRange) {
   const points = []
   for (let i = 0; i < numPoints; i++) {
@@ -45,4 +53,4 @@ function getLerpedPath (fromPath, toPath, step) {
   return clonedPath
 }
 
-export { getRandomNearby, getComplimentaryPosition, createPoints, getLerpedPath }
+export { getRandomNearby, getComplimentaryPosition, getComplimentaryPosition3, createPoints, getLerpedPath }

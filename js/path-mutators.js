@@ -1,5 +1,5 @@
 import * as THREE from 'three'
-import { getRandomNearby, getComplimentaryPosition } from './util'
+import { getRandomNearby, getComplimentaryPosition, getComplimentaryPosition3 } from './util'
 
 function mutateTranslate (path, units) {
   const clonedPath = path.clone()
@@ -116,6 +116,21 @@ function mutateMoveEnd (path) {
   return clonedPath
 }
 
+function mutateTaperOff (path) {
+  const clonedPath = path.clone()
+
+  const lastPath = clonedPath.curves[clonedPath.curves.length - 1]
+
+  clonedPath.curves[clonedPath.curves.length - 1].v1 = getComplimentaryPosition3(lastPath.v1, lastPath.v0)
+  clonedPath.curves[clonedPath.curves.length - 1].v2 = getComplimentaryPosition3(lastPath.v2, lastPath.v0)
+  clonedPath.curves[clonedPath.curves.length - 1].v3 = getComplimentaryPosition3(lastPath.v3, lastPath.v0)
+
+  // Fix anchor on previous curve so line is continuous
+  clonedPath.curves[clonedPath.curves.length - 2].v2 = getComplimentaryPosition3(lastPath.v1, lastPath.v0)
+
+  return clonedPath
+}
+
 export {
   mutateTranslate,
   mutateRandomness,
@@ -125,5 +140,6 @@ export {
   mutateMatchStart,
   mutateMatchEnd,
   mutateShortern,
-  mutateMoveEnd
+  mutateMoveEnd,
+  mutateTaperOff
 }

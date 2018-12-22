@@ -5,11 +5,11 @@ const Gui = (generate, toggleDebug, exportAnimation, autoRotate) => {
   const controls = {
     totalRange: 500,
     anchorDistance: 500,
-    numPoints: 10,
+    numPoints: 5,
     toggleDebug: false,
     autoRotate: false,
     generate: generate,
-    example: 'simple',
+    example: 'linesTaperOff',
     exportAnimation: exportAnimation
   }
 
