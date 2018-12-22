@@ -113,8 +113,8 @@ function mutateTaperOff (path) {
 
   const lastPath = clonedPath.curves[clonedPath.curves.length - 1]
 
-  clonedPath.curves[clonedPath.curves.length - 1].v3 = lastPath.v3.lerp(lastPath.v0, 2.0)
-  clonedPath.curves[clonedPath.curves.length - 1].v2 = getRandomNearby3(clonedPath.curves[clonedPath.curves.length - 1].v3, 100)
+  clonedPath.curves[clonedPath.curves.length - 1].v3 = lastPath.v3.lerp(lastPath.v0, 1.2)
+  clonedPath.curves[clonedPath.curves.length - 1].v2 = lastPath.v2.lerp(lastPath.v0, 1.2)
 
   return clonedPath
 }
