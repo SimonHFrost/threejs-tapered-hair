@@ -1,5 +1,5 @@
 import * as THREE from 'three'
-import { getRandomNearby, getRandomNearby3, getComplimentaryPosition, getComplimentaryPosition3 } from './util'
+import { getRandomNearby3, getComplimentaryPosition, getComplimentaryPosition3 } from './util'
 
 function mutateTranslate (path, units) {
   const clonedPath = path.clone()
@@ -27,14 +27,10 @@ function mutateRandomizeAnchors (path, randomAmount) {
       curve.v1.y = getComplimentaryPosition(prev.v2.y, prev.v3.y)
       curve.v1.z = getComplimentaryPosition(prev.v2.z, prev.v3.z)
     } else {
-      curve.v1.x = getRandomNearby(curve.v1.x, randomAmount)
-      curve.v1.y = getRandomNearby(curve.v1.y, randomAmount)
-      curve.v1.z = getRandomNearby(curve.v1.z, randomAmount)
+      curve.v1 = getRandomNearby3(curve.v1, randomAmount)
     }
 
-    curve.v2.x = getRandomNearby(curve.v2.x, randomAmount)
-    curve.v2.y = getRandomNearby(curve.v2.y, randomAmount)
-    curve.v2.z = getRandomNearby(curve.v2.z, randomAmount)
+    curve.v2 = getRandomNearby3(curve.v2, randomAmount)
 
     prev = curve
   })
@@ -54,14 +50,10 @@ function mutateRandomizeConnectors (path, randomAmount) {
       curve.v1.y = getComplimentaryPosition(prev.v2.y, prev.v3.y)
       curve.v1.z = getComplimentaryPosition(prev.v2.z, prev.v3.z)
     } else {
-      curve.v0.x = getRandomNearby(curve.v0.x, randomAmount)
-      curve.v0.y = getRandomNearby(curve.v0.y, randomAmount)
-      curve.v0.z = getRandomNearby(curve.v0.z, randomAmount)
+      curve.v0 = getRandomNearby3(curve.v0, randomAmount)
     }
 
-    curve.v3.x = getRandomNearby(curve.v3.x, randomAmount)
-    curve.v3.y = getRandomNearby(curve.v3.y, randomAmount)
-    curve.v3.z = getRandomNearby(curve.v3.z, randomAmount)
+    curve.v3 = getRandomNearby3(curve.v3, randomAmount)
 
     prev = curve
   })
