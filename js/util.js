@@ -26,16 +26,18 @@ function getComplimentaryPosition3 (anchorPosition, connectingPosition) {
   )
 }
 
-function createPoints (numPoints, totalRange) {
-  const points = []
-  for (let i = 0; i < numPoints; i++) {
-    points.push({
-      x: Math.random() * totalRange,
-      y: Math.random() * totalRange,
-      z: Math.random() * totalRange
-    })
+function createVectors (numVectors, totalRange) {
+  const vectors = []
+  for (let i = 0; i < numVectors; i++) {
+    vectors.push(
+      new THREE.Vector3(
+        Math.random() * totalRange,
+        Math.random() * totalRange,
+        Math.random() * totalRange
+      )
+    )
   }
-  return points
+  return vectors
 }
 
 function lerpVector3 (v1, v2, step) {
@@ -61,4 +63,4 @@ function getLerpedPath (fromPath, toPath, step) {
   return clonedPath
 }
 
-export { getRandomNearby, getRandomNearby3, getComplimentaryPosition, getComplimentaryPosition3, createPoints, getLerpedPath }
+export { getRandomNearby, getRandomNearby3, getComplimentaryPosition, getComplimentaryPosition3, createVectors, getLerpedPath }

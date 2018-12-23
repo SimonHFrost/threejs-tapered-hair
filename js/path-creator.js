@@ -1,10 +1,10 @@
 import * as THREE from 'three'
-import { getRandomNearby, getComplimentaryPosition, createPoints } from './util'
+import { getRandomNearby, getComplimentaryPosition, createVectors } from './util'
 
 function createPath ({ numPoints, totalRange, anchorDistance }) {
   const curvePath = new THREE.CurvePath()
 
-  const points = createPoints(numPoints, totalRange)
+  const points = createVectors(numPoints, totalRange)
 
   let connectingX = points[0].x
   let connectingY = points[0].y
