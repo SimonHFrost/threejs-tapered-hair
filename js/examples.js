@@ -71,12 +71,12 @@ export default function Examples (controls, renderLoop, addPathToScene, removePa
       const path = createPath(controls)
 
       const first = mutateRandomness(path, 32)
-      const second = mutateTaperOff(mutateShortern(mutateRandomness(path, 32), 1))
-      const third = mutateTaperOff(mutateShortern(mutateRandomness(path, 32), 2))
+      const second = mutateTaperOff(mutateMoveEnd(mutateShortern(mutateRandomness(path, 32), 1)))
+      const third = mutateTaperOff(mutateMoveEnd(mutateShortern(mutateRandomness(path, 32), 2)))
 
-      addPathToScene(first, '#000000')
-      addPathToScene(second, '#000000')
-      addPathToScene(third, '#000000')
+      addPathToScene(first, '#FF9D99')
+      addPathToScene(second, '#A8F6FF')
+      addPathToScene(third, '#A5D0FF')
     }
   }
 }

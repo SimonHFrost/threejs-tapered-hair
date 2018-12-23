@@ -99,11 +99,8 @@ function mutateShortern (path, num) {
 function mutateMoveEnd (path) {
   const clonedPath = path.clone()
 
-  clonedPath.curves[clonedPath.curves.length - 1].v3 = new THREE.Vector3(
-    Math.random() * 500,
-    Math.random() * 500,
-    Math.random() * 500
-  )
+  const lastPoint = clonedPath.curves[clonedPath.curves.length - 1].v3
+  clonedPath.curves[clonedPath.curves.length - 1].v3 = getRandomNearby3(lastPoint, 100)
 
   return clonedPath
 }
