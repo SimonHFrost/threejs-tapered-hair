@@ -2,6 +2,7 @@ import dat from 'dat.gui'
 
 const Gui = (generate, toggleDebug, exportAnimation, autoRotate) => {
   const gui = new dat.GUI()
+
   const controls = {
     totalRange: 500,
     anchorDistance: 500,
@@ -9,7 +10,7 @@ const Gui = (generate, toggleDebug, exportAnimation, autoRotate) => {
     toggleDebug: false,
     autoRotate: false,
     generate: generate,
-    example: 'linesTaperOff',
+    example: window.sessionStorage.getItem('selectedExample') || 'simple',
     exportAnimation: exportAnimation
   }
 
@@ -24,7 +25,9 @@ const Gui = (generate, toggleDebug, exportAnimation, autoRotate) => {
     'lerp',
     'threeConsistentLines',
     'linesTaperOff'
-  ])
+  ]).onChange(value => {
+    window.sessionStorage.setItem('selectedExample', value)
+  })
   gui.add(controls, 'generate')
   gui.add(controls, 'exportAnimation')
 
