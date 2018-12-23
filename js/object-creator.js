@@ -43,8 +43,7 @@ function convertPathToLine (path) {
   })
 
   const line = new MeshLine()
-  // Second argument is width function
-  line.setGeometry(geometry, function (p) { return 0.4 * p + 0.6 })
+  line.setGeometry(geometry)
 
   const material = new MeshLineMaterial({ color: new THREE.Color(0x000000), lineWidth: 0.01 })
 
