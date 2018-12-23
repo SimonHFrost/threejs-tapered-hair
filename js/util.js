@@ -8,9 +8,9 @@ function getRandomNearby (value, length) {
 
 function getRandomNearby3 (vector, length) {
   return new THREE.Vector3(
-    vector.x - (length / 2) + Math.random() * length,
-    vector.y - (length / 2) + Math.random() * length,
-    vector.z - (length / 2) + Math.random() * length
+    getRandomNearby(vector.x, length),
+    getRandomNearby(vector.y, length),
+    getRandomNearby(vector.z, length)
   )
 }
 
@@ -20,9 +20,9 @@ function getComplimentaryPosition (anchorPosition, connectingPosition) {
 
 function getComplimentaryPosition3 (anchorPosition, connectingPosition) {
   return new THREE.Vector3(
-    connectingPosition.x + (connectingPosition.x - anchorPosition.x),
-    connectingPosition.y + (connectingPosition.y - anchorPosition.y),
-    connectingPosition.z + (connectingPosition.z - anchorPosition.z)
+    getComplimentaryPosition(anchorPosition.x, connectingPosition.x),
+    getComplimentaryPosition(anchorPosition.y, connectingPosition.y),
+    getComplimentaryPosition(anchorPosition.z, connectingPosition.z)
   )
 }
 
