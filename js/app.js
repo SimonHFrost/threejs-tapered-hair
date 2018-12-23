@@ -72,12 +72,14 @@ const toggleDebug = (toggle) => {
 }
 
 function doExportAnimation () {
-  exportAnimation(renderer, renderLoop, 10000)
+  exportAnimation(renderer, renderLoop, 5000)
 }
+exportAnimation(renderer, renderLoop, 5000)
 
 function autoRotate (toggle) {
   orbitControls.autoRotate = toggle
 }
+orbitControls.autoRotate = true
 
 function generate (example) {
   removePathsFromScene()

@@ -9,7 +9,6 @@ stats.showPanel(2) // 0: fps, 1: ms, 2: mb
 document.body.appendChild(stats.dom)
 
 const OrbitControls = ThreejsOrbitControls(THREE)
-const SHOULD_ROTATE = false
 
 function createRenderer () {
   const renderer = new THREE.WebGLRenderer({
@@ -35,9 +34,6 @@ function createCamera (renderer) {
   const camera = new THREE.OrthographicCamera(window.innerWidth / -2, window.innerWidth / 2, window.innerHeight / 2, window.innerHeight / -2, 0.01, 2000)
   camera.position.x = 250
   camera.position.y = 250
-  if (SHOULD_ROTATE) {
-    camera.position.y = 500
-  }
   camera.position.z = 1000
 
   const orbitControls = new OrbitControls(camera, renderer.domElement)

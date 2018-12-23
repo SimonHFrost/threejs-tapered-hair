@@ -98,17 +98,19 @@ export default function Examples (controls, renderLoop, addPathToScene, removePa
 
       let fromPaths = preparePaths()
       let toPaths = preparePaths()
+      let baseColor = tinycolor('#A8F6FF').spin(Math.random() * 360)
 
       renderLoop.push(() => {
         if (step < 1) {
-          addPathToScene(getLerpedPath(fromPaths[0], toPaths[0], step), '#A8F6FF')
-          addPathToScene(getLerpedPath(fromPaths[1], toPaths[1], step), tinycolor('#A8F6FF').spin(20 + step * 90).toString())
-          addPathToScene(getLerpedPath(fromPaths[2], toPaths[2], step), tinycolor('#A8F6FF').spin(40 + step * 90).toString())
-          addPathToScene(getLerpedPath(fromPaths[3], toPaths[3], step), tinycolor('#A8F6FF').spin(60 + step * 90).toString())
+          addPathToScene(getLerpedPath(fromPaths[0], toPaths[0], step), baseColor.toString())
+          addPathToScene(getLerpedPath(fromPaths[1], toPaths[1], step), tinycolor(baseColor.toString()).spin(20 + step * 90).toString())
+          addPathToScene(getLerpedPath(fromPaths[2], toPaths[2], step), tinycolor(baseColor.toString()).spin(40 + step * 90).toString())
+          addPathToScene(getLerpedPath(fromPaths[3], toPaths[3], step), tinycolor(baseColor.toString()).spin(60 + step * 90).toString())
 
           step = step + 0.01
         } else {
           removePathsFromScene()
+          baseColor = tinycolor('#A8F6FF').spin(Math.random() * 360)
           fromPaths = preparePaths()
           toPaths = preparePaths()
           step = 0
