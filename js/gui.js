@@ -27,7 +27,8 @@ const Gui = (generate, toggleDebug, exportAnimation, autoRotate) => {
     'color',
     'lerp',
     'threeConsistentLines',
-    'linesTaperOff'
+    'linesTaperOff',
+    'lerpAdd'
   ]).onChange(value => {
     sessionStorage.setItem('selectedExample', value)
   })

@@ -1,3 +1,5 @@
+import tinycolor from 'tinycolor2'
+
 import { mutateTranslate, mutateRandomizeAnchors, mutateRandomness, mutateRandomizeConnectors, mutateConnectEnds, mutateMatchStart, mutateMatchEnd, mutateShortern, mutateMoveEnd, mutateTaperOff } from './path-mutators'
 import { getLerpedPath } from './util'
 import { createPath } from './path-creator'
@@ -77,6 +79,41 @@ export default function Examples (controls, renderLoop, addPathToScene, removePa
       addPathToScene(first, '#FF9D99')
       addPathToScene(second, '#A8F6FF')
       addPathToScene(third, '#A5D0FF')
+    },
+    lerpAdd: () => {
+      let step = 0
+      const randomness = 64
+
+      function preparePaths () {
+        const basePath = mutateConnectEnds(createPath(controls))
+        const paths = []
+
+        paths.push(mutateConnectEnds(mutateRandomness(basePath, randomness)))
+        paths.push(mutateConnectEnds(mutateRandomness(basePath, randomness)))
+        paths.push(mutateConnectEnds(mutateRandomness(basePath, randomness)))
+        paths.push(mutateConnectEnds(mutateRandomness(basePath, randomness)))
+
+        return paths
+      }
+
+      let fromPaths = preparePaths()
+      let toPaths = preparePaths()
+
+      renderLoop.push(() => {
+        if (step < 1) {
+          addPathToScene(getLerpedPath(fromPaths[0], toPaths[0], step), '#A8F6FF')
+          addPathToScene(getLerpedPath(fromPaths[1], toPaths[1], step), tinycolor('#A8F6FF').spin(20 + step * 90).toString())
+          addPathToScene(getLerpedPath(fromPaths[2], toPaths[2], step), tinycolor('#A8F6FF').spin(40 + step * 90).toString())
+          addPathToScene(getLerpedPath(fromPaths[3], toPaths[3], step), tinycolor('#A8F6FF').spin(60 + step * 90).toString())
+
+          step = step + 0.01
+        } else {
+          removePathsFromScene()
+          fromPaths = preparePaths()
+          toPaths = preparePaths()
+          step = 0
+        }
+      })
     }
   }
 }

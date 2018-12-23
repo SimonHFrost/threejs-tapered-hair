@@ -72,7 +72,7 @@ const toggleDebug = (toggle) => {
 }
 
 function doExportAnimation () {
-  exportAnimation(renderer, renderLoop, 1000)
+  exportAnimation(renderer, renderLoop, 10000)
 }
 
 function autoRotate (toggle) {
