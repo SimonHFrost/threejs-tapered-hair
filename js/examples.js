@@ -111,8 +111,8 @@ export default function Examples (controls, renderLoop, addPathToScene, removePa
         } else {
           removePathsFromScene()
           baseColor = tinycolor('#A8F6FF').spin(Math.random() * 360)
-          fromPaths = preparePaths()
-          toPaths = preparePaths()
+          fromPaths = null
+          toPaths = null
           step = 0
         }
       })
