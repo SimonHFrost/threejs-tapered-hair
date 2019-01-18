@@ -111,8 +111,16 @@ export default function Examples (controls, renderLoop, addPathToScene, removePa
         } else {
           removePathsFromScene()
           baseColor = tinycolor('#A8F6FF').spin(Math.random() * 360)
-          fromPaths = null
-          toPaths = null
+
+          fromPaths = toPaths
+
+          const basePath = mutateConnectEnds(createPath(controls))
+          toPaths = []
+          toPaths.push(mutateConnectEnds(mutateRandomness(basePath, randomness)))
+          toPaths.push(mutateConnectEnds(mutateRandomness(basePath, randomness)))
+          toPaths.push(mutateConnectEnds(mutateRandomness(basePath, randomness)))
+          toPaths.push(mutateConnectEnds(mutateRandomness(basePath, randomness)))
+
           step = 0
         }
       })
